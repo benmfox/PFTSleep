@@ -28,8 +28,8 @@ python modules, which can be imported and used in other Python projects.
 
 To add new functionality, create a new notebook or add to exisitng in
 the `nbs/` directory and follow the instructions in the [nbdev
-documentation](https://nbdev.fast.ai/quickstart.html) to add the new
-functionality. Then, run `nbdev_prepare` to generate the `PFTSleep`
+documentation](https://nbdev.fast.ai/getting_started.html) to add the
+new functionality. Then, run `nbdev_prepare` to generate the `PFTSleep`
 package with the new functionality.
 
 ### Directory Structure:
