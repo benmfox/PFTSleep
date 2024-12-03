@@ -9,6 +9,10 @@ PFTSleep is a Python package for sleep stage classification using a
 pre-trained foundational transformer. The repository is built using
 nbdev, which means the package is developed in Jupyter notebooks.
 
+See the
+[preprint](https://www.medrxiv.org/content/10.1101/2024.08.02.24311417v1)
+for more details.
+
 ## Install
 
 ``` sh

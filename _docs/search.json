@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "PFTSleep",
     "section": "",
-    "text": "PFTSleep is a Python package for sleep stage classification using a pre-trained foundational transformer. The repository is built using nbdev, which means the package is developed in Jupyter notebooks.",
+    "text": "PFTSleep is a Python package for sleep stage classification using a pre-trained foundational transformer. The repository is built using nbdev, which means the package is developed in Jupyter notebooks.\nSee the preprint for more details.",
     "crumbs": [
       "PFTSleep"
     ]
@@ -14,7 +14,7 @@
     "href": "index.html#overview",
     "title": "PFTSleep",
     "section": "",
-    "text": "PFTSleep is a Python package for sleep stage classification using a pre-trained foundational transformer. The repository is built using nbdev, which means the package is developed in Jupyter notebooks.",
+    "text": "PFTSleep is a Python package for sleep stage classification using a pre-trained foundational transformer. The repository is built using nbdev, which means the package is developed in Jupyter notebooks.\nSee the preprint for more details.",
     "crumbs": [
       "PFTSleep"
     ]
