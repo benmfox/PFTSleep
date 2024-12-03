@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "PFTSleep"
+  site-url: "https://benmfox.github.io/PFTSleep"
+  description: "Foundational AI for Sleep Medicine"
+  repo-branch: main
+  repo-url: "https://github.com/benmfox/PFTSleep"
