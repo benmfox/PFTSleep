@@ -347,7 +347,9 @@ class MixupCallback(Callback):
             padding_mask_shuffled = padding_mask[indices]
             # If either mask indicates padding (1), the result should be padded
             padding_mask = torch.logical_or(padding_mask, padding_mask_shuffled)
-            return (x_mixed, y_mixed, padding_mask)
+            batch[0], batch[1], batch[2] = x_mixed, y_mixed, padding_mask
+            #return (x_mixed, y_mixed, padding_mask)
         else:
-            return (x_mixed, y_mixed)
+            batch[0], batch[1] = x_mixed, y_mixed
+            #return (x_mixed, y_mixed)
         #return batch
