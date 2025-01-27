@@ -198,8 +198,11 @@ class IntraClassCutMix1d(Callback):
                         
                         # Mix the segments
                         x[batch_indices, :, start_x:end_x] = x[shuffled_indices, :, start_x:end_x]
-       
-        return (x, y) if not self.return_sequence_padding_mask else (x, y, padding_mask)
+        if self.return_sequence_padding_mask:
+            batch[0], batch[1], batch[2] = x, y, padding_mask
+        else:
+            batch[0], batch[1] = x, y
+        return batch
 
 # %% ../nbs/09_augmentations.ipynb 23
 class IntraClassCutMixBatch(Callback):
@@ -265,9 +268,13 @@ class IntraClassCutMixBatch(Callback):
                     y[batch_indices, patch_indices] = y[shuffled_indices[:, 0], shuffled_indices[:, 1]]
             # unpatch the data
             x = unpatch(x, seq_len)
-        return (x, y) if not self.return_sequence_padding_mask else (x, y, padding_mask)
+        if self.return_sequence_padding_mask:
+            batch[0], batch[1], batch[2] = x, y, padding_mask
+        else:
+            batch[0], batch[1] = x, y
+        return batch
 
-# %% ../nbs/09_augmentations.ipynb 25
+# %% ../nbs/09_augmentations.ipynb 26
 class MixupCallback(Callback):
     """
     Mixup for 1D data (e.g., time-series).
