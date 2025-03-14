@@ -571,6 +571,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>True</code></pre>
 </div>
 </div>
+<div id="cell-25" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a tuple</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> ([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>])</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Unpack into new variables</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> batch</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify x and y</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">99</span>  <span class="co"># This modifies the list because lists are mutable</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">88</span>  <span class="co"># This modifies the list because lists are mutable</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch)  <span class="co"># Will show ([99,2,3], [88,5,6]) because lists are mutable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>([99, 2, 3], [88, 5, 6])</code></pre>
+</div>
+</div>
 <hr>
 </section>
 <section id="mixupcallback" class="level3">
@@ -625,17 +641,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<div id="cell-26" class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">90</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x_c <span class="op">=</span> x.clone()</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>y_og <span class="op">=</span> torch.randint(<span class="dv">0</span>, <span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">90</span><span class="op">//</span><span class="dv">30</span>))</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>y_og[<span class="dv">1</span>,<span class="dv">2</span>] <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>y_og[<span class="dv">2</span>,<span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>y_c <span class="op">=</span> y_og.clone()</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>xxt <span class="op">=</span> MixupCallback(num_classes<span class="op">=</span><span class="dv">5</span>, mixup_alpha<span class="op">=</span><span class="fl">0.4</span>, return_sequence_padding_mask<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> (x,y_og)</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> xxt.on_train_batch_start(<span class="va">None</span>, <span class="va">None</span>, batch, <span class="dv">0</span>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>torch.equal(x_c, batch[<span class="dv">0</span>]) <span class="op">==</span> <span class="va">False</span>, torch.equal(y_c, batch[<span class="dv">1</span>]) <span class="op">==</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">90</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>x_c <span class="op">=</span> x.clone()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>y_og <span class="op">=</span> torch.randint(<span class="dv">0</span>, <span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">90</span><span class="op">//</span><span class="dv">30</span>))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>y_og[<span class="dv">1</span>,<span class="dv">2</span>] <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>y_og[<span class="dv">2</span>,<span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>y_c <span class="op">=</span> y_og.clone()</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>xxt <span class="op">=</span> MixupCallback(num_classes<span class="op">=</span><span class="dv">5</span>, mixup_alpha<span class="op">=</span><span class="fl">0.4</span>, return_sequence_padding_mask<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> (x,y_og)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> xxt.on_train_batch_start(<span class="va">None</span>, <span class="va">None</span>, batch, <span class="dv">0</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>torch.equal(x_c, batch[<span class="dv">0</span>]) <span class="op">==</span> <span class="va">False</span>, torch.equal(y_c, batch[<span class="dv">1</span>]) <span class="op">==</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mixup is being applied!</code></pre>
 </div>

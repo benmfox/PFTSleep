@@ -9,7 +9,8 @@ PFTSleep is a Python package for sleep stage classification using a
 pre-trained foundational transformer. The repository is built using
 nbdev, which means the package is developed in Jupyter notebooks.
 
-See the
+See the publication in [SLEEP](https://doi.org/10.1093/sleep/zsaf061)
+and original
 [preprint](https://www.medrxiv.org/content/10.1101/2024.08.02.24311417v1)
 for more details.
 
@@ -77,12 +78,16 @@ the data for model training
 If you use PFTSleep in your research, please cite:
 
 ``` bibtex
-@article {Fox2024.08.02.24311417,
-    author = {Fox, Benjamin and Jiang, Joy and Wickramaratne, Sajila and Kovatch, Patricia and Suarez-Farinas, Mayte and Shah, Neomi A and Parekh, Ankit and Nadkarni, Girish N},
-    title = {A foundational transformer leveraging full night, multichannel sleep study data accurately classifies sleep stages},
-    elocation-id = {2024.08.02.24311417},
-    year = {2024},
-    doi = {10.1101/2024.08.02.24311417},
-    publisher = {Cold Spring Harbor Laboratory Press},
+@ARTICLE{Fox2025-zc,
+  title     = "A foundational transformer leveraging full night, multichannel
+               sleep study data accurately classifies sleep stages",
+  author    = "Fox, Benjamin and Jiang, Joy and Wickramaratne, Sajila and
+               Kovatch, Patricia and Suarez-Farinas, Mayte and Shah, Neomi A
+               and Parekh, Ankit and Nadkarni, Girish N",
+  journal   = "Sleep",
+  publisher = "Oxford University Press (OUP)",
+  month     =  mar,
+  year      =  2025,
+  language  = "en"
 }
 ```

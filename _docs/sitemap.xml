@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://benmfox.github.io/PFTSleep/index.html</loc>
-    <lastmod>2024-12-03T22:05:26.142Z</lastmod>
+    <lastmod>2025-03-14T10:03:09.998Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/data_preprocessing.html</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/augmentations.html</loc>
-    <lastmod>2024-12-03T21:40:20.970Z</lastmod>
+    <lastmod>2025-03-14T10:03:11.763Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/transformers.html</loc>
