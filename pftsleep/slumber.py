@@ -95,11 +95,11 @@ MROS_CHANNELS = [['ECG (L-R)'], ['E1-M2'], ['EMG (L-R)'], ["C4-M1", "C3-M2"], ['
 def read_edf(file_path, # file path of edf
              channels=None, # channels in edf to read, will raise warning if channels do not exist
              frequency=None # frequency to resample all signals to
-             )->Union[list, dict]: # tuple of signals and header dictionary
+             ): # tuple of signals and header dictionary
     """
     Function to read an edf file and return a list of signals and header with the option to resample to a passed frequency
     """
-    pyedflib.close_file(0) # ensure files are closed 
+    pyedflib.close_file(0) # ensure files are closed
     with pyedflib.EdfReader(file_path) as f:
         num_channels = f.signals_in_file
         if channels is not None:
@@ -116,16 +116,16 @@ def read_edf(file_path, # file path of edf
         header['SignalHeaders'] = [f.getSignalHeaders()[c] for c in channels_idxs]
         signals = []
         if frequency is not None:
-            required_length = header['Duration'] * frequency
-        for c in channels_idxs:
+            required_length = int(header['Duration'] * frequency)
+        for idx, c in enumerate(channels_idxs):
             signal = f.readSignal(c, digital=False)
             if frequency is not None and len(signal) != required_length:
                 signal = resample(signal, required_length)
-                header['SignalHeaders'][c]['sample_rate'] = frequency
-                header['SignalHeaders'][c]['sample_frequency'] = frequency
+                header['SignalHeaders'][idx]['sample_rate'] = frequency
+                header['SignalHeaders'][idx]['sample_frequency'] = frequency
             signals.append(signal)
     return signals, header
-    
+
     #full_range = pd.date_range(header['startdate'], periods=header['Duration'], freq='1S')
 
 # %% ../nbs/02_slumber.ipynb 9
