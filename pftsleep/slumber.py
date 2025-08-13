@@ -148,6 +148,7 @@ def read_edf_mne(file_path, # file path of edf
         channels_to_get = list(set(channels) & set(available_channels))
         channels_idxs = [available_channels.index(c) for c in channels_to_get]
     else:
+        channels_to_get = [channel.upper() for channel in signal_labels]
         channels_idxs = range(num_channels)
     info_dict = dict(raw_edf.info)
     header = {'technician': info_dict.get('experimenter'),
@@ -162,7 +163,7 @@ def read_edf_mne(file_path, # file path of edf
         'birthdate': info_dict.get('subject_info').get('birthday'),
         'gender': 'Female' if info_dict.get('subject_info').get('sex') == 0 else 'Male',
         'Duration':int(len(raw_edf) / info_dict.get('sfreq')),
-        'SignalHeaders':[{'label':i['ch_name'], 'sample_frequency':info_dict.get('sfreq'), 'sample_rate':info_dict.get('sfreq')} for i in info_dict.get('chs')]
+        'SignalHeaders':[{'label':i['ch_name'], 'sample_frequency':info_dict.get('sfreq') if frequency is None else frequency, 'sample_rate':info_dict.get('sfreq') if frequency is None else frequency} for i in info_dict.get('chs') if i['ch_name'] in channels_to_get]
     }
     signals = []
     if frequency is not None:
@@ -193,6 +194,10 @@ def read_edf_edfio(file_path, # file path of edf
         channels_idxs = [available_channels.index(c) for c in channels_to_get]
     else:
         channels_idxs = range(num_channels)
+    try:
+      start_datetime = dt.datetime.combine(f.startdate, f.starttime)
+    except:
+      start_datetime = None
     header = {'technician': '' if f.recording.get_subfield(2) == 'X' else f.recording.get_subfield(2),
             'recording_additional': '',
             'patientname': '' if f.patient.get_subfield(3) == 'X' else f.patient.get_subfield(3),
@@ -201,14 +206,14 @@ def read_edf_edfio(file_path, # file path of edf
             'equipment': '',
             'admincode': '',
             'sex': '' if f.patient.get_subfield(1) == 'X' else f.patient.get_subfield(1).replace('M', 'Male').replace('F', 'Female'),
-            'startdate': dt.datetime.combine(f.startdate, f.starttime),
+            'startdate': start_datetime,
             'birthdate': f.patient.get_subfield(2).lower().replace('-',' ') if f.patient.get_subfield(2) != 'X' else '',
             'gender': '' if f.patient.get_subfield(1) == 'X' else f.patient.get_subfield(1).replace('M', 'Male').replace('F', 'Female'),
             'Duration': int(f.duration),
             'SignalHeaders':[{'label':f.signals[i].label, 
                             'dimension':f.signals[i].physical_dimension,
-                            'sample_rate':f.signals[i].sampling_frequency,
-                            'sample_frequency':f.signals[i].sampling_frequency,
+                            'sample_rate':f.signals[i].sampling_frequency if frequency is None else frequency,
+                            'sample_frequency':f.signals[i].sampling_frequency if frequency is None else frequency,
                             'physical_max': f.signals[i].physical_max,
                             'physical_min': f.signals[i].physical_min,
                             'digital_max': f.signals[i].digital_max,
@@ -224,11 +229,8 @@ def read_edf_edfio(file_path, # file path of edf
         signal = f.signals[c].data
         if frequency is not None and len(signal) != required_length:
             signal = resample(signal, required_length)
-            header['SignalHeaders'][c]['sample_rate'] = frequency
-            header['SignalHeaders'][c]['sample_frequency'] = frequency
         signals.append(signal)
     return signals, header
-    
 
 # %% ../nbs/02_slumber.ipynb 12
 def read_hypnogram(file, # file path of the hypnogram csv
