@@ -22,7 +22,7 @@ pip install PFTSleep
 
 ## Inference
 
-To perform inference on unseen data (as EDFs), use the `pft_sleep_inference_script.py` and `pftsleep_inference_config.yaml`. 
+To perform inference on unseen data (using EDF file paths as input), use the `pft_sleep_inference.sh`, `pft_sleep_inference.py` and `pftsleep_inference_config.yaml` files. 
 
 Please create an account on Hugging Face and request access to the models [here](https://huggingface.co/benmfox/PFTSleep). You will also need to create a personal access token, with read access. **Read** more [here](https://huggingface.co/docs/hub/en/security-tokens).
 
@@ -34,11 +34,11 @@ from pftsleep.inference import download_pftsleep_models
 download_pftsleep_models(models_dir='', token=YOUR_HF_TOKEN)
 ```
 
-You will also be prompted to download the files, when running the inference script, if they are not in `models_dir`. 
+You will also be prompted to download the files when running the inference script, if they are not in `models_dir`. 
 
-After the models are downloaded, update the `pftsleep_inference_config.yaml` file with paths to your edfs. You can both a single edf file or a directory of edfs. You can also use glob syntax if specifying edfs within single sub directories (e.g. /path/to/base/directory/**/).
+After the models are downloaded, update the `pftsleep_inference_config.yaml` file with a path to your edf or edf directory. You can pass both a single edf file or a directory of edfs. You can also use glob syntax if specifying edfs within single sub directories (e.g. /path/to/base/directory/**/).
 
-Unfortunately, due to naming conventions of channels, if you are passing multiple edfs, but they have different channel names, the dataloader will fail. It is recommended in this case to rewrite the edfs to a consistent channel name format, or process them one by one. 
+Unfortunately, due to naming conventions of channels if you are passing multiple edfs, but they have different channel names, the dataloader will fail. It is recommended in this case to rewrite the edfs to a consistent channel name format, or perform inference on them one by one. 
 
 If a specific channel is not available for a given edf or set of edfs, pass the keyword "null" or "dummy" to that channels name parameter in the yaml if you'd like to see how the model performs with that channel set as all zeros. 
 
@@ -54,7 +54,7 @@ Check the `slumber.py` source code for NSRR specific channels (under the `SHHS_C
 
 For the `device` parameter, use "cpu" (slowest), GPU (e.g. "cuda:0"), or MPS ("mps" for Mac OS X).
 
-Prediction logits of shape [bs x 5 x 960] are outputted. Note that the model expects an 8 hour input and returns 960 class predictions for each 30 second sleep epoch within the 8 hours. If the sleep study is longer than 8 hours, stages after the 8 hour time point will not be predicted. If the sleep study is shorter than 8 hours, stages predicted after the true length of the study should be ignored. Please file an issue if this becomes a major problem and we can work on a solution. We are also working on models that will accept variable length input.
+Prediction logits of shape [bs x 5 x 960] are outputted. Note that the model expects an 8 hour input and returns 960 class predictions for each 30 second sleep epoch within the 8 hours. If the sleep study is longer than 8 hours, stages after the 8 hour time point will not be predicted. If the sleep study is shorter than 8 hours, stages predicted after the true length of the study should be ignored (despite the model outputted a size of 960). Please file an issue if this becomes a major problem and we can work on a solution. We are also working on models that will accept variable length input.
 
 To finally run the predictions on a single edf file or directory of edf files, give permissions to the shell script:
 ```
