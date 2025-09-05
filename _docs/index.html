@@ -222,6 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">Install</a></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
   <li><a href="#repository-structure-and-usage" id="toc-repository-structure-and-usage" class="nav-link" data-scroll-target="#repository-structure-and-usage">Repository Structure and Usage</a>
   <ul class="collapse">
   <li><a href="#directory-structure" id="toc-directory-structure" class="nav-link" data-scroll-target="#directory-structure">Directory Structure:</a></li>
@@ -263,6 +264,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="install" class="level2">
 <h2 class="anchored" data-anchor-id="install">Install</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install PFTSleep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="inference" class="level2">
+<h2 class="anchored" data-anchor-id="inference">Inference</h2>
+<p>To perform inference on unseen data (using EDF file paths as input), use the <code>pft_sleep_inference.sh</code>, <code>pft_sleep_inference.py</code> and <code>pftsleep_inference_config.yaml</code> files.</p>
+<p>Please create an account on Hugging Face and request access to the models <a href="https://huggingface.co/benmfox/PFTSleep">here</a>. You will also need to create a personal access token, with read access. <strong>Read</strong> more <a href="https://huggingface.co/docs/hub/en/security-tokens">here</a>.</p>
+<p>Following, download the encoder and sleep stage classifier models with:</p>
+<pre><code>from pftsleep.inference import download_pftsleep_models
+
+download_pftsleep_models(models_dir='', token=YOUR_HF_TOKEN)</code></pre>
+<p>You will also be prompted to download the files when running the inference script, if they are not in <code>models_dir</code>.</p>
+<p>After the models are downloaded, update the <code>pftsleep_inference_config.yaml</code> file with a path to your edf or edf directory. You can pass both a single edf file or a directory of edfs. You can also use glob syntax if specifying edfs within single sub directories (e.g.&nbsp;/path/to/base/directory/**/).</p>
+<p>Unfortunately, due to differing naming conventions for signal channels, if you are passing multiple edfs, but they have different channel names, the dataloader will fail. It is recommended in this case to rewrite the edfs to a consistent channel name format, or perform inference on them one by one.</p>
+<p>If a specific channel is not available for a given edf or set of edfs, pass the keyword “null” or “dummy” to that channels name parameter in the yaml if you’d like to see how the model performs with that channel set as all zeros.</p>
+<p>The model expects referenced EEG, Left EOG, EMG, and ECG channels. If your channels are unreferenced, you may pass the corresponding reference channels. The model was trained with the following referenced channels (priority was given to the ones listed first in the below list):</p>
+<pre><code>EEG: C4-M1 or C3-M2
+EMG: Chin1-Chin2 or Chin1-Chin3
+ECG: Augmented lead 2 (or ECG (LL) - ECG (RA))
+Left EOG: E1-M2</code></pre>
+<p>Check the <code>slumber.py</code> source code for NSRR specific channels (under the <code>SHHS_CHANNELS</code>, <code>MROS_CHANNELS</code>, <code>WSC_CHANNELS</code>, etc. variables) if the above is confusing.</p>
+<p>For the <code>device</code> parameter, use “cpu” (slowest), GPU (e.g.&nbsp;“cuda:0”), or MPS (“mps” for Mac OS X).</p>
+<p>Prediction logits of shape [bs x 5 x 960] are outputted. The first dimension indicates individual sleep stage logits where the 0 index is wake, 1 is N1, 2 is N2, 3 is N3, and 4 is REM. To retrieve probabilities, use torch’s softmax function on the 1st dimension of the tensor. Note that the model expects an 8 hour input and returns 960 class predictions for each 30 second sleep epoch within the 8 hours. If the sleep study is longer than 8 hours, stages after the 8 hour time point will not be predicted. If the sleep study is shorter than 8 hours, stages predicted after the true length of the study should be ignored (despite the model outputted a size of 960). Please file an issue if this becomes a major problem and we can work on a solution. We are also working on models that will accept variable length input.</p>
+<p>To finally run the predictions on a single edf file or directory of edf files, give permissions to the shell script:</p>
+<pre><code>chmod +x pftsleep_inference.sh</code></pre>
+<p>Then run it, passing the config file as the main argument:</p>
+<pre><code>./pftsleep_inference.sh pftsleep_inference_config.yaml</code></pre>
+<p>Predictions will be output to a torch tensor file <code>.pt</code> at the location specified in the yaml.</p>
 </section>
 <section id="repository-structure-and-usage" class="level2">
 <h2 class="anchored" data-anchor-id="repository-structure-and-usage">Repository Structure and Usage</h2>
@@ -315,18 +342,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="citation" class="level2">
 <h2 class="anchored" data-anchor-id="citation">Citation</h2>
 <p>If you use PFTSleep in your research, please cite:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@ARTICLE</span>{<span class="ot">Fox2025</span>-<span class="ot">zc</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = "<span class="st">A foundational transformer leveraging full night, multichannel</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">               sleep study data accurately classifies sleep stages</span>",</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = "<span class="st">Fox, Benjamin and Jiang, Joy and Wickramaratne, Sajila and</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">               Kovatch, Patricia and Suarez-Farinas, Mayte and Shah, Neomi A</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">               and Parekh, Ankit and Nadkarni, Girish N</span>",</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>   = "<span class="st">Sleep</span>",</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = "<span class="st">Oxford University Press (OUP)</span>",</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">month</span>     =  <span class="st">mar</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      =  2025,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">language</span>  = "<span class="st">en</span>"</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">@ARTICLE</span>{<span class="ot">Fox2025</span>-<span class="ot">zc</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = "<span class="st">A foundational transformer leveraging full night, multichannel</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">               sleep study data accurately classifies sleep stages</span>",</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = "<span class="st">Fox, Benjamin and Jiang, Joy and Wickramaratne, Sajila and</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">               Kovatch, Patricia and Suarez-Farinas, Mayte and Shah, Neomi A</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">               and Parekh, Ankit and Nadkarni, Girish N</span>",</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>   = "<span class="st">Sleep</span>",</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = "<span class="st">Oxford University Press (OUP)</span>",</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">month</span>     =  <span class="st">mar</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      =  2025,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">language</span>  = "<span class="st">en</span>"</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
