@@ -20,7 +20,7 @@ if __name__ == "__main__":
         if not os.path.exists(yaml_data['models_dir']):
             os.makedirs(yaml_data['models_dir'])
         try:
-            download_pftsleep_models(models_dir=yaml_data['models_dir'], token=getpass.getpass("Enter your Hugging Face token: "))
+            download_pftsleep_models(write_dir=yaml_data['models_dir'], token=getpass.getpass("Enter your Hugging Face token: "))
         except Exception as e:
             raise ValueError(f"Error downloading encoder and classifier models: {e}")
 
