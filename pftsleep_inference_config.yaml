@@ -1,11 +1,12 @@
-edf_directory_or_file_path: "/Users/benfox/Downloads/CROWD_133_RR_170927.edf"
+edf_directory_or_file_path: "" # the path to the edf file or directory of edf files to perform inference on
+# use all caps for channel names!
 eeg_channel: "C4-M1" # the EEG channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. However, 
 left_eog_channel: "E1-M2" # the left EOG channel name in the EDF. The model was trained with M2 referenced left EOG channels.
 chin_emg_channel: "EMG1-EMG2" # the chin EMG channel name in the EDF. The model was trained with chin refenced (chin 2 or chin 3) EMG channels.
 ecg_channel: "ECG1-ECG2" # the ECG channel name in the EDF. The model was trained with augmented lead 2 ecg channels
 spo2_channel: "SPO2" # the SpO2 channel name in the EDF.
 abdomen_rr_channel: "ABDO" # the abdomen RR channel name in the EDF. 
-thoracic_rr_channel: "dummy" # the thoracic RR channel name in the EDF.
+thoracic_rr_channel: "THOR" # the thoracic RR channel name in the EDF.
 eeg_reference_channel: null # the EEG reference channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. This will reference the channels, if they havent already been referenced. 
 left_eog_reference_channel: null # the left EOG reference channel name in the EDF. The model was trained with M2 referenced left EOG channels. This will reference the channels, if they havent already been referenced. 
 chin_emg_reference_channel: null # the chin EMG reference channel name in the EDF. The model was trained with chin refenced (chin 2 or chin 3) EMG channels. This will reference the channels, if they havent already been referenced. 
