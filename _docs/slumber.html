@@ -171,6 +171,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">SSL, Fine Tuning, and Linear Probing Heads</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inference</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -245,6 +251,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="read-edfs" class="level3">
 <h3 class="anchored" data-anchor-id="read-edfs">Read EDFs</h3>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L95" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="read_edf" class="level3">
 <h3 class="anchored" data-anchor-id="read_edf">read_edf</h3>
@@ -286,15 +293,10 @@ ul.task-list li input[type="checkbox"] {
 <td>None</td>
 <td>frequency to resample all signals to</td>
 </tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>Union</strong></td>
-<td></td>
-<td><strong>tuple of signals and header dictionary</strong></td>
-</tr>
 </tbody>
 </table>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L132" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="read_edf_mne" class="level3">
 <h3 class="anchored" data-anchor-id="read_edf_mne">read_edf_mne</h3>
@@ -345,6 +347,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L179" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="read_edf_edfio" class="level3">
 <h3 class="anchored" data-anchor-id="read_edf_edfio">read_edf_edfio</h3>
@@ -398,6 +401,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="read-hypnograms" class="level3">
 <h3 class="anchored" data-anchor-id="read-hypnograms">Read Hypnograms</h3>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L236" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="read_hypnogram" class="level3">
 <h3 class="anchored" data-anchor-id="read_hypnogram">read_hypnogram</h3>
@@ -445,6 +449,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="edfs-to-zarr" class="level3">
 <h3 class="anchored" data-anchor-id="edfs-to-zarr">EDFs to Zarr</h3>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L248" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="edf_signals_to_zarr" class="level3">
 <h3 class="anchored" data-anchor-id="edf_signals_to_zarr">edf_signals_to_zarr</h3>
@@ -463,6 +468,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="self-supervised-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="self-supervised-dataset">Self Supervised Dataset</h3>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L360" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="trim_wake_epochs_from_signals" class="level3">
 <h3 class="anchored" data-anchor-id="trim_wake_epochs_from_signals">trim_wake_epochs_from_signals</h3>
@@ -475,6 +481,7 @@ ul.task-list li input[type="checkbox"] {
 <p>*Function to trim wake epochs (if wake is the largest class) from signals</p>
 <p>X: bs, channels, seq_len hypnogram: bs, seq_len / resampled_hypnogram_length sequence_padding_mask: bs, seq_len*</p>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L310" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="trim_wake_epochs_from_hypnogram" class="level3">
 <h3 class="anchored" data-anchor-id="trim_wake_epochs_from_hypnogram">trim_wake_epochs_from_hypnogram</h3>
@@ -484,6 +491,7 @@ ul.task-list li input[type="checkbox"] {
 <p>*Function to trim wake epochs (if wake is the largest class) from hypnograms This function trims the wake epochs from the beginning and/or end of the hypnogram</p>
 <p>Adapted from Phan et al L-SeqSleepNet*</p>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L377" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="selfsupervisedtimefrequencydataset" class="level3">
 <h3 class="anchored" data-anchor-id="selfsupervisedtimefrequencydataset">SelfSupervisedTimeFrequencyDataset</h3>
@@ -658,6 +666,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="sleep-stage-supervised-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="sleep-stage-supervised-dataset">Sleep Stage Supervised Dataset</h3>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L545" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="hypnogramtimefrequencydataset" class="level3">
 <h3 class="anchored" data-anchor-id="hypnogramtimefrequencydataset">HypnogramTimeFrequencyDataset</h3>
@@ -829,6 +838,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="plotting" class="level2">
 <h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L713" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="plot_edf_signals" class="level3">
 <h3 class="anchored" data-anchor-id="plot_edf_signals">plot_edf_signals</h3>
 <blockquote class="blockquote">

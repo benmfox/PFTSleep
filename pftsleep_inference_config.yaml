@@ -1,0 +1,23 @@
+edf_directory_or_file_path: "/Users/benfox/Downloads/CROWD_133_RR_170927.edf"
+eeg_channel: "C4-M1" # the EEG channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. However, 
+left_eog_channel: "E1-M2" # the left EOG channel name in the EDF. The model was trained with M2 referenced left EOG channels.
+chin_emg_channel: "EMG1-EMG2" # the chin EMG channel name in the EDF. The model was trained with chin refenced (chin 2 or chin 3) EMG channels.
+ecg_channel: "ECG1-ECG2" # the ECG channel name in the EDF. The model was trained with augmented lead 2 ecg channels
+spo2_channel: "SPO2" # the SpO2 channel name in the EDF.
+abdomen_rr_channel: "ABDO" # the abdomen RR channel name in the EDF. 
+thoracic_rr_channel: "dummy" # the thoracic RR channel name in the EDF.
+eeg_reference_channel: null # the EEG reference channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. This will reference the channels, if they havent already been referenced. 
+left_eog_reference_channel: null # the left EOG reference channel name in the EDF. The model was trained with M2 referenced left EOG channels. This will reference the channels, if they havent already been referenced. 
+chin_emg_reference_channel: null # the chin EMG reference channel name in the EDF. The model was trained with chin refenced (chin 2 or chin 3) EMG channels. This will reference the channels, if they havent already been referenced. 
+ecg_reference_channel: null # the ECG reference channel name in the EDF. The model was trained with augmented lead 2 ecg channels. This will reference the channels, if they havent already been referenced. 
+process_edf_kwargs: {} # additional keyword arguments for process_edf function (e.g. frequency_filters_ordered, median_filter_kernel_size, sequence_length_seconds, frequency, etc.)
+
+batch_size: 6 # the batch size to use for inference
+pin_memory: False # whether to pin memory for the dataloader
+persistent_workers: False # whether to use persistent workers for the dataloader
+num_workers: 8 # the number of workers to use for the dataloader
+device: "mps" # the device to use for inference. Only a single GPU or CPU is supported.
+models_dir: "./" # the directory to use for the saved models
+encoder_model_name: "pft_sleep_encoder.ckpt" # the name of the encoder model (downloaded from hugging face)
+classifier_model_name: "pft_sleep_classifier.ckpt" # the name of the classifier model (downloaded from hugging face)
+preds_output_path: "preds.pt" # the path to save the predictions

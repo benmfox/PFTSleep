@@ -11,3 +11,4 @@ website:
       - 09_augmentations.ipynb
       - 10_layers.ipynb
       - 11_heads.ipynb
+      - 12_inference.ipynb

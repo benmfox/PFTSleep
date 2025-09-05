@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="I’m lost too.">
 
-<title>Loss functions – PFTSleep</title>
+<title>Inference – PFTSleep</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,11 +103,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Loss functions – PFTSleep">
-<meta property="og:description" content="I’m lost too.">
+<meta property="og:title" content="Inference – PFTSleep">
+<meta property="og:description" content="Foundational AI for Sleep Medicine">
 <meta property="og:site_name" content="PFTSleep">
-<meta name="twitter:title" content="Loss functions – PFTSleep">
-<meta name="twitter:description" content="I’m lost too.">
+<meta name="twitter:title" content="Inference – PFTSleep">
+<meta name="twitter:description" content="Foundational AI for Sleep Medicine">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -133,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loss.html">Loss functions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inference.html">Inference</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -177,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./loss.html" class="sidebar-item-text sidebar-link active">
+  <a href="./loss.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Loss functions</span></a>
   </div>
 </li>
@@ -207,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inference.html" class="sidebar-item-text sidebar-link">
+  <a href="./inference.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Inference</span></a>
   </div>
 </li>
@@ -221,19 +220,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#huber_loss" id="toc-huber_loss" class="nav-link active" data-scroll-target="#huber_loss">huber_loss</a></li>
-  <li><a href="#cosine_similarity_loss" id="toc-cosine_similarity_loss" class="nav-link" data-scroll-target="#cosine_similarity_loss">cosine_similarity_loss</a></li>
-  <li><a href="#cosine_similarity" id="toc-cosine_similarity" class="nav-link" data-scroll-target="#cosine_similarity">cosine_similarity</a></li>
-  <li><a href="#mape" id="toc-mape" class="nav-link" data-scroll-target="#mape">mape</a></li>
-  <li><a href="#mae" id="toc-mae" class="nav-link" data-scroll-target="#mae">mae</a></li>
-  <li><a href="#rmse" id="toc-rmse" class="nav-link" data-scroll-target="#rmse">rmse</a></li>
-  <li><a href="#mse" id="toc-mse" class="nav-link" data-scroll-target="#mse">mse</a></li>
-  <li><a href="#r2_score" id="toc-r2_score" class="nav-link" data-scroll-target="#r2_score">r2_score</a></li>
-  <li><a href="#masked_mae_loss" id="toc-masked_mae_loss" class="nav-link" data-scroll-target="#masked_mae_loss">masked_mae_loss</a></li>
-  <li><a href="#masked_mse_loss" id="toc-masked_mse_loss" class="nav-link" data-scroll-target="#masked_mse_loss">masked_mse_loss</a></li>
-  <li><a href="#patch_continuity_loss" id="toc-patch_continuity_loss" class="nav-link" data-scroll-target="#patch_continuity_loss">patch_continuity_loss</a></li>
-  <li><a href="#focalloss" id="toc-focalloss" class="nav-link" data-scroll-target="#focalloss">FocalLoss</a></li>
-  <li><a href="#kldivloss" id="toc-kldivloss" class="nav-link" data-scroll-target="#kldivloss">KLDivLoss</a></li>
+  <li><a href="#load_pftsleep_models" id="toc-load_pftsleep_models" class="nav-link active" data-scroll-target="#load_pftsleep_models">load_pftsleep_models</a></li>
+  <li><a href="#download_pftsleep_models" id="toc-download_pftsleep_models" class="nav-link" data-scroll-target="#download_pftsleep_models">download_pftsleep_models</a></li>
+  <li><a href="#process_edf" id="toc-process_edf" class="nav-link" data-scroll-target="#process_edf">process_edf</a></li>
+  <li><a href="#view_edf_channels" id="toc-view_edf_channels" class="nav-link" data-scroll-target="#view_edf_channels">view_edf_channels</a></li>
+  <li><a href="#edfdataset" id="toc-edfdataset" class="nav-link" data-scroll-target="#edfdataset">EDFDataset</a></li>
+  <li><a href="#infer_on_edf" id="toc-infer_on_edf" class="nav-link" data-scroll-target="#infer_on_edf">infer_on_edf</a></li>
+  <li><a href="#infer_on_edf_dataset" id="toc-infer_on_edf_dataset" class="nav-link" data-scroll-target="#infer_on_edf_dataset">infer_on_edf_dataset</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/benmfox/PFTSleep/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -242,14 +235,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Loss functions</h1>
+<h1 class="title">Inference</h1>
 </div>
 
-<div>
-  <div class="description">
-    I’m lost too.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -265,153 +253,565 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L113" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="huber_loss" class="level3">
-<h3 class="anchored" data-anchor-id="huber_loss">huber_loss</h3>
 <blockquote class="blockquote">
-<pre><code> huber_loss (preds, target, mask, use_mask=False, padding_mask=None,
-             delta=1)</code></pre>
+<p>For you!</p>
 </blockquote>
-<p><em>preds: [bs x num_patch x n_vars x patch_len] targets: [bs x num_patch x n_vars x patch_len] mask: [bs x num_patch x n_vars] padding_mask: [bs x num_patch]</em></p>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L95" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L57" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="load_pftsleep_models" class="level3">
+<h3 class="anchored" data-anchor-id="load_pftsleep_models">load_pftsleep_models</h3>
+<blockquote class="blockquote">
+<pre><code> load_pftsleep_models (models_dir='',
+                       encoder_model_name='pft_sleep_encoder.ckpt',
+                       classifier_model_name='pft_sleep_classifier.ckpt',
+                       classifier_head_defaults={'c_in': 7, 'input_size':
+                       512, 'hidden_size': 1024,
+                       'predict_every_n_patches': 5, 'n_classes': 5,
+                       'num_rnn_layers': 2, 'contrastive': False,
+                       'rnn_dropout': 0.1, 'module': 'GRU',
+                       'bidirectional': True, 'affine': True, 'pool':
+                       'average', 'pre_norm': False, 'mlp_final_head':
+                       True, 'linear_dropout': 0.1, 'temperature': 2})</code></pre>
+</blockquote>
+<p>*Loads the pftsleep models from the models directory</p>
+<p>Args: models_dir (str): The directory of the saved models encoder_model_name (str): The name of the encoder model classifier_model_name (str): The name of the classifier model classifier_head_defaults (dict): The defaults for the classifier head, DO NOT CHANGE! Returns: encoder (PatchTFTSimpleLightning): The encoder model ss_classifier (PatchTFTSleepStage): The classifier model*</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>models_dir</td>
+<td>str</td>
+<td></td>
+<td>The directory of the saved models</td>
+</tr>
+<tr class="even">
+<td>encoder_model_name</td>
+<td>str</td>
+<td>pft_sleep_encoder.ckpt</td>
+<td>the name of the encoder model</td>
+</tr>
+<tr class="odd">
+<td>classifier_model_name</td>
+<td>str</td>
+<td>pft_sleep_classifier.ckpt</td>
+<td>the name of the classifier model</td>
+</tr>
+<tr class="even">
+<td>classifier_head_defaults</td>
+<td>dict</td>
+<td>{‘c_in’: 7, ‘input_size’: 512, ‘hidden_size’: 1024, ‘predict_every_n_patches’: 5, ‘n_classes’: 5, ‘num_rnn_layers’: 2, ‘contrastive’: False, ‘rnn_dropout’: 0.1, ‘module’: ‘GRU’, ‘bidirectional’: True, ‘affine’: True, ‘pool’: ‘average’, ‘pre_norm’: False, ‘mlp_final_head’: True, ‘linear_dropout’: 0.1, ‘temperature’: 2}</td>
+<td>the defaults for the classifier head, DO NOT CHANGE!</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L84" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="cosine_similarity_loss" class="level3">
-<h3 class="anchored" data-anchor-id="cosine_similarity_loss">cosine_similarity_loss</h3>
+<section id="download_pftsleep_models" class="level3">
+<h3 class="anchored" data-anchor-id="download_pftsleep_models">download_pftsleep_models</h3>
 <blockquote class="blockquote">
-<pre><code> cosine_similarity_loss (preds, target, mask, use_mask=False,
-                         padding_mask=None)</code></pre>
+<pre><code> download_pftsleep_models (write_dir='', token=None)</code></pre>
 </blockquote>
-<p><em>preds: [bs x num_patch x n_vars x patch_len] targets: [bs x num_patch x n_vars x patch_len] mask: [bs x num_patch x n_vars]</em></p>
+<p>*Function to download pftsleep models from hugging face</p>
+<p>Args: write_dir (str): The directory to write the models to token (str): Your hugging face token to use to download the models*</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>write_dir</td>
+<td>str</td>
+<td></td>
+<td>The directory to write the models to</td>
+</tr>
+<tr class="even">
+<td>token</td>
+<td>NoneType</td>
+<td>None</td>
+<td>Your hugging face token to use to download the models</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L82" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L98" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="cosine_similarity" class="level3">
-<h3 class="anchored" data-anchor-id="cosine_similarity">cosine_similarity</h3>
+<section id="process_edf" class="level3">
+<h3 class="anchored" data-anchor-id="process_edf">process_edf</h3>
 <blockquote class="blockquote">
-<pre><code> cosine_similarity (preds, target, mask, use_mask=False,
-                    padding_mask=None)</code></pre>
+<pre><code> process_edf (edf_file_path, channels, reference_channels_dict={},
+              frequency=125, sample_length=28800,
+              frequency_filters_ordered=[[0.5, 40], [0.3, 30], [0.3, 30],
+              [0.3, 30], [0.4, None], [0.5, None], [0.5, None]],
+              median_filter_kernel_size=3, overwrite_edf_duration=False,
+              verbose=True)</code></pre>
 </blockquote>
+<p>*Process the edf file to prepare it for inference. This function is used to prepare the edf file for inference by reading the channels, resampling them to the correct frequency, filtering them, and padding them to the correct length. Do not change the default parameters (frequency, sample_length, frequency_filters_ordered, median_filter_kernel_size) of this function!</p>
+<p>Args: edf_file_path (str): The path to the edf file to perform inference on channels (list): The channels to read from the edf file reference_channels_dict (dict): The reference channels to subtract from the channels. The keys are the channels to subtract from, and the values are the reference channels. frequency (int): The frequency to resample the channels to. Do not change this! sample_length (int): The length of the sequence to pad the channels to, expected by the model. Do not change this! frequency_filters_ordered (list): The frequency filters to apply to the channels. Do not change this! median_filter_kernel_size (int): The kernel size for the median filter. Do not change this! overwrite_edf_duration (bool): Whether to overwrite the duration of the edf file to the sample length, if the edf file duration key is corrupted. verbose (bool): Whether to print the verbose output.</p>
+<p>Returns: signals (torch.Tensor): The processed signals sequence_padding_mask (torch.Tensor): The sequence padding mask*</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>edf_file_path</td>
+<td></td>
+<td></td>
+<td>The edf file path to perform inference on</td>
+</tr>
+<tr class="even">
+<td>channels</td>
+<td></td>
+<td></td>
+<td>the channels to read from the edf file</td>
+</tr>
+<tr class="odd">
+<td>reference_channels_dict</td>
+<td>dict</td>
+<td>{}</td>
+<td>the reference channels to subtract from the channels. The keys are the channels to subtract from, and the values are the reference channels.</td>
+</tr>
+<tr class="even">
+<td>frequency</td>
+<td>int</td>
+<td>125</td>
+<td>the frequency to resample the channels to. Do not change this!</td>
+</tr>
+<tr class="odd">
+<td>sample_length</td>
+<td>int</td>
+<td>28800</td>
+<td>the length of the sequence to pad the channels to, expected by the model. Do not change this!</td>
+</tr>
+<tr class="even">
+<td>frequency_filters_ordered</td>
+<td>list</td>
+<td>[[0.5, 40], [0.3, 30], [0.3, 30], [0.3, 30], [0.4, None], [0.5, None], [0.5, None]]</td>
+<td>the frequency filters to apply to the channels. Do not change this!</td>
+</tr>
+<tr class="odd">
+<td>median_filter_kernel_size</td>
+<td>int</td>
+<td>3</td>
+<td>the kernel size for the median filter. Do not change this!</td>
+</tr>
+<tr class="even">
+<td>overwrite_edf_duration</td>
+<td>bool</td>
+<td>False</td>
+<td>whether to overwrite the duration of the edf file to the sample length, if the edf file duration key is corrupted.</td>
+</tr>
+<tr class="odd">
+<td>verbose</td>
+<td>bool</td>
+<td>True</td>
+<td>whether to print the verbose output.</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L75" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L207" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="mape" class="level3">
-<h3 class="anchored" data-anchor-id="mape">mape</h3>
+<section id="view_edf_channels" class="level3">
+<h3 class="anchored" data-anchor-id="view_edf_channels">view_edf_channels</h3>
 <blockquote class="blockquote">
-<pre><code> mape (preds, target, mask, use_mask=False)</code></pre>
+<pre><code> view_edf_channels (edf_file_path, uppercase=True)</code></pre>
 </blockquote>
+<p>*View the channels of an edf file.</p>
+<p>Args: edf_file_path (str): The path to the edf file to view the channels of uppercase (bool): Whether to return the channels in uppercase</p>
+<p>Returns: channels (list): The channels in the edf file*</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>edf_file_path</td>
+<td></td>
+<td></td>
+<td>The path to the edf file to view the channels of</td>
+</tr>
+<tr class="even">
+<td>uppercase</td>
+<td>bool</td>
+<td>True</td>
+<td>Whether to return the channels in uppercase</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L72" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L227" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="mae" class="level3">
-<h3 class="anchored" data-anchor-id="mae">mae</h3>
+<section id="edfdataset" class="level3">
+<h3 class="anchored" data-anchor-id="edfdataset">EDFDataset</h3>
 <blockquote class="blockquote">
-<pre><code> mae (preds, target, mask, use_mask=False, padding_mask=None)</code></pre>
+<pre><code> EDFDataset (edf_file_paths, eeg_channel, left_eog_channel,
+             chin_emg_channel, ecg_channel, spo2_channel,
+             abdomen_rr_channel, thoracic_rr_channel,
+             eeg_reference_channel=None, left_eog_reference_channel=None,
+             chin_emg_reference_channel=None, ecg_reference_channel=None,
+             **kwargs)</code></pre>
 </blockquote>
+<p>*An abstract class representing a :class:<code>Dataset</code>.</p>
+<p>All datasets that represent a map from keys to data samples should subclass it. All subclasses should overwrite :meth:<code>__getitem__</code>, supporting fetching a data sample for a given key. Subclasses could also optionally overwrite :meth:<code>__len__</code>, which is expected to return the size of the dataset by many :class:<code>~torch.utils.data.Sampler</code> implementations and the default options of :class:<code>~torch.utils.data.DataLoader</code>. Subclasses could also optionally implement :meth:<code>__getitems__</code>, for speedup batched samples loading. This method accepts list of indices of samples of batch and returns list of samples.</p>
+<p>.. note:: :class:<code>~torch.utils.data.DataLoader</code> by default constructs an index sampler that yields integral indices. To make it work with a map-style dataset with non-integral indices/keys, a custom sampler must be provided.*</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>edf_file_paths</td>
+<td></td>
+<td></td>
+<td>The paths to the edf files to perform inference on</td>
+</tr>
+<tr class="even">
+<td>eeg_channel</td>
+<td></td>
+<td></td>
+<td>the EEG channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. However,</td>
+</tr>
+<tr class="odd">
+<td>left_eog_channel</td>
+<td></td>
+<td></td>
+<td>the left EOG channel name in the EDF. The model was trained with M2 referenced left EOG channels.</td>
+</tr>
+<tr class="even">
+<td>chin_emg_channel</td>
+<td></td>
+<td></td>
+<td>the chin EMG channel name in the EDF. The model was trained with chin refenced (chin 2 or chin 3) EMG channels.</td>
+</tr>
+<tr class="odd">
+<td>ecg_channel</td>
+<td></td>
+<td></td>
+<td>the ECG channel name in the EDF. The model was trained with augmented lead 2 ecg channels</td>
+</tr>
+<tr class="even">
+<td>spo2_channel</td>
+<td></td>
+<td></td>
+<td>the SpO2 channel name in the EDF.</td>
+</tr>
+<tr class="odd">
+<td>abdomen_rr_channel</td>
+<td></td>
+<td></td>
+<td>the abdomen RR channel name in the EDF.</td>
+</tr>
+<tr class="even">
+<td>thoracic_rr_channel</td>
+<td></td>
+<td></td>
+<td>the thoracic RR channel name in the EDF.</td>
+</tr>
+<tr class="odd">
+<td>eeg_reference_channel</td>
+<td>NoneType</td>
+<td>None</td>
+<td>the EEG reference channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. This will reference the channels, if they havent already been referenced.</td>
+</tr>
+<tr class="even">
+<td>left_eog_reference_channel</td>
+<td>NoneType</td>
+<td>None</td>
+<td>the left EOG reference channel name in the EDF. The model was trained with M2 referenced left EOG channels. This will reference the channels, if they havent already been referenced.</td>
+</tr>
+<tr class="odd">
+<td>chin_emg_reference_channel</td>
+<td>NoneType</td>
+<td>None</td>
+<td>the chin EMG reference channel name in the EDF. The model was trained with chin refenced (chin 2 or chin 3) EMG channels. This will reference the channels, if they havent already been referenced.</td>
+</tr>
+<tr class="even">
+<td>ecg_reference_channel</td>
+<td>NoneType</td>
+<td>None</td>
+<td>the ECG reference channel name in the EDF. The model was trained with augmented lead 2 ecg channels. This will reference the channels, if they havent already been referenced.</td>
+</tr>
+<tr class="odd">
+<td>kwargs</td>
+<td>VAR_KEYWORD</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L69" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L283" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="rmse" class="level3">
-<h3 class="anchored" data-anchor-id="rmse">rmse</h3>
+<section id="infer_on_edf" class="level3">
+<h3 class="anchored" data-anchor-id="infer_on_edf">infer_on_edf</h3>
 <blockquote class="blockquote">
-<pre><code> rmse (preds, target, mask, use_mask=False, padding_mask=None)</code></pre>
+<pre><code> infer_on_edf (edf_file_path, eeg_channel, left_eog_channel,
+               chin_emg_channel, ecg_channel, spo2_channel,
+               abdomen_rr_channel, thoracic_rr_channel,
+               eeg_reference_channel=None,
+               left_eog_reference_channel=None,
+               chin_emg_reference_channel=None,
+               ecg_reference_channel=None, models_dir='',
+               encoder_model_name='pft_sleep_encoder.ckpt',
+               classifier_model_name='pft_sleep_classifier.ckpt',
+               device='cpu', **kwargs)</code></pre>
 </blockquote>
-<hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L65" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="mse" class="level3">
-<h3 class="anchored" data-anchor-id="mse">mse</h3>
-<blockquote class="blockquote">
-<pre><code> mse (preds, target, mask, use_mask=False, padding_mask=None)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L56" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="r2_score" class="level3">
-<h3 class="anchored" data-anchor-id="r2_score">r2_score</h3>
-<blockquote class="blockquote">
-<pre><code> r2_score (preds, target, mask, use_mask=False)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L35" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="masked_mae_loss" class="level3">
-<h3 class="anchored" data-anchor-id="masked_mae_loss">masked_mae_loss</h3>
-<blockquote class="blockquote">
-<pre><code> masked_mae_loss (preds, target, mask, use_mask=False, padding_mask=None)</code></pre>
-</blockquote>
-<p><em>preds: [bs x num_patch x n_vars x patch_len] targets: [bs x num_patch x n_vars x patch_len] mask: [bs x num_patch x n_vars] padding_mask: [bs x num_patch]</em></p>
-<hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L13" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="masked_mse_loss" class="level3">
-<h3 class="anchored" data-anchor-id="masked_mse_loss">masked_mse_loss</h3>
-<blockquote class="blockquote">
-<pre><code> masked_mse_loss (preds, target, mask, use_mask=False, padding_mask=None)</code></pre>
-</blockquote>
-<p><em>preds: [bs x num_patch x n_vars x patch_len] targets: [bs x num_patch x n_vars x patch_len] mask: [bs x num_patch x n_vars] padding_mask: [bs x num_patch]</em></p>
-<hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L134" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="patch_continuity_loss" class="level3">
-<h3 class="anchored" data-anchor-id="patch_continuity_loss">patch_continuity_loss</h3>
-<blockquote class="blockquote">
-<pre><code> patch_continuity_loss (preds)</code></pre>
-</blockquote>
-<p><em>preds: [bs x num_patch x n_vars x patch_len] targets: [bs x num_patch x n_vars x patch_len]</em></p>
-<div id="cell-13" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">2</span>,<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">10</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>patch_continuity_loss(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>tensor(0.2936)</code></pre>
+<p>*Performs inference on a single edf file using the pftsleep models. If you specify a channel as None or ‘dummy’, the channel will be passed through as a zero vector. This allows you to use the model even if some channels are not present in the edf file.</p>
+<p>Args: edf_file_path (str): The path to the edf file to perform inference on eeg_channel (str): The name of the EEG channel in the EDF left_eog_channel (str): The name of the left EOG channel in the EDF chin_emg_channel (str): The name of the chin EMG channel in the EDF ecg_channel (str): The name of the ECG channel in the EDF spo2_channel (str): The name of the SpO2 channel in the EDF abdomen_rr_channel (str): The name of the abdomen RR channel in the EDF thoracic_rr_channel (str): The name of the thoracic RR channel in the EDF eeg_reference_channel (str): The name of the EEG reference channel in the EDF left_eog_reference_channel (str): The name of the left EOG reference channel in the EDF chin_emg_reference_channel (str): The name of the chin EMG reference channel in the EDF ecg_reference_channel (str): The name of the ECG reference channel in the EDF models_dir (str): The directory of the saved models encoder_model_name (str): The name of the encoder model classifier_model_name (str): The name of the classifier model device (str): The device to run the model on **kwargs: Additional keyword arguments for process_edf function</p>
+<p>Returns: out (torch.Tensor): The sleep stage logit outputs of the classifier for each sleep epoch in the edf file*</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>edf_file_path</td>
+<td></td>
+<td></td>
+<td>The edf file path to perform inference on</td>
+</tr>
+<tr class="even">
+<td>eeg_channel</td>
+<td></td>
+<td></td>
+<td>the EEG channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. However,</td>
+</tr>
+<tr class="odd">
+<td>left_eog_channel</td>
+<td></td>
+<td></td>
+<td>the left EOG channel name in the EDF. The model was trained with M2 referenced left EOG channels.</td>
+</tr>
+<tr class="even">
+<td>chin_emg_channel</td>
+<td></td>
+<td></td>
+<td>the chin EMG channel name in the EDF. The model was trained with chin refenced (chin 2 or chin 3) EMG channels.</td>
+</tr>
+<tr class="odd">
+<td>ecg_channel</td>
+<td></td>
+<td></td>
+<td>the ECG channel name in the EDF. The model was trained with augmented lead 2 ecg channels</td>
+</tr>
+<tr class="even">
+<td>spo2_channel</td>
+<td></td>
+<td></td>
+<td>the SpO2 channel name in the EDF.</td>
+</tr>
+<tr class="odd">
+<td>abdomen_rr_channel</td>
+<td></td>
+<td></td>
+<td>the abdomen RR channel name in the EDF.</td>
+</tr>
+<tr class="even">
+<td>thoracic_rr_channel</td>
+<td></td>
+<td></td>
+<td>the thoracic RR channel name in the EDF.</td>
+</tr>
+<tr class="odd">
+<td>eeg_reference_channel</td>
+<td>NoneType</td>
+<td>None</td>
+<td>the EEG reference channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. This will reference the channels, if they havent already been referenced.</td>
+</tr>
+<tr class="even">
+<td>left_eog_reference_channel</td>
+<td>NoneType</td>
+<td>None</td>
+<td>the left EOG reference channel name in the EDF. The model was trained with M2 referenced left EOG channels. This will reference the channels, if they havent already been referenced.</td>
+</tr>
+<tr class="odd">
+<td>chin_emg_reference_channel</td>
+<td>NoneType</td>
+<td>None</td>
+<td>the chin EMG reference channel name in the EDF. The model was trained with chin refenced (chin 2 or chin 3) EMG channels. This will reference the channels, if they havent already been referenced.</td>
+</tr>
+<tr class="even">
+<td>ecg_reference_channel</td>
+<td>NoneType</td>
+<td>None</td>
+<td>the ECG reference channel name in the EDF. The model was trained with augmented lead 2 ecg channels. This will reference the channels, if they havent already been referenced.</td>
+</tr>
+<tr class="odd">
+<td>models_dir</td>
+<td>str</td>
+<td></td>
+<td>the directory of the saved models</td>
+</tr>
+<tr class="even">
+<td>encoder_model_name</td>
+<td>str</td>
+<td>pft_sleep_encoder.ckpt</td>
+<td>the name of the encoder model</td>
+</tr>
+<tr class="odd">
+<td>classifier_model_name</td>
+<td>str</td>
+<td>pft_sleep_classifier.ckpt</td>
+<td>the name of the classifier model</td>
+</tr>
+<tr class="even">
+<td>device</td>
+<td>str</td>
+<td>cpu</td>
+<td>the device to run the model on</td>
+</tr>
+<tr class="odd">
+<td>kwargs</td>
+<td>VAR_KEYWORD</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="abc58a4a" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># out = infer_on_edf(edf_file_path=''</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              eeg_channel='C4-M1', </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              left_eog_channel='E1-M2', </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#              chin_emg_channel='EMG1-EMG2', </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#              ecg_channel='ECG1-ECG2', </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#              spo2_channel='SPO2', </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#              abdomen_rr_channel='ABDO', </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#              thoracic_rr_channel='dummy',</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#              device='mps',</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#              models_dir='../'</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#              )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L149" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L371" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="focalloss" class="level3">
-<h3 class="anchored" data-anchor-id="focalloss">FocalLoss</h3>
+<section id="infer_on_edf_dataset" class="level3">
+<h3 class="anchored" data-anchor-id="infer_on_edf_dataset">infer_on_edf_dataset</h3>
 <blockquote class="blockquote">
-<pre><code> FocalLoss (weight=None, gamma=2.0, reduction='mean', ignore_index=-100)</code></pre>
+<pre><code> infer_on_edf_dataset (edf_dataloader, device='cpu', models_dir='',
+                       encoder_model_name='pft_sleep_encoder.ckpt',
+                       classifier_model_name='pft_sleep_classifier.ckpt')</code></pre>
 </blockquote>
-<p><em>adapted from tsai, weighted multiclass focal loss https://github.com/timeseriesAI/tsai/blob/bdff96cc8c4c8ea55bc20d7cffd6a72e402f4cb2/tsai/losses.py#L116C1-L140C20</em></p>
-<div id="cell-15" class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> FocalLoss(gamma<span class="op">=</span><span class="fl">0.7</span>, weight<span class="op">=</span><span class="va">None</span>, ignore_index<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>n_patch <span class="op">=</span> <span class="dv">721</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>n_class <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#m = torch.nn.Softmax(dim=-1)</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>logits <span class="op">=</span> torch.randn(batch_size, n_class, n_patch)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> torch.randint(<span class="dv">0</span>, n_class, size<span class="op">=</span>(batch_size, n_patch))</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>criterion(logits, target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>tensor(8.4217)</code></pre>
-</div>
-</div>
-<hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/loss.py#L196" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="kldivloss" class="level3">
-<h3 class="anchored" data-anchor-id="kldivloss">KLDivLoss</h3>
-<blockquote class="blockquote">
-<pre><code> KLDivLoss (weight=None, ignore_index=-100)</code></pre>
-</blockquote>
-<p>*Kullback-Leibler Divergence Loss with masking for ignore_index. Handles soft labels with ignore_index marked as -100.</p>
-<p>Args: logits: [bs x n_classes x pred_labels] - model predictions targets: [bs x n_classes x soft_labels] - soft labels, with ignore_index positions marked as -100 or [bs x n_labels] - hard labels*</p>
-<div id="cell-17" class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.randint(<span class="dv">0</span>,<span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">10</span>))</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y_og <span class="op">=</span> y.clone()</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>,<span class="dv">0</span>] <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>KLDivLoss(ignore_index<span class="op">=-</span><span class="dv">100</span>)(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>tensor(0.4065)</code></pre>
-</div>
-</div>
+<p>*Performs inference on an EDFDataset.</p>
+<p>Args: edf_dataloader (DataLoader): The dataloader (from EDFDataset) to perform inference on device (str): The device to run the model on batch_size (int): The batch size to use for inference models_dir (str): The directory of the saved models encoder_model_name (str): The name of the encoder model classifier_model_name (str): The name of the classifier model</p>
+<p>Returns: preds (list): The predicted sleep stage logits for each edf file*</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>edf_dataloader</td>
+<td></td>
+<td></td>
+<td>the edf dataset to perform inference on</td>
+</tr>
+<tr class="even">
+<td>device</td>
+<td>str</td>
+<td>cpu</td>
+<td>the device to run the model on</td>
+</tr>
+<tr class="odd">
+<td>models_dir</td>
+<td>str</td>
+<td></td>
+<td>the directory of the saved models</td>
+</tr>
+<tr class="even">
+<td>encoder_model_name</td>
+<td>str</td>
+<td>pft_sleep_encoder.ckpt</td>
+<td>the name of the encoder model</td>
+</tr>
+<tr class="odd">
+<td>classifier_model_name</td>
+<td>str</td>
+<td>pft_sleep_classifier.ckpt</td>
+<td>the name of the classifier model</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>

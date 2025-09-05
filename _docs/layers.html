@@ -205,6 +205,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">SSL, Fine Tuning, and Linear Probing Heads</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inference</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -292,6 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="linear-layers-for-patches" class="level2">
 <h2 class="anchored" data-anchor-id="linear-layers-for-patches">Linear Layers for Patches</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L23" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="patchencoder" class="level3">
 <h3 class="anchored" data-anchor-id="patchencoder">PatchEncoder</h3>
 <blockquote class="blockquote">
@@ -350,6 +357,7 @@ class Model(nn.Module):
 <section id="positional-encoding-layers" class="level2">
 <h2 class="anchored" data-anchor-id="positional-encoding-layers">Positional Encoding Layers</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L60" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="positionalencoding" class="level3">
 <h3 class="anchored" data-anchor-id="positionalencoding">PositionalEncoding</h3>
 <blockquote class="blockquote">
@@ -392,6 +400,7 @@ class Model(nn.Module):
 </tbody>
 </table>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L85" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="tape" class="level3">
 <h3 class="anchored" data-anchor-id="tape">tAPE</h3>
@@ -440,6 +449,7 @@ class Model(nn.Module):
 <section id="mask-and-augmentation-layers" class="level2">
 <h2 class="anchored" data-anchor-id="mask-and-augmentation-layers">Mask and Augmentation Layers</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L115" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="mask" class="level3">
 <h3 class="anchored" data-anchor-id="mask">Mask</h3>
 <blockquote class="blockquote">
@@ -491,6 +501,7 @@ class Model(nn.Module):
 </div>
 </div>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L137" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="patchaugmentations" class="level3">
 <h3 class="anchored" data-anchor-id="patchaugmentations">PatchAugmentations</h3>
@@ -527,6 +538,7 @@ class Model(nn.Module):
 </div>
 </div>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L168" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="embeddingaugmentations" class="level3">
 <h3 class="anchored" data-anchor-id="embeddingaugmentations">EmbeddingAugmentations</h3>
@@ -568,6 +580,7 @@ class Model(nn.Module):
 <section id="patch-and-fourier-layers" class="level2">
 <h2 class="anchored" data-anchor-id="patch-and-fourier-layers">Patch and Fourier Layers</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L212" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="patch" class="level3">
 <h3 class="anchored" data-anchor-id="patch">Patch</h3>
 <blockquote class="blockquote">
@@ -592,6 +605,7 @@ class Model(nn.Module):
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
 <p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L224" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="stft" class="level3">
 <h3 class="anchored" data-anchor-id="stft">STFT</h3>
@@ -620,6 +634,7 @@ class Model(nn.Module):
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
 <p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L273" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="fft" class="level3">
 <h3 class="anchored" data-anchor-id="fft">FFT</h3>
@@ -679,6 +694,7 @@ class Model(nn.Module):
 <section id="reversible-instance-normalization" class="level2">
 <h2 class="anchored" data-anchor-id="reversible-instance-normalization">Reversible Instance Normalization</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L294" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="revin" class="level3">
 <h3 class="anchored" data-anchor-id="revin">RevIN</h3>
 <blockquote class="blockquote">
@@ -765,6 +781,7 @@ class Model(nn.Module):
 <section id="attention" class="level2">
 <h2 class="anchored" data-anchor-id="attention">Attention</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L344" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="multiheadflashattention" class="level3">
 <h3 class="anchored" data-anchor-id="multiheadflashattention">MultiheadFlashAttention</h3>
 <blockquote class="blockquote">
@@ -802,6 +819,7 @@ class Model(nn.Module):
 </div>
 </div>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L431" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="scaleddotproductattention" class="level3">
 <h3 class="anchored" data-anchor-id="scaleddotproductattention">ScaledDotProductAttention</h3>
@@ -811,6 +829,7 @@ class Model(nn.Module):
 </blockquote>
 <p><em>Scaled Dot-Product Attention module (Attention is all you need by Vaswani et al., 2017) with optional residual attention from previous layer (Realformer: Transformer likes residual attention by He et al, 2020) and locality self sttention (Vision Transformer for Small-Size Datasets by Lee et al, 2021)</em></p>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L494" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="multiheadattentioncustom" class="level3">
 <h3 class="anchored" data-anchor-id="multiheadattentioncustom">MultiheadAttentionCustom</h3>
@@ -989,6 +1008,7 @@ Attn output shape torch.Size([1, 50, 512]), attn weight shape: torch.Size([1, 8,
 </div>
 </div>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L546" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="attention_rel_scl" class="level3">
 <h3 class="anchored" data-anchor-id="attention_rel_scl">Attention_Rel_Scl</h3>
@@ -1134,6 +1154,7 @@ class Model(nn.Module):
 <section id="pretraining-heads" class="level2">
 <h2 class="anchored" data-anchor-id="pretraining-heads">Pretraining Heads</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L672" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="maskedautogressionfeedforward2" class="level3">
 <h3 class="anchored" data-anchor-id="maskedautogressionfeedforward2">MaskedAutogressionFeedForward2</h3>
 <blockquote class="blockquote">
@@ -1158,6 +1179,7 @@ class Model(nn.Module):
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
 <p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L635" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="maskedautogressionfeedforward" class="level3">
 <h3 class="anchored" data-anchor-id="maskedautogressionfeedforward">MaskedAutogressionFeedForward</h3>
@@ -1230,6 +1252,7 @@ class Model(nn.Module):
 <section id="miscellaneous" class="level2">
 <h2 class="anchored" data-anchor-id="miscellaneous">Miscellaneous</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L696" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="identity" class="level3">
 <h3 class="anchored" data-anchor-id="identity">Identity</h3>
 <blockquote class="blockquote">
@@ -1254,6 +1277,7 @@ class Model(nn.Module):
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
 <p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L712" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="get_activation_fn" class="level3">
 <h3 class="anchored" data-anchor-id="get_activation_fn">get_activation_fn</h3>
@@ -1261,6 +1285,7 @@ class Model(nn.Module):
 <pre><code> get_activation_fn (activation)</code></pre>
 </blockquote>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L703" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="transpose" class="level3">
 <h3 class="anchored" data-anchor-id="transpose">Transpose</h3>

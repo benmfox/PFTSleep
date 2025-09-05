@@ -205,6 +205,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">SSL, Fine Tuning, and Linear Probing Heads</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inference</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -275,6 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="patching" class="level2">
 <h2 class="anchored" data-anchor-id="patching">Patching</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L16" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="create_patch" class="level3">
 <h3 class="anchored" data-anchor-id="create_patch">create_patch</h3>
 <blockquote class="blockquote">
@@ -309,6 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L48" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="unpatch" class="level3">
 <h3 class="anchored" data-anchor-id="unpatch">unpatch</h3>
@@ -332,12 +340,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="patch-masking" class="level2">
 <h2 class="anchored" data-anchor-id="patch-masking">Patch Masking</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L81" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="random_masking" class="level3">
 <h3 class="anchored" data-anchor-id="random_masking">random_masking</h3>
 <blockquote class="blockquote">
 <pre><code> random_masking (xb, mask_ratio)</code></pre>
 </blockquote>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L63" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="mask_patches_simple" class="level3">
 <h3 class="anchored" data-anchor-id="mask_patches_simple">mask_patches_simple</h3>
@@ -375,12 +385,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="value-augmentations" class="level2">
 <h2 class="anchored" data-anchor-id="value-augmentations">Value Augmentations</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L118" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="jitter_augmentation" class="level3">
 <h3 class="anchored" data-anchor-id="jitter_augmentation">jitter_augmentation</h3>
 <blockquote class="blockquote">
 <pre><code> jitter_augmentation (x, mask_ratio=0.05, jitter_ratio=0.05)</code></pre>
 </blockquote>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L113" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="remove_values" class="level3">
 <h3 class="anchored" data-anchor-id="remove_values">remove_values</h3>
@@ -408,6 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="shuffle-augmentations" class="level2">
 <h2 class="anchored" data-anchor-id="shuffle-augmentations">Shuffle Augmentations</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L131" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="shuffle_dim" class="level3">
 <h3 class="anchored" data-anchor-id="shuffle_dim">shuffle_dim</h3>
 <blockquote class="blockquote">
@@ -415,6 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p><em>shuffles a dimension randomly along dim x: [bs x n channels x n patches x patch len]</em></p>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L144" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="reverse_sequence" class="level3">
 <h3 class="anchored" data-anchor-id="reverse_sequence">reverse_sequence</h3>
@@ -434,6 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="callbacks" class="level2">
 <h2 class="anchored" data-anchor-id="callbacks">Callbacks</h2>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L151" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="intraclasscutmix1d" class="level3">
 <h3 class="anchored" data-anchor-id="intraclasscutmix1d">IntraClassCutMix1d</h3>
 <blockquote class="blockquote">
@@ -497,6 +512,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L208" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="intraclasscutmixbatch" class="level3">
 <h3 class="anchored" data-anchor-id="intraclasscutmixbatch">IntraClassCutMixBatch</h3>
@@ -588,6 +604,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L278" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="mixupcallback" class="level3">
 <h3 class="anchored" data-anchor-id="mixupcallback">MixupCallback</h3>

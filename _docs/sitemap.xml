@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://benmfox.github.io/PFTSleep/index.html</loc>
-    <lastmod>2025-03-14T10:03:09.998Z</lastmod>
+    <lastmod>2025-09-05T01:53:42.691Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/data_preprocessing.html</loc>
-    <lastmod>2024-12-03T21:40:21.147Z</lastmod>
+    <lastmod>2025-09-05T01:53:42.666Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/loss.html</loc>
-    <lastmod>2024-12-03T21:40:19.589Z</lastmod>
+    <lastmod>2025-09-05T01:53:41.961Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/slumber.html</loc>
-    <lastmod>2024-12-03T21:40:24.441Z</lastmod>
+    <lastmod>2025-09-05T01:53:43.696Z</lastmod>
   </url>
   <url>
-    <loc>https://benmfox.github.io/PFTSleep/signal.html</loc>
-    <lastmod>2024-12-03T21:40:21.100Z</lastmod>
+    <loc>https://benmfox.github.io/PFTSleep/inference.html</loc>
+    <lastmod>2025-09-05T01:53:43.090Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/heads.html</loc>
-    <lastmod>2024-12-03T21:40:22.834Z</lastmod>
+    <lastmod>2025-09-05T01:53:43.017Z</lastmod>
+  </url>
+  <url>
+    <loc>https://benmfox.github.io/PFTSleep/signal.html</loc>
+    <lastmod>2025-09-05T01:53:42.644Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/train.html</loc>
-    <lastmod>2024-12-03T21:40:22.483Z</lastmod>
+    <lastmod>2025-09-05T01:53:43.026Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/augmentations.html</loc>
-    <lastmod>2025-03-14T10:03:11.763Z</lastmod>
+    <lastmod>2025-09-05T01:53:42.250Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/transformers.html</loc>
-    <lastmod>2024-12-03T21:40:24.612Z</lastmod>
+    <lastmod>2025-09-05T01:53:43.766Z</lastmod>
   </url>
   <url>
     <loc>https://benmfox.github.io/PFTSleep/layers.html</loc>
-    <lastmod>2024-12-03T21:40:23.322Z</lastmod>
+    <lastmod>2025-09-05T01:53:43.097Z</lastmod>
   </url>
 </urlset>
