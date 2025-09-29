@@ -21,4 +21,5 @@ device: "mps" # the device to use for inference. Only a single GPU or CPU is sup
 models_dir: "./" # the directory to use for the saved models
 encoder_model_name: "pft_sleep_encoder.ckpt" # the name of the encoder model (downloaded from hugging face)
 classifier_model_name: "pft_sleep_classifier.ckpt" # the name of the classifier model (downloaded from hugging face)
-preds_output_path: "preds.pt" # the path to save the predictions
+preds_output_path: "preds.pt" # the path to save the predictions in a torch tensor file, null to not save
+save_hypjson: true # whether to save the predictions to hypjson files

@@ -99,6 +99,14 @@ Then run it, passing the config file as the main argument:
 Predictions will be output to a torch tensor file `.pt` at the location
 specified in the yaml.
 
+Additionally, you can pass the `save_hypjson` parameter in the yaml as
+`true`. This will perform softmax, max index selecting, and save the
+predictions as a HYPJSON file (with the same filename as the edf file, +
+’\_pftsleep.HYPJSON’). You can also use the `write_pred_to_hypjson`
+function for individual files. Sleep stages are mapped in this function
+to typical HYPJSON standards (for example, REM is mapped to the integer
+“5”).
+
 ## Repository Structure and Usage
 
 This is an [nbdev](https://nbdev.fast.ai/) repository, which means the

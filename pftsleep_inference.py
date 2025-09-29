@@ -1,6 +1,6 @@
 import yaml, glob, os, torch, sys
 
-from pftsleep.inference import infer_on_edf_dataset, EDFDataset, download_pftsleep_models
+from pftsleep.inference import infer_on_edf_dataset, EDFDataset, download_pftsleep_models, write_pred_to_hypjson
 from torch.utils.data import DataLoader
 from pathlib import Path
 import getpass
@@ -49,13 +49,22 @@ if __name__ == "__main__":
                         ecg_reference_channel=yaml_data['ecg_reference_channel'],
                         **yaml_data['process_edf_kwargs']
                         )
-    data_loader = DataLoader(dataset, batch_size=yaml_data['batch_size'], pin_memory=yaml_data['pin_memory'], persistent_workers=yaml_data['persistent_workers'], num_workers=yaml_data['num_workers'])
+    data_loader = DataLoader(dataset, batch_size=yaml_data['batch_size'], shuffle=False, pin_memory=yaml_data['pin_memory'], persistent_workers=yaml_data['persistent_workers'], num_workers=yaml_data['num_workers'])
     preds = infer_on_edf_dataset(edf_dataloader=data_loader, 
                                 device=yaml_data['device'],
                                 models_dir=yaml_data['models_dir'],
                                 encoder_model_name=yaml_data['encoder_model_name'],
                                 classifier_model_name=yaml_data['classifier_model_name']
                                 )
-
-    torch.save(preds, yaml_data['preds_output_path'])
+    if yaml_data.get('save_hypjson', False):
+        for path, pred in zip(edf_file_paths, preds):
+            # write to hypjson file
+            try:
+                hyp_dir = Path(path).parent
+                hypjson_path = hyp_dir / (Path(path).stem + '_pftsleep.HYPJSON')
+                write_pred_to_hypjson(pred, hypjson_path)
+            except Exception as e:
+                print(f"Error writing hypjson file for {path}: {e}")
+    if yaml_data.get('preds_output_path', None) is not None:
+        torch.save(preds, yaml_data['preds_output_path'])
 

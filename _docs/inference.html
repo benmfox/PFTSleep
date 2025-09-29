@@ -225,6 +225,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#process_edf" id="toc-process_edf" class="nav-link" data-scroll-target="#process_edf">process_edf</a></li>
   <li><a href="#view_edf_channels" id="toc-view_edf_channels" class="nav-link" data-scroll-target="#view_edf_channels">view_edf_channels</a></li>
   <li><a href="#edfdataset" id="toc-edfdataset" class="nav-link" data-scroll-target="#edfdataset">EDFDataset</a></li>
+  <li><a href="#write_pred_to_hypjson" id="toc-write_pred_to_hypjson" class="nav-link" data-scroll-target="#write_pred_to_hypjson">write_pred_to_hypjson</a></li>
+  <li><a href="#create_hypjson" id="toc-create_hypjson" class="nav-link" data-scroll-target="#create_hypjson">create_hypjson</a></li>
+  <li><a href="#map_stage" id="toc-map_stage" class="nav-link" data-scroll-target="#map_stage">map_stage</a></li>
   <li><a href="#infer_on_edf" id="toc-infer_on_edf" class="nav-link" data-scroll-target="#infer_on_edf">infer_on_edf</a></li>
   <li><a href="#infer_on_edf_dataset" id="toc-infer_on_edf_dataset" class="nav-link" data-scroll-target="#infer_on_edf_dataset">infer_on_edf_dataset</a></li>
   </ul>
@@ -257,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For you!</p>
 </blockquote>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L57" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L59" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="load_pftsleep_models" class="level3">
 <h3 class="anchored" data-anchor-id="load_pftsleep_models">load_pftsleep_models</h3>
 <blockquote class="blockquote">
@@ -318,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L84" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L86" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="download_pftsleep_models" class="level3">
 <h3 class="anchored" data-anchor-id="download_pftsleep_models">download_pftsleep_models</h3>
@@ -358,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L98" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L100" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="process_edf" class="level3">
 <h3 class="anchored" data-anchor-id="process_edf">process_edf</h3>
@@ -446,7 +449,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L207" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L209" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="view_edf_channels" class="level3">
 <h3 class="anchored" data-anchor-id="view_edf_channels">view_edf_channels</h3>
@@ -487,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L227" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L229" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="edfdataset" class="level3">
 <h3 class="anchored" data-anchor-id="edfdataset">EDFDataset</h3>
@@ -599,7 +602,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L283" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L315" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="write_pred_to_hypjson" class="level3">
+<h3 class="anchored" data-anchor-id="write_pred_to_hypjson">write_pred_to_hypjson</h3>
+<blockquote class="blockquote">
+<pre><code> write_pred_to_hypjson (predictions, hypjson_path)</code></pre>
+</blockquote>
+<p><em>Function to write the predictions to a hypjson file.</em></p>
+<hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L293" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="create_hypjson" class="level3">
+<h3 class="anchored" data-anchor-id="create_hypjson">create_hypjson</h3>
+<blockquote class="blockquote">
+<pre><code> create_hypjson (epochs)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L285" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="map_stage" class="level3">
+<h3 class="anchored" data-anchor-id="map_stage">map_stage</h3>
+<blockquote class="blockquote">
+<pre><code> map_stage (stage)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L328" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="infer_on_edf" class="level3">
 <h3 class="anchored" data-anchor-id="infer_on_edf">infer_on_edf</h3>
@@ -739,20 +767,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div id="abc58a4a" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># out = infer_on_edf(edf_file_path=''</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              eeg_channel='C4-M1', </span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              left_eog_channel='E1-M2', </span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#              chin_emg_channel='EMG1-EMG2', </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#              ecg_channel='ECG1-ECG2', </span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#              spo2_channel='SPO2', </span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#              abdomen_rr_channel='ABDO', </span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#              thoracic_rr_channel='dummy',</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#              device='mps',</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#              models_dir='../'</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#              )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># out = infer_on_edf(edf_file_path=''</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              eeg_channel='C4-M1', </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              left_eog_channel='E1-M2', </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#              chin_emg_channel='EMG1-EMG2', </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#              ecg_channel='ECG1-ECG2', </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#              spo2_channel='SPO2', </span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#              abdomen_rr_channel='ABDO', </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#              thoracic_rr_channel='dummy',</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#              device='mps',</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#              models_dir='../'</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#              )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L371" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/inference.py#L415" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="infer_on_edf_dataset" class="level3">
 <h3 class="anchored" data-anchor-id="infer_on_edf_dataset">infer_on_edf_dataset</h3>

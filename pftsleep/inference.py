@@ -4,7 +4,7 @@
 __all__ = ['CLASSIFIER_HEAD_DEFAULTS', 'FREQUENCY_DEFAULT', 'HYPNOGRAM_FREQUENCY_DEFAULT', 'HYPNOGRAM_EPOCH_SECONDS_DEFAULT',
            'SEQUENCE_LENGTH_SECONDS_DEFAULT', 'FREQUENCY_FILTERS_ORDERED_DEFAULT', 'MEDIAN_FILTER_KERNEL_SIZE_DEFAULT',
            'load_pftsleep_models', 'download_pftsleep_models', 'process_edf', 'view_edf_channels', 'EDFDataset',
-           'infer_on_edf', 'infer_on_edf_dataset']
+           'map_stage', 'create_hypjson', 'write_pred_to_hypjson', 'infer_on_edf', 'infer_on_edf_dataset']
 
 # %% ../nbs/12_inference.ipynb 4
 import os, torch, numpy as np, warnings, edfio, torch.nn.functional as F
@@ -19,6 +19,8 @@ from huggingface_hub import hf_hub_download
 from scipy.ndimage import median_filter
 
 from .signal import butterworth
+from pathlib import Path
+import json
 
 CLASSIFIER_HEAD_DEFAULTS = dict(c_in=7, 
                 input_size=512,
@@ -241,7 +243,7 @@ class EDFDataset(Dataset):
                 **kwargs
                 ):
         """
-        A dataset class for performing inference multiple edf files.
+        A dataset class for performing inference on multiple edf files.
 
         Args:
             edf_file_paths (list): The paths to the edf files to perform inference on
@@ -280,6 +282,49 @@ class EDFDataset(Dataset):
 
 
 # %% ../nbs/12_inference.ipynb 10
+def map_stage(stage):
+    if stage == 4:
+        return 5  # REM
+    elif stage in (0, 1, 2, 3):
+        return stage
+    else:
+        return -1  # Undefined
+ 
+def create_hypjson(epochs):
+    return {
+        "header": {
+            "study_date": "",
+            "study_time": "",
+            "study_id": "",
+            "version": "6.0.1.24"
+        },
+        "Data": {
+            "10sEpochs": epochs
+        },
+        "Legend": {
+            "undefined": -1,
+            "awake": 0,
+            "stage1": 1,
+            "stage2": 2,
+            "stage3": 3,
+            "stage4": 4,
+            "REM": 5
+        }
+    }
+
+def write_pred_to_hypjson(predictions, hypjson_path):
+    """
+    Function to write the predictions to a hypjson file.
+    """
+    out = torch.softmax(predictions, dim=0) # apply softmax to get probabilities
+    out = out.argmax(0).cpu().numpy().astype(int).repeat(3) # repeat each epoch 3 times to get 10s epochs from 30s epochs
+    hypjson_epochs = list(map(map_stage, out.tolist())) # map stages
+    hyp_json = create_hypjson(hypjson_epochs)
+    with open(hypjson_path, 'w') as out_file:
+        json.dump(hyp_json, out_file, indent=4)
+    print(f'Saved hypjson file to {hypjson_path}')
+
+# %% ../nbs/12_inference.ipynb 11
 def infer_on_edf(edf_file_path, # The edf file path to perform inference on
                 eeg_channel, # the EEG channel name in the EDF. The model was trained with C4-M1 and C3-M2 referenced EEG channels. However, 
                 left_eog_channel, # the left EOG channel name in the EDF. The model was trained with M2 referenced left EOG channels.
@@ -329,8 +374,6 @@ def infer_on_edf(edf_file_path, # The edf file path to perform inference on
     if not os.path.exists(os.path.join(models_dir, classifier_model_name)):
         raise ValueError(f"Classifier model not found in {models_dir}")
     if not os.path.exists(edf_file_path):
-        print(os.path.exists(edf_file_path))
-        print(os.getcwd())
         raise ValueError(f"EDF file not found in {edf_file_path}")
     try:
         _, ss_classifier = load_pftsleep_models(models_dir, encoder_model_name, classifier_model_name)
@@ -360,14 +403,15 @@ def infer_on_edf(edf_file_path, # The edf file path to perform inference on
             signals = signals.unsqueeze(0).to(device)
             sequence_padding_mask = sequence_padding_mask.unsqueeze(0).to(device)
             out = ss_classifier(signals, sequence_padding_mask=sequence_padding_mask)
+            out = out.squeeze(0).cpu()
             # trim the output to the original signal length (if it was shorter)
             #padding_begins = (sequence_padding_mask == 1).nonzero(as_tuple=False)[0]
             #cutoff = int(padding_begins // (30 * FREQUENCY_DEFAULT))
-        return out.squeeze(0)
+        return out
     except Exception as e:
         raise ValueError(f"Trouble inferring on edf file: {e}")
 
-# %% ../nbs/12_inference.ipynb 12
+# %% ../nbs/12_inference.ipynb 13
 def infer_on_edf_dataset(edf_dataloader, # the edf dataset to perform inference on
                         device='cpu', # the device to run the model on
                         models_dir='', # the directory of the saved models
@@ -397,6 +441,6 @@ def infer_on_edf_dataset(edf_dataloader, # the edf dataset to perform inference 
             x, sequence_padding_mask = batch
             x = x.to(device)
             sequence_padding_mask = sequence_padding_mask.to(device)
-            pred = ss_classifier(x, sequence_padding_mask=sequence_padding_mask)
+            pred = ss_classifier(x, sequence_padding_mask=sequence_padding_mask) # [bs, n_classes, pred_len_seconds]
             preds.append(pred.cpu())
     return torch.cat(preds)
