@@ -66,6 +66,7 @@ if __name__ == "__main__":
                      fast_dev_run=False)
     
     preds = trainer.predict(model=pftsleep_encoder, train_dataloaders=data_loader, val_dataloaders=None, ckpt_path=None)
+    preds = torch.cat(preds)
     torch.save(preds, f"{embedding_file_name}")
     sample_df.to_csv(f"{embedding_file_name.replace('.pt', '.csv')}", index=False)
 
