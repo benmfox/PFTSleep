@@ -271,17 +271,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/heads.py#L21" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="rnnprobinghead" class="level3">
 <h3 class="anchored" data-anchor-id="rnnprobinghead">RNNProbingHead</h3>
-<blockquote class="blockquote">
-<pre><code> RNNProbingHead (c_in, input_size, hidden_size, n_classes,
-                 contrastive=False, module='GRU', linear_dropout=0.0,
-                 rnn_dropout=0.0, num_rnn_layers=1, act='gelu',
-                 pool='average', temperature=2.0, n_linear_layers=1,
-                 predict_every_n_patches=1, bidirectional=True,
-                 affine=False, shared_embedding=True, augmentations=None,
-                 augmentation_mask_ratio=0.0,
-                 augmentation_dims_to_shuffle=[1, 2, 3], norm=None)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> RNNProbingHead(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    c_in, input_size, hidden_size, n_classes, contrastive:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, module:<span class="bu">str</span><span class="op">=</span><span class="st">'GRU'</span>, linear_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    rnn_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, num_rnn_layers:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, act:<span class="bu">str</span><span class="op">=</span><span class="st">'gelu'</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    pool:<span class="bu">str</span><span class="op">=</span><span class="st">'average'</span>, <span class="co"># 'average' or 'max' or 'majority'</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    temperature:<span class="bu">float</span><span class="op">=</span><span class="fl">2.0</span>, <span class="co"># only used if pool='majority'</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    n_linear_layers:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, predict_every_n_patches:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, bidirectional:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, affine:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    shared_embedding:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, augmentations:NoneType<span class="op">=</span><span class="va">None</span>, augmentation_mask_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    augmentation_dims_to_shuffle:<span class="bu">list</span><span class="op">=</span>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], norm:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># one of [None, 'pre', 'post']</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -298,163 +299,25 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>input_size</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>hidden_size</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>n_classes</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>contrastive</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>module</td>
-<td>str</td>
-<td>GRU</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>linear_dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>rnn_dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>num_rnn_layers</td>
-<td>int</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>act</td>
-<td>str</td>
-<td>gelu</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>pool</td>
-<td>str</td>
-<td>average</td>
-<td>‘average’ or ‘max’ or ‘majority’</td>
-</tr>
-<tr class="even">
-<td>temperature</td>
-<td>float</td>
-<td>2.0</td>
-<td>only used if pool=‘majority’</td>
-</tr>
-<tr class="odd">
-<td>n_linear_layers</td>
-<td>int</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>predict_every_n_patches</td>
-<td>int</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>bidirectional</td>
-<td>bool</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>affine</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>shared_embedding</td>
-<td>bool</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>augmentations</td>
-<td>NoneType</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>augmentation_mask_ratio</td>
-<td>float</td>
-<td>0.0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>augmentation_dims_to_shuffle</td>
-<td>list</td>
-<td>[1, 2, 3]</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>norm</td>
-<td>NoneType</td>
-<td>None</td>
-<td>one of [None, ‘pre’, ‘post’]</td>
-</tr>
-</tbody>
-</table>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/heads.py#L186" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="rnnprobingheadexperimental" class="level3">
 <h3 class="anchored" data-anchor-id="rnnprobingheadexperimental">RNNProbingHeadExperimental</h3>
-<blockquote class="blockquote">
-<pre><code> RNNProbingHeadExperimental (c_in, input_size, hidden_size, n_classes,
-                             contrastive=False, module='GRU',
-                             linear_dropout=0.0, rnn_dropout=0.0,
-                             num_rnn_layers=1, act='gelu', pool='average',
-                             temperature=2.0, predict_every_n_patches=1,
-                             bidirectional=True, affine=False,
-                             augmentations=None,
-                             augmentation_mask_ratio=0.0,
-                             augmentation_dims_to_shuffle=[1, 2, 3],
-                             pre_norm=True, mlp_final_head=False)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> RNNProbingHeadExperimental(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    c_in, input_size, hidden_size, n_classes, contrastive:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># deprecated</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    module:<span class="bu">str</span><span class="op">=</span><span class="st">'GRU'</span>, linear_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, rnn_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, num_rnn_layers:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, act:<span class="bu">str</span><span class="op">=</span><span class="st">'gelu'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    pool:<span class="bu">str</span><span class="op">=</span><span class="st">'average'</span>, <span class="co"># 'average' or 'max' or 'majority'</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    temperature:<span class="bu">float</span><span class="op">=</span><span class="fl">2.0</span>, <span class="co"># only used if pool='majority'</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    predict_every_n_patches:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, bidirectional:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, affine:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, augmentations:NoneType<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    augmentation_mask_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, augmentation_dims_to_shuffle:<span class="bu">list</span><span class="op">=</span>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    pre_norm:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># one of [None, 'pre', 'post']</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    mlp_final_head:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -471,140 +334,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>input_size</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>hidden_size</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>n_classes</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>contrastive</td>
-<td>bool</td>
-<td>False</td>
-<td>deprecated</td>
-</tr>
-<tr class="even">
-<td>module</td>
-<td>str</td>
-<td>GRU</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>linear_dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>rnn_dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>num_rnn_layers</td>
-<td>int</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>act</td>
-<td>str</td>
-<td>gelu</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>pool</td>
-<td>str</td>
-<td>average</td>
-<td>‘average’ or ‘max’ or ‘majority’</td>
-</tr>
-<tr class="even">
-<td>temperature</td>
-<td>float</td>
-<td>2.0</td>
-<td>only used if pool=‘majority’</td>
-</tr>
-<tr class="odd">
-<td>predict_every_n_patches</td>
-<td>int</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>bidirectional</td>
-<td>bool</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>affine</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>augmentations</td>
-<td>NoneType</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>augmentation_mask_ratio</td>
-<td>float</td>
-<td>0.0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>augmentation_dims_to_shuffle</td>
-<td>list</td>
-<td>[1, 2, 3]</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>pre_norm</td>
-<td>bool</td>
-<td>True</td>
-<td>one of [None, ‘pre’, ‘post’]</td>
-</tr>
-<tr class="even">
-<td>mlp_final_head</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div id="cell-5" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="f0a5ba25" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> RNNProbingHeadExperimental(c_in<span class="op">=</span><span class="dv">7</span>, </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                pool<span class="op">=</span><span class="st">'average'</span>, </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                input_size <span class="op">=</span> <span class="dv">384</span>, </span>
@@ -627,7 +358,7 @@ class Model(nn.Module):
 <pre><code>torch.Size([4, 4, 30])</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell">
+<div id="736f7774" class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> RNNProbingHead(c_in<span class="op">=</span><span class="dv">7</span>, pool<span class="op">=</span><span class="st">'majority'</span>, input_size <span class="op">=</span> <span class="dv">384</span>, contrastive<span class="op">=</span><span class="va">False</span>, bidirectional<span class="op">=</span><span class="va">True</span>, affine<span class="op">=</span><span class="va">True</span>, shared_embedding<span class="op">=</span><span class="va">False</span>, hidden_size<span class="op">=</span><span class="dv">384</span>, module<span class="op">=</span><span class="st">'GRU'</span>, n_classes<span class="op">=</span><span class="dv">4</span>, predict_every_n_patches<span class="op">=</span><span class="dv">32</span>, rnn_dropout<span class="op">=</span><span class="fl">0.</span>, num_rnn_layers<span class="op">=</span><span class="dv">1</span>, linear_dropout<span class="op">=</span><span class="fl">0.</span>, n_linear_layers<span class="op">=</span><span class="dv">1</span>, norm<span class="op">=</span><span class="st">'post'</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn((<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">384</span>,<span class="dv">960</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -636,7 +367,7 @@ class Model(nn.Module):
 <pre><code>torch.Size([4, 4, 30])</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell">
+<div id="90572d34" class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> RNNProbingHead(c_in<span class="op">=</span><span class="dv">7</span>, input_size <span class="op">=</span> <span class="dv">512</span>, contrastive<span class="op">=</span><span class="va">True</span>, bidirectional<span class="op">=</span><span class="va">True</span>, affine<span class="op">=</span><span class="va">False</span>, shared_embedding<span class="op">=</span><span class="va">True</span>, hidden_size<span class="op">=</span><span class="dv">256</span>, module<span class="op">=</span><span class="st">'GRU'</span>, n_classes<span class="op">=</span><span class="dv">5</span>, predict_every_n_patches<span class="op">=</span><span class="dv">5</span>, rnn_dropout<span class="op">=</span><span class="fl">0.</span>, num_rnn_layers<span class="op">=</span><span class="dv">1</span>, linear_dropout<span class="op">=</span><span class="fl">0.</span>, n_linear_layers<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn((<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">512</span><span class="op">*</span><span class="dv">2</span>,<span class="dv">3600</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -650,14 +381,13 @@ class Model(nn.Module):
 </section>
 <section id="transformerdecoderprobinghead" class="level3">
 <h3 class="anchored" data-anchor-id="transformerdecoderprobinghead">TransformerDecoderProbingHead</h3>
-<blockquote class="blockquote">
-<pre><code> TransformerDecoderProbingHead (c_in, d_model, n_classes,
-                                norm='BatchNorm', dropout=0.0, act='gelu',
-                                d_ff=2048, num_layers=1, n_heads=2,
-                                predict_every_n_patches=1, affine=False,
-                                shared_embedding=True)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> TransformerDecoderProbingHead(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    c_in, d_model, n_classes, norm:<span class="bu">str</span><span class="op">=</span><span class="st">'BatchNorm'</span>, dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, act:<span class="bu">str</span><span class="op">=</span><span class="st">'gelu'</span>, d_ff:<span class="bu">int</span><span class="op">=</span><span class="dv">2048</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    num_layers:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, n_heads:<span class="bu">int</span><span class="op">=</span><span class="dv">2</span>, predict_every_n_patches:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, affine:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, shared_embedding:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -674,8 +404,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
-<div id="cell-9" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="fc3d7c8d" class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> TransformerDecoderProbingHead(c_in<span class="op">=</span><span class="dv">7</span>, affine<span class="op">=</span><span class="va">True</span>, shared_embedding<span class="op">=</span><span class="va">False</span>, d_model<span class="op">=</span><span class="dv">512</span>, n_classes<span class="op">=</span><span class="dv">5</span>, dropout<span class="op">=</span><span class="fl">0.</span>, num_layers<span class="op">=</span><span class="dv">1</span>, n_heads<span class="op">=</span><span class="dv">2</span>, predict_every_n_patches<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn((<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">512</span>, <span class="dv">3600</span>))</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -689,128 +419,20 @@ class Model(nn.Module):
 </section>
 <section id="decoderfeedforward" class="level3">
 <h3 class="anchored" data-anchor-id="decoderfeedforward">DecoderFeedForward</h3>
-<blockquote class="blockquote">
-<pre><code> DecoderFeedForward (c_in, predict_every_n_patches, num_layers, d_ff,
-                     attn_dropout, res_attention, pre_norm, store_attn,
-                     n_heads, shared_embedding, affine, n_classes,
-                     d_model, norm='BatchNorm', act='gelu', dropout=0.0)</code></pre>
-</blockquote>
-<p><em>transformer decoder with attention for feedforward predictions. This is really just another encoder layer followed by a linear layer + 1d convolution + softmax. However, if used in linear probing, could be useful.</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td></td>
-<td></td>
-<td>the number of input channels</td>
-</tr>
-<tr class="even">
-<td>predict_every_n_patches</td>
-<td></td>
-<td></td>
-<td>for a given sequence of length m with frequency f, number of predictions</td>
-</tr>
-<tr class="odd">
-<td>num_layers</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>d_ff</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>attn_dropout</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>res_attention</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>pre_norm</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>store_attn</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>n_heads</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>shared_embedding</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>affine</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>n_classes</td>
-<td></td>
-<td></td>
-<td>the number of classes to predict (for sleep stage - there are 6)</td>
-</tr>
-<tr class="odd">
-<td>d_model</td>
-<td></td>
-<td></td>
-<td>the dimension of the transformer model</td>
-</tr>
-<tr class="even">
-<td>norm</td>
-<td>str</td>
-<td>BatchNorm</td>
-<td>batchnorm or layernorm between linear and convolutional layers</td>
-</tr>
-<tr class="odd">
-<td>act</td>
-<td>str</td>
-<td>gelu</td>
-<td>activation function to use between layers, ‘gelu’ or ‘relu’</td>
-</tr>
-<tr class="even">
-<td>dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td>dropout in between linear layers</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-11" class="cell">
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> DecoderFeedForward(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    c_in, <span class="co"># the number of input channels</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    predict_every_n_patches, <span class="co"># for a given sequence of length m with frequency f, number of predictions</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    num_layers, d_ff, attn_dropout, res_attention, pre_norm, store_attn, n_heads, shared_embedding, affine,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    n_classes, <span class="co"># the number of classes to predict (for sleep stage - there are 6)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    d_model, <span class="co"># the dimension of the transformer model</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    norm:<span class="bu">str</span><span class="op">=</span><span class="st">'BatchNorm'</span>, <span class="co"># batchnorm or layernorm between linear and convolutional layers</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    act:<span class="bu">str</span><span class="op">=</span><span class="st">'gelu'</span>, <span class="co"># activation function to use between layers, 'gelu' or 'relu'</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, <span class="co"># dropout in between linear layers</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>transformer decoder with attention for feedforward predictions. This is really just another encoder layer followed by</em> a linear layer + 1d convolution + softmax. However, if used in linear probing, could be useful.</p>
+<div id="0265e3d3" class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>c_in <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>frequency <span class="op">=</span> <span class="dv">125</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>win_length<span class="op">=</span><span class="dv">750</span> </span>
@@ -853,177 +475,40 @@ class Model(nn.Module):
 </section>
 <section id="timedistributedconvolutionalfeedforward" class="level3">
 <h3 class="anchored" data-anchor-id="timedistributedconvolutionalfeedforward">TimeDistributedConvolutionalFeedForward</h3>
-<blockquote class="blockquote">
-<pre><code> TimeDistributedConvolutionalFeedForward (c_in, frequency,
-                                          predict_every_seconds,
-                                          n_classes, win_length, d_model,
-                                          affine=False,
-                                          shared_embedding=True)</code></pre>
-</blockquote>
-<p><em>Convolutional feed forward head that first uses a linear feed forward network to project features into the original convolutional dimension. Then, a convolutional transpose is used to extrapolate the data to its original form. Finally, a final convolution is used to predict the classes.</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td></td>
-<td></td>
-<td>the number of input channels</td>
-</tr>
-<tr class="even">
-<td>frequency</td>
-<td></td>
-<td></td>
-<td>the frequency of the original channels</td>
-</tr>
-<tr class="odd">
-<td>predict_every_seconds</td>
-<td></td>
-<td></td>
-<td>for a given sequence of length m with frequency f, number of predictions</td>
-</tr>
-<tr class="even">
-<td>n_classes</td>
-<td></td>
-<td></td>
-<td>the number of classes to predict (for sleep stage - there are 6)</td>
-</tr>
-<tr class="odd">
-<td>win_length</td>
-<td></td>
-<td></td>
-<td>the convolved patch length, the first step in this is to do a linear layer to this dimension</td>
-</tr>
-<tr class="even">
-<td>d_model</td>
-<td></td>
-<td></td>
-<td>the dimension of the transformer model</td>
-</tr>
-<tr class="odd">
-<td>affine</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>shared_embedding</td>
-<td>bool</td>
-<td>True</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> TimeDistributedConvolutionalFeedForward(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    c_in, <span class="co"># the number of input channels</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    frequency, <span class="co"># the frequency of the original channels</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    predict_every_seconds, <span class="co"># for a given sequence of length m with frequency f, number of predictions</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    n_classes, <span class="co"># the number of classes to predict (for sleep stage - there are 6)</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    win_length, <span class="co"># the convolved patch length, the first step in this is to do a linear layer to this dimension</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    d_model, <span class="co"># the dimension of the transformer model</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    affine:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, shared_embedding:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Convolutional feed forward head that first uses a linear feed forward network to project features into the original convolutional dimension.</em> Then, a convolutional transpose is used to extrapolate the data to its original form. Finally, a final convolution is used to predict the classes.</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/heads.py#L594" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="linearprobinghead" class="level3">
 <h3 class="anchored" data-anchor-id="linearprobinghead">LinearProbingHead</h3>
-<blockquote class="blockquote">
-<pre><code> LinearProbingHead (c_in, predict_every_n_patches, n_classes, input_size,
-                    n_layers, num_patch, shared_embedding=True,
-                    affine=True, norm='BatchNorm', act='gelu',
-                    dropout=0.0)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> LinearProbingHead(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    c_in, <span class="co"># the number of input channels in the original input</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    predict_every_n_patches, <span class="co"># for a given sequence of length m with frequency f, number of predictions</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    n_classes, <span class="co"># the number of classes to predict (for sleep stage - there are 6)</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    input_size, <span class="co"># the dimension of the transformer model</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    n_layers, <span class="co"># the number of linear layers to use in the prediciton head, with RELU activation and dropout</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    num_patch,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    shared_embedding:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># whether or not to have a dense layer per channel or one layer per channel</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    affine:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># include learnable parameters to weight predictions</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    norm:<span class="bu">str</span><span class="op">=</span><span class="st">'BatchNorm'</span>, <span class="co"># batchnorm or layernorm between linear and convolutional layers</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    act:<span class="bu">str</span><span class="op">=</span><span class="st">'gelu'</span>, <span class="co"># activation function to use between layers, 'gelu' or 'relu'</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, <span class="co"># dropout in between linear layers</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>A linear probing head (with optional MLP), assumes that the d_model corresponds to a particular segment of time and will make a prediction per patch per channel, and average the results</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td></td>
-<td></td>
-<td>the number of input channels in the original input</td>
-</tr>
-<tr class="even">
-<td>predict_every_n_patches</td>
-<td></td>
-<td></td>
-<td>for a given sequence of length m with frequency f, number of predictions</td>
-</tr>
-<tr class="odd">
-<td>n_classes</td>
-<td></td>
-<td></td>
-<td>the number of classes to predict (for sleep stage - there are 6)</td>
-</tr>
-<tr class="even">
-<td>input_size</td>
-<td></td>
-<td></td>
-<td>the dimension of the transformer model</td>
-</tr>
-<tr class="odd">
-<td>n_layers</td>
-<td></td>
-<td></td>
-<td>the number of linear layers to use in the prediciton head, with RELU activation and dropout</td>
-</tr>
-<tr class="even">
-<td>num_patch</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>shared_embedding</td>
-<td>bool</td>
-<td>True</td>
-<td>whether or not to have a dense layer per channel or one layer per channel</td>
-</tr>
-<tr class="even">
-<td>affine</td>
-<td>bool</td>
-<td>True</td>
-<td>include learnable parameters to weight predictions</td>
-</tr>
-<tr class="odd">
-<td>norm</td>
-<td>str</td>
-<td>BatchNorm</td>
-<td>batchnorm or layernorm between linear and convolutional layers</td>
-</tr>
-<tr class="even">
-<td>act</td>
-<td>str</td>
-<td>gelu</td>
-<td>activation function to use between layers, ‘gelu’ or ‘relu’</td>
-</tr>
-<tr class="odd">
-<td>dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td>dropout in between linear layers</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-14" class="cell">
+<div id="2a4b22b7" class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> LinearProbingHead(c_in<span class="op">=</span><span class="dv">7</span>, </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                      input_size <span class="op">=</span> <span class="dv">512</span>, </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                      predict_every_n_patches<span class="op">=</span><span class="dv">5</span>,</span>
@@ -1046,88 +531,30 @@ class Model(nn.Module):
 </section>
 <section id="timedistributedfeedforward" class="level3">
 <h3 class="anchored" data-anchor-id="timedistributedfeedforward">TimeDistributedFeedForward</h3>
-<blockquote class="blockquote">
-<pre><code> TimeDistributedFeedForward (c_in, n_classes, n_patches, d_model,
-                             pred_len_seconds, n_linear_layers,
-                             conv_kernel_stride_size, dropout=0.0)</code></pre>
-</blockquote>
-<p><em>Feed forward head that uses a convolutional layer to reduce channel dimensionality Followed by a feedforward network to make</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td></td>
-<td></td>
-<td>the number of input channels</td>
-</tr>
-<tr class="even">
-<td>n_classes</td>
-<td></td>
-<td></td>
-<td>the number of classes to predict (for sleep stage - there are 6)</td>
-</tr>
-<tr class="odd">
-<td>n_patches</td>
-<td></td>
-<td></td>
-<td>the number of stft or time patches</td>
-</tr>
-<tr class="even">
-<td>d_model</td>
-<td></td>
-<td></td>
-<td>the dimension of the transformer model</td>
-</tr>
-<tr class="odd">
-<td>pred_len_seconds</td>
-<td></td>
-<td></td>
-<td>the sequence multiclass prediction length in seconds</td>
-</tr>
-<tr class="even">
-<td>n_linear_layers</td>
-<td></td>
-<td></td>
-<td>the number of linear layers to use in the prediciton head, with RELU activation and dropout</td>
-</tr>
-<tr class="odd">
-<td>conv_kernel_stride_size</td>
-<td></td>
-<td></td>
-<td>the 1d convolution kernel size and stride, in seconds. If you want every 30 second predicitons, put 30 here.</td>
-</tr>
-<tr class="even">
-<td>dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td>dropout in between linear layers</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> TimeDistributedFeedForward(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    c_in, <span class="co"># the number of input channels</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    n_classes, <span class="co"># the number of classes to predict (for sleep stage - there are 6)</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    n_patches, <span class="co"># the number of stft or time patches</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    d_model, <span class="co"># the dimension of the transformer model</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    pred_len_seconds, <span class="co"># the sequence multiclass prediction length in seconds</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    n_linear_layers, <span class="co"># the number of linear layers to use in the prediciton head, with RELU activation and dropout</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    conv_kernel_stride_size, <span class="co"># the 1d convolution kernel size and stride, in seconds. If you want every 30 second predicitons, put 30 here.</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, <span class="co"># dropout in between linear layers</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Feed forward head that uses a convolutional layer to reduce channel dimensionality</em> Followed by a feedforward network to make</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/heads.py#L850" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="convbigru" class="level3">
 <h3 class="anchored" data-anchor-id="convbigru">ConvBiGRU</h3>
-<blockquote class="blockquote">
-<pre><code> ConvBiGRU (input_size, hidden_sizes, kernel_sizes, n_layers, d_model,
-            predict_every_n_patches, n_classes)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ConvBiGRU(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    input_size, hidden_sizes, kernel_sizes, n_layers, d_model, predict_every_n_patches, n_classes</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -1144,16 +571,20 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/heads.py#L776" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="convgru1d" class="level3">
 <h3 class="anchored" data-anchor-id="convgru1d">ConvGRU1D</h3>
-<blockquote class="blockquote">
-<pre><code> ConvGRU1D (input_size, hidden_sizes, kernel_sizes, n_layers)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ConvGRU1D(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    input_size, hidden_sizes, <span class="co"># if integer, the same hidden size is used for all cells.</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    kernel_sizes, <span class="co"># if integer, the same kernel size is used for all cells.</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    n_layers</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -1170,17 +601,19 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/heads.py#L733" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="convgru1dcell" class="level3">
 <h3 class="anchored" data-anchor-id="convgru1dcell">ConvGRU1DCell</h3>
-<blockquote class="blockquote">
-<pre><code> ConvGRU1DCell (input_size, hidden_size, kernel_size)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ConvGRU1DCell(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    input_size, hidden_size, kernel_size</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Generate a convolutional GRU cell</em></p>
-<div id="cell-19" class="cell">
+<div id="9f289111" class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn((<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">512</span>,<span class="dv">3600</span>))</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>convgru <span class="op">=</span> ConvBiGRU(input_size<span class="op">=</span><span class="dv">7</span>, hidden_sizes<span class="op">=</span><span class="dv">32</span>, kernel_sizes<span class="op">=</span><span class="dv">3</span>, n_layers<span class="op">=</span><span class="dv">1</span>, d_model<span class="op">=</span><span class="dv">512</span>, predict_every_n_patches<span class="op">=</span><span class="dv">5</span>, n_classes<span class="op">=</span><span class="dv">5</span>)</span>

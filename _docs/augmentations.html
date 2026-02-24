@@ -284,12 +284,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L16" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="create_patch" class="level3">
 <h3 class="anchored" data-anchor-id="create_patch">create_patch</h3>
-<blockquote class="blockquote">
-<pre><code> create_patch (xb, patch_len, stride, return_patch_num=False,
-               constant_pad=False, constant_pad_value=0, max_seq_len=None)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_patch(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    xb, patch_len, stride, return_patch_num:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, constant_pad:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, constant_pad_value:<span class="bu">int</span><span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    max_seq_len:NoneType<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>xb: [bs x n_vars x seq_len]</em></p>
-<div id="cell-4" class="cell">
+<div id="bd0b6192" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>, <span class="dv">1000</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># test seq_len &gt; patch len == stride </span></span>
@@ -301,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>(torch.Size([4, 1000]), torch.Size([4, 1, 505]), torch.Size([4, 2, 500]))</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell">
+<div id="32a09896" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">1350000</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># test seq_len &gt; patch len == stride </span></span>
@@ -320,11 +322,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="unpatch" class="level3">
 <h3 class="anchored" data-anchor-id="unpatch">unpatch</h3>
-<blockquote class="blockquote">
-<pre><code> unpatch (x, seq_len, remove_padding=True)</code></pre>
-</blockquote>
-<p><em>x: [bs/None x patch_num x n_vars x patch_len] returns x: [bs x n_vars x seq_len]</em></p>
-<div id="cell-7" class="cell">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unpatch(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    x, seq_len, remove_padding:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>x: [bs/None x patch_num x n_vars x patch_len]</em> returns x: [bs x n_vars x seq_len]</p>
+<div id="58e80ea4" class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">50</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># test seq_len &gt; patch len == stride </span></span>
@@ -343,38 +347,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L81" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="random_masking" class="level3">
 <h3 class="anchored" data-anchor-id="random_masking">random_masking</h3>
-<blockquote class="blockquote">
-<pre><code> random_masking (xb, mask_ratio)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> random_masking(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    xb, mask_ratio</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L63" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="mask_patches_simple" class="level3">
 <h3 class="anchored" data-anchor-id="mask_patches_simple">mask_patches_simple</h3>
-<blockquote class="blockquote">
-<pre><code> mask_patches_simple (xb, mask_ratio)</code></pre>
-</blockquote>
-<p>*Function that masks patches in a simple way</p>
-<p>xb: [bs x patch_num x n_vars x patch_len] padding_mask [bs x patch_num x 1|num_vars x patch_len]*</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>xb</td>
-<td>input tensor of size 3 or 4 to be masked</td>
-</tr>
-<tr class="even">
-<td>mask_ratio</td>
-<td>ratio of masking of patches</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-11" class="cell">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mask_patches_simple(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    xb, <span class="co"># input tensor of size 3 or 4 to be masked</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    mask_ratio, <span class="co"># ratio of masking of patches</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Function that masks patches in a simple way</em></p>
+<p>xb: [bs x patch_num x n_vars x patch_len] padding_mask [bs x patch_num x 1|num_vars x patch_len]</p>
+<div id="db8417d7" class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">50</span>,<span class="dv">16</span>,<span class="dv">7</span>,<span class="dv">50</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mask_ratio <span class="op">=</span> <span class="fl">0.4</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -388,18 +379,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L118" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="jitter_augmentation" class="level3">
 <h3 class="anchored" data-anchor-id="jitter_augmentation">jitter_augmentation</h3>
-<blockquote class="blockquote">
-<pre><code> jitter_augmentation (x, mask_ratio=0.05, jitter_ratio=0.05)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> jitter_augmentation(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    x, mask_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.05</span>, jitter_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.05</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L113" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="remove_values" class="level3">
 <h3 class="anchored" data-anchor-id="remove_values">remove_values</h3>
-<blockquote class="blockquote">
-<pre><code> remove_values (x, mask_ratio)</code></pre>
-</blockquote>
-<div id="cell-15" class="cell">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_values(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    x, mask_ratio</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5bbaed35" class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">## note that the random number generator advances state...</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">42</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">1000</span>)</span>
@@ -423,19 +418,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L131" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="shuffle_dim" class="level3">
 <h3 class="anchored" data-anchor-id="shuffle_dim">shuffle_dim</h3>
-<blockquote class="blockquote">
-<pre><code> shuffle_dim (x, dim=1, p=0.5)</code></pre>
-</blockquote>
-<p><em>shuffles a dimension randomly along dim x: [bs x n channels x n patches x patch len]</em></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_dim(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    x, dim:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, p:<span class="bu">float</span><span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>shuffles a dimension randomly along dim</em> x: [bs x n channels x n patches x patch len]</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L144" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="reverse_sequence" class="level3">
 <h3 class="anchored" data-anchor-id="reverse_sequence">reverse_sequence</h3>
-<blockquote class="blockquote">
-<pre><code> reverse_sequence (x, seq_dim=(-1,), p=0.5)</code></pre>
-</blockquote>
-<div id="cell-19" class="cell">
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reverse_sequence(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    x, seq_dim:<span class="bu">tuple</span><span class="op">=</span>(<span class="op">-</span><span class="dv">1</span>,), p:<span class="bu">float</span><span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3f9d710c" class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>).to(<span class="st">'cuda'</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>torch.equal(shuffle_dim(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -451,55 +450,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/augmentations.py#L151" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="intraclasscutmix1d" class="level3">
 <h3 class="anchored" data-anchor-id="intraclasscutmix1d">IntraClassCutMix1d</h3>
-<blockquote class="blockquote">
-<pre><code> IntraClassCutMix1d (mix_prob=0.5, return_y_every_sec=30, frequency=125,
-                     return_sequence_padding_mask=True)</code></pre>
-</blockquote>
-<p>*Intra-class CutMix for 1D data (e.g., time-series).</p>
-<p>This is a callback that can be used to apply CutMix to the training data. It is used to mix segments within the same class.*</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>mix_prob</td>
-<td>float</td>
-<td>0.5</td>
-<td>probability of applying cutmix</td>
-</tr>
-<tr class="even">
-<td>return_y_every_sec</td>
-<td>int</td>
-<td>30</td>
-<td>length of segment to mix, if one value of y corresponds to 30 seconds of signal data, this should be set to 30.</td>
-</tr>
-<tr class="odd">
-<td>frequency</td>
-<td>int</td>
-<td>125</td>
-<td>frequency of the data</td>
-</tr>
-<tr class="even">
-<td>return_sequence_padding_mask</td>
-<td>bool</td>
-<td>True</td>
-<td>whether to return the sequence padding mask</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-22" class="cell">
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> IntraClassCutMix1d(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    mix_prob:<span class="bu">float</span><span class="op">=</span><span class="fl">0.5</span>, <span class="co"># probability of applying cutmix</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    return_y_every_sec:<span class="bu">int</span><span class="op">=</span><span class="dv">30</span>, <span class="co"># length of segment to mix, if one value of y corresponds to 30 seconds of signal data, this should be set to 30.</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    frequency:<span class="bu">int</span><span class="op">=</span><span class="dv">125</span>, <span class="co"># frequency of the data</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    return_sequence_padding_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># whether to return the sequence padding mask</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Intra-class CutMix for 1D data (e.g., time-series). </em></p>
+<p>This is a callback that can be used to apply CutMix to the training data. It is used to mix segments within the same class.</p>
+<div id="964b0c0f" class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">90</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>x_c <span class="op">=</span> x.clone()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.randint(<span class="dv">0</span>, <span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">90</span><span class="op">//</span><span class="dv">30</span>))</span>
@@ -516,63 +477,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="intraclasscutmixbatch" class="level3">
 <h3 class="anchored" data-anchor-id="intraclasscutmixbatch">IntraClassCutMixBatch</h3>
-<blockquote class="blockquote">
-<pre><code> IntraClassCutMixBatch (mix_prob=0.5, return_y_every_sec=30,
-                        frequency=125, return_sequence_padding_mask=True,
-                        intra_class_only=True)</code></pre>
-</blockquote>
-<p>*Intra-class CutMix for 1D data (e.g., time-series).</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> IntraClassCutMixBatch(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    mix_prob:<span class="bu">float</span><span class="op">=</span><span class="fl">0.5</span>, <span class="co"># probability of applying cutmix</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    return_y_every_sec:<span class="bu">int</span><span class="op">=</span><span class="dv">30</span>, <span class="co"># length of segment to mix, if one value of y corresponds to 30 seconds of signal data, this should be set to 30.</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    frequency:<span class="bu">int</span><span class="op">=</span><span class="dv">125</span>, <span class="co"># frequency of the data</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    return_sequence_padding_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># whether to return the sequence padding mask</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    intra_class_only:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># whether to mix only within same class (True) or across all classes (False)</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Intra-class CutMix for 1D data (e.g., time-series). </em></p>
 <p>This is a callback that can be used to apply CutMix to the training data. It is used to mix segments within the same class.</p>
-<p>This is different to IntraClassCutMix1d in that it mixes segments of the same class across batches of data, rather than just at the same segment*</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>mix_prob</td>
-<td>float</td>
-<td>0.5</td>
-<td>probability of applying cutmix</td>
-</tr>
-<tr class="even">
-<td>return_y_every_sec</td>
-<td>int</td>
-<td>30</td>
-<td>length of segment to mix, if one value of y corresponds to 30 seconds of signal data, this should be set to 30.</td>
-</tr>
-<tr class="odd">
-<td>frequency</td>
-<td>int</td>
-<td>125</td>
-<td>frequency of the data</td>
-</tr>
-<tr class="even">
-<td>return_sequence_padding_mask</td>
-<td>bool</td>
-<td>True</td>
-<td>whether to return the sequence padding mask</td>
-</tr>
-<tr class="odd">
-<td>intra_class_only</td>
-<td>bool</td>
-<td>True</td>
-<td>whether to mix only within same class (True) or across all classes (False)</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-24" class="cell">
+<p>This is different to IntraClassCutMix1d in that it mixes segments of the same class across batches of data, rather than just at the same segment</p>
+<div id="bd4858b9" class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">90</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>x_c <span class="op">=</span> x.clone()</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.randint(<span class="dv">0</span>, <span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">90</span><span class="op">//</span><span class="dv">30</span>))</span>
@@ -587,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-25" class="cell">
+<div id="4f898529" class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a tuple</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> ([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>])</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -608,57 +525,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mixupcallback" class="level3">
 <h3 class="anchored" data-anchor-id="mixupcallback">MixupCallback</h3>
-<blockquote class="blockquote">
-<pre><code> MixupCallback (num_classes, mixup_alpha=0.4,
-                return_sequence_padding_mask=True, ignore_index=-100)</code></pre>
-</blockquote>
-<p>*Mixup for 1D data (e.g., time-series).</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> MixupCallback(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    num_classes, mixup_alpha:<span class="bu">float</span><span class="op">=</span><span class="fl">0.4</span>, <span class="co"># alpha parameter for the beta distribution</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    return_sequence_padding_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># whether to return the sequence padding mask</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    ignore_index:<span class="bu">int</span><span class="op">=-</span><span class="dv">100</span>, <span class="co"># ignore index</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Mixup for 1D data (e.g., time-series).</em></p>
 <p>This callback applies Mixup to the training data, blending both the input data and the labels.</p>
 <p>See tsai implementation here: https://github.com/timeseriesAI/tsai/blob/bdff96cc8c4c8ea55bc20d7cffd6a72e402f4cb2/tsai/data/mixed_augmentation.py#L43</p>
-<p>Note that this creates non-integer labels/soft labels. Loss functions should be able to handle this.*</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>num_classes</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>mixup_alpha</td>
-<td>float</td>
-<td>0.4</td>
-<td>alpha parameter for the beta distribution</td>
-</tr>
-<tr class="odd">
-<td>return_sequence_padding_mask</td>
-<td>bool</td>
-<td>True</td>
-<td>whether to return the sequence padding mask</td>
-</tr>
-<tr class="even">
-<td>ignore_index</td>
-<td>int</td>
-<td>-100</td>
-<td>ignore index</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-27" class="cell">
+<p>Note that this creates non-integer labels/soft labels. Loss functions should be able to handle this.</p>
+<div id="6ba74c5a" class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">90</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>x_c <span class="op">=</span> x.clone()</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>y_og <span class="op">=</span> torch.randint(<span class="dv">0</span>, <span class="dv">5</span>, size<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">90</span><span class="op">//</span><span class="dv">30</span>))</span>

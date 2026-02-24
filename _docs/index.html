@@ -290,7 +290,7 @@ Left EOG: E1-M2</code></pre>
 <p>Then run it, passing the config file as the main argument:</p>
 <pre><code>./pftsleep_inference.sh pftsleep_inference_config.yaml</code></pre>
 <p>Predictions will be output to a torch tensor file <code>.pt</code> at the location specified in the yaml.</p>
-<p>Additionally, you can pass the <code>save_hypjson</code> parameter in the yaml as <code>true</code>. This will perform softmax, max index selecting, and save the predictions as a HYPJSON file (with the same filename as the edf file, + ’_pftsleep.HYPJSON’). You can also use the <code>write_pred_to_hypjson</code> function for individual files. Sleep stages are mapped in this function to typical HYPJSON standards (for example, REM is mapped to the integer “5”).</p>
+<p>Additionally, you can pass the <code>save_hypjson</code> parameter in the yaml as <code>true</code>. This will perform softmax, max index selecting, and save the predictions as a HYPJSON file (with the same filename as the edf file, + ’_pftsleep.HYPJSON’). You can also use the <a href="https://benmfox.github.io/PFTSleep/inference.html#write_pred_to_hypjson"><code>write_pred_to_hypjson</code></a> function for individual files. Sleep stages are mapped in this function to typical HYPJSON standards (for example, REM is mapped to the integer “5”).</p>
 </section>
 <section id="repository-structure-and-usage" class="level2">
 <h2 class="anchored" data-anchor-id="repository-structure-and-usage">Repository Structure and Usage</h2>

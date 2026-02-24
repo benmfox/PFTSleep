@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -251,216 +285,75 @@ ul.task-list li input[type="checkbox"] {
 <section id="read-edfs" class="level3">
 <h3 class="anchored" data-anchor-id="read-edfs">Read EDFs</h3>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L95" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L103" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="read_edf" class="level3">
 <h3 class="anchored" data-anchor-id="read_edf">read_edf</h3>
-<blockquote class="blockquote">
-<pre><code> read_edf (file_path, channels=None, frequency=None)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_edf(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    file_path, <span class="co"># file path of edf</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    channels:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># channels in edf to read, will raise warning if channels do not exist</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    frequency:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># frequency to resample all signals to</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Function to read an edf file and return a list of signals and header with the option to resample to a passed frequency</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>file_path</td>
-<td></td>
-<td></td>
-<td>file path of edf</td>
-</tr>
-<tr class="even">
-<td>channels</td>
-<td>NoneType</td>
-<td>None</td>
-<td>channels in edf to read, will raise warning if channels do not exist</td>
-</tr>
-<tr class="odd">
-<td>frequency</td>
-<td>NoneType</td>
-<td>None</td>
-<td>frequency to resample all signals to</td>
-</tr>
-</tbody>
-</table>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L132" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L140" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="read_edf_mne" class="level3">
 <h3 class="anchored" data-anchor-id="read_edf_mne">read_edf_mne</h3>
-<blockquote class="blockquote">
-<pre><code> read_edf_mne (file_path, channels=None, frequency=None)</code></pre>
-</blockquote>
-<p><em>function to read edf with mne library i dont recommend using this. Use edfio instead.</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>file_path</td>
-<td></td>
-<td></td>
-<td>file path of edf</td>
-</tr>
-<tr class="even">
-<td>channels</td>
-<td>NoneType</td>
-<td>None</td>
-<td>channels in edf to read, will raise warning if channels do not exist</td>
-</tr>
-<tr class="odd">
-<td>frequency</td>
-<td>NoneType</td>
-<td>None</td>
-<td>frequency to resample all signals to</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>Union</strong></td>
-<td></td>
-<td><strong>tuple of signals and header dictionary</strong></td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_edf_mne(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    file_path, <span class="co"># file path of edf</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    channels:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># channels in edf to read, will raise warning if channels do not exist</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    frequency:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># frequency to resample all signals to</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)<span class="op">-&gt;</span>Union: <span class="co"># tuple of signals and header dictionary</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>function to read edf with mne library</em> i dont recommend using this. Use edfio instead.</p>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L179" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L187" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="read_edf_edfio" class="level3">
 <h3 class="anchored" data-anchor-id="read_edf_edfio">read_edf_edfio</h3>
-<blockquote class="blockquote">
-<pre><code> read_edf_edfio (file_path, channels=None, frequency=None)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_edf_edfio(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    file_path, <span class="co"># file path of edf</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    channels:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># channels in edf to read, will raise warning if channels do not exist</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    frequency:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># frequency to resample all signals to</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)<span class="op">-&gt;</span>Union: <span class="co"># tuple of signals and header dictionary</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>function to read edfs with edfio</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>file_path</td>
-<td></td>
-<td></td>
-<td>file path of edf</td>
-</tr>
-<tr class="even">
-<td>channels</td>
-<td>NoneType</td>
-<td>None</td>
-<td>channels in edf to read, will raise warning if channels do not exist</td>
-</tr>
-<tr class="odd">
-<td>frequency</td>
-<td>NoneType</td>
-<td>None</td>
-<td>frequency to resample all signals to</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>Union</strong></td>
-<td></td>
-<td><strong>tuple of signals and header dictionary</strong></td>
-</tr>
-</tbody>
-</table>
 </section>
 <section id="read-hypnograms" class="level3">
 <h3 class="anchored" data-anchor-id="read-hypnograms">Read Hypnograms</h3>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L236" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L244" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="read_hypnogram" class="level3">
 <h3 class="anchored" data-anchor-id="read_hypnogram">read_hypnogram</h3>
-<blockquote class="blockquote">
-<pre><code> read_hypnogram (file, epoch_length=None)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_hypnogram(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>, <span class="co"># file path of the hypnogram csv</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    epoch_length:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># epoch length of the hypnogram measurements, if passed will repeat this many times at each element</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)<span class="op">-&gt;</span>array: <span class="co"># numpy array of hypnogram</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Function that reads a hypnogram csv and returns a numpy array of the hypnogram with optional repeats</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>file</td>
-<td></td>
-<td></td>
-<td>file path of the hypnogram csv</td>
-</tr>
-<tr class="even">
-<td>epoch_length</td>
-<td>NoneType</td>
-<td>None</td>
-<td>epoch length of the hypnogram measurements, if passed will repeat this many times at each element</td>
-</tr>
-<tr class="odd">
-<td><strong>Returns</strong></td>
-<td><strong>array</strong></td>
-<td></td>
-<td><strong>numpy array of hypnogram</strong></td>
-</tr>
-</tbody>
-</table>
 </section>
 <section id="edfs-to-zarr" class="level3">
 <h3 class="anchored" data-anchor-id="edfs-to-zarr">EDFs to Zarr</h3>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L248" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L256" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="edf_signals_to_zarr" class="level3">
 <h3 class="anchored" data-anchor-id="edf_signals_to_zarr">edf_signals_to_zarr</h3>
-<blockquote class="blockquote">
-<pre><code> edf_signals_to_zarr (edf_file_path, write_data_dir, overwrite=False,
-                      channels=None, channel_name_map=None,
-                      frequency=None, hyp_epoch_length=30,
-                      hyp_data_dir=None)</code></pre>
-</blockquote>
-<p>*Function that converts an edf to a zarr file</p>
-<p>try_mne: tries to load files with mne instead of pyedflib (if there is an error). This seems dangerous as mne converts units (and potentially resamples, while pyedflib does not)*</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> edf_signals_to_zarr(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    edf_file_path, write_data_dir, overwrite:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, channels:NoneType<span class="op">=</span><span class="va">None</span>, channel_name_map:NoneType<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    frequency:NoneType<span class="op">=</span><span class="va">None</span>, hyp_epoch_length:<span class="bu">int</span><span class="op">=</span><span class="dv">30</span>, hyp_data_dir:NoneType<span class="op">=</span><span class="va">None</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Function that converts an edf to a zarr file</em></p>
+<p>try_mne: tries to load files with mne instead of pyedflib (if there is an error). This seems dangerous as mne converts units (and potentially resamples, while pyedflib does not)</p>
 </section>
 </section>
 <section id="datasets" class="level2">
@@ -468,384 +361,111 @@ ul.task-list li input[type="checkbox"] {
 <section id="self-supervised-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="self-supervised-dataset">Self Supervised Dataset</h3>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L360" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L368" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="trim_wake_epochs_from_signals" class="level3">
 <h3 class="anchored" data-anchor-id="trim_wake_epochs_from_signals">trim_wake_epochs_from_signals</h3>
-<blockquote class="blockquote">
-<pre><code> trim_wake_epochs_from_signals (X, hypnogram, sequence_padding_mask,
-                                resampled_hypnogram_length,
-                                mask_x_with_zeros=False,
-                                padding_mask=-100)</code></pre>
-</blockquote>
-<p>*Function to trim wake epochs (if wake is the largest class) from signals</p>
-<p>X: bs, channels, seq_len hypnogram: bs, seq_len / resampled_hypnogram_length sequence_padding_mask: bs, seq_len*</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trim_wake_epochs_from_signals(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    X, hypnogram, sequence_padding_mask, resampled_hypnogram_length, mask_x_with_zeros:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    padding_mask:<span class="bu">int</span><span class="op">=-</span><span class="dv">100</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Function to trim wake epochs (if wake is the largest class) from signals</em></p>
+<p>X: bs, channels, seq_len hypnogram: bs, seq_len / resampled_hypnogram_length sequence_padding_mask: bs, seq_len</p>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L310" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L318" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="trim_wake_epochs_from_hypnogram" class="level3">
 <h3 class="anchored" data-anchor-id="trim_wake_epochs_from_hypnogram">trim_wake_epochs_from_hypnogram</h3>
-<blockquote class="blockquote">
-<pre><code> trim_wake_epochs_from_hypnogram (hypnogram, padding_mask=-100)</code></pre>
-</blockquote>
-<p>*Function to trim wake epochs (if wake is the largest class) from hypnograms This function trims the wake epochs from the beginning and/or end of the hypnogram</p>
-<p>Adapted from Phan et al L-SeqSleepNet*</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trim_wake_epochs_from_hypnogram(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    hypnogram, padding_mask:<span class="bu">int</span><span class="op">=-</span><span class="dv">100</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Function to trim wake epochs (if wake is the largest class) from hypnograms</em> This function trims the wake epochs from the beginning and/or end of the hypnogram</p>
+<p>Adapted from Phan et al L-SeqSleepNet</p>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L377" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L385" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="selfsupervisedtimefrequencydataset" class="level3">
 <h3 class="anchored" data-anchor-id="selfsupervisedtimefrequencydataset">SelfSupervisedTimeFrequencyDataset</h3>
-<blockquote class="blockquote">
-<pre><code> SelfSupervisedTimeFrequencyDataset (zarr_files, channels,
-                                     max_seq_len_sec, sample_seq_len_sec,
-                                     sample_stride_sec,
-                                     start_offset_sec=0,
-                                     trim_wake_epochs=True,
-                                     include_partial_samples=True,
-                                     sample_df=None, frequency=125,
-                                     return_hypnogram_every_sec=30,
-                                     hypnogram_padding_mask=-100,
-                                     hypnogram_frequency=125,
-                                     butterworth_filters=None,
-                                     median_filter_kernel_size=None,
-                                     voltage_channels=['ECG', 'ECG (LL-
-                                     RA)', 'EKG', 'ECG (L-R)', 'EOG(L)',
-                                     'EOG-L', 'E1', 'LOC', 'E1-M2',
-                                     'E1-AVG', 'EMG', 'cchin_l', 'chin',
-                                     'EMG (L-R)', 'EMG (1-2)', 'EMG
-                                     (1-3)', 'Chin3', 'C4-M1', 'C4_M1',
-                                     'EEG', 'EEG1', 'EEG2', 'EEG3',
-                                     'C3-M2', 'C3_M2', 'C4-AVG'],
-                                     clip_interpolations=None,
-                                     scale_channels=False,
-                                     time_channel_scales=None,
-                                     return_sequence_padding_mask=False)</code></pre>
-</blockquote>
-<p>*An abstract class representing a :class:<code>Dataset</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> SelfSupervisedTimeFrequencyDataset(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    zarr_files, <span class="co"># zarr files that include samples</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    channels, <span class="co"># channels to use</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    max_seq_len_sec, <span class="co"># maximum sequence length (in seconds) to use (this is especially relevant when you are returning both stft and raw ts data to keep them in sync)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    sample_seq_len_sec, <span class="co"># if no sample_df, generate sequences of this length in seconds as one sample</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    sample_stride_sec, <span class="co"># if no sample_df, seconds of overlap for samples from the same array, if seq_len_seconds == overlap_seconds, there is no overlap</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    start_offset_sec:<span class="bu">int</span><span class="op">=</span><span class="dv">0</span>, <span class="co"># number of seconds to exclude from beginning of sleep studies</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    trim_wake_epochs:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># indicator to trim wake epochs from hypnograms, if it is the largest class</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    include_partial_samples:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># indicator to include data from partial samples when return_full_length is false</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    sample_df:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># dataframe indicating which indices within each zarr file includes a sample</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    frequency:<span class="bu">int</span><span class="op">=</span><span class="dv">125</span>, <span class="co"># frequency of underlying data</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    return_hypnogram_every_sec:<span class="bu">int</span><span class="op">=</span><span class="dv">30</span>, <span class="co"># integer value indicating the step in indexing in seconds</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    hypnogram_padding_mask:<span class="bu">int</span><span class="op">=-</span><span class="dv">100</span>, <span class="co"># padded value to add to target and indice to ignore when computing loss</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    hypnogram_frequency:<span class="bu">int</span><span class="op">=</span><span class="dv">125</span>, <span class="co"># frequency of underlying y hypnogram data</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    butterworth_filters:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># dictionary of low pass, high pass, and bandpass dictionary to perform on channels</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    median_filter_kernel_size:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># if not none, will apply median filter with kernel size</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    voltage_channels:<span class="bu">list</span><span class="op">=</span>[<span class="st">'ECG'</span>, <span class="st">'ECG (LL-RA)'</span>, <span class="st">'EKG'</span>, <span class="st">'ECG (L-R)'</span>, <span class="st">'EOG(L)'</span>, <span class="st">'EOG-L'</span>, <span class="st">'E1'</span>, <span class="st">'LOC'</span>, <span class="st">'E1-M2'</span>, <span class="st">'E1-AVG'</span>, <span class="st">'EMG'</span>, <span class="st">'cchin_l'</span>, <span class="st">'chin'</span>, <span class="st">'EMG (L-R)'</span>, <span class="st">'EMG (1-2)'</span>, <span class="st">'EMG (1-3)'</span>, <span class="st">'Chin3'</span>, <span class="st">'C4-M1'</span>, <span class="st">'C4_M1'</span>, <span class="st">'EEG'</span>, <span class="st">'EEG1'</span>, <span class="st">'EEG2'</span>, <span class="st">'EEG3'</span>, <span class="st">'C3-M2'</span>, <span class="st">'C3_M2'</span>, <span class="st">'C4-AVG'</span>], <span class="co"># if not None, these channels units will be looked at and changed to microvolts from mv uv etc.</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    clip_interpolations:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># dictionary of channels:{'phys_range':..., 'percentiles':...} for filtering and interpolation of filtered values</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    scale_channels:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to scale channels to the mean and std of the zarr files.</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    time_channel_scales:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># dictionary of channel:mean and channel:std values for scaling. Should use training statistics</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    return_sequence_padding_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to return the key padding mask for attention masking</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>An abstract class representing a :class:<code>Dataset</code>.</em></p>
 <p>All datasets that represent a map from keys to data samples should subclass it. All subclasses should overwrite :meth:<code>__getitem__</code>, supporting fetching a data sample for a given key. Subclasses could also optionally overwrite :meth:<code>__len__</code>, which is expected to return the size of the dataset by many :class:<code>~torch.utils.data.Sampler</code> implementations and the default options of :class:<code>~torch.utils.data.DataLoader</code>. Subclasses could also optionally implement :meth:<code>__getitems__</code>, for speedup batched samples loading. This method accepts list of indices of samples of batch and returns list of samples.</p>
-<p>.. note:: :class:<code>~torch.utils.data.DataLoader</code> by default constructs an index sampler that yields integral indices. To make it work with a map-style dataset with non-integral indices/keys, a custom sampler must be provided.*</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>zarr_files</td>
-<td></td>
-<td></td>
-<td>zarr files that include samples</td>
-</tr>
-<tr class="even">
-<td>channels</td>
-<td></td>
-<td></td>
-<td>channels to use</td>
-</tr>
-<tr class="odd">
-<td>max_seq_len_sec</td>
-<td></td>
-<td></td>
-<td>maximum sequence length (in seconds) to use (this is especially relevant when you are returning both stft and raw ts data to keep them in sync)</td>
-</tr>
-<tr class="even">
-<td>sample_seq_len_sec</td>
-<td></td>
-<td></td>
-<td>if no sample_df, generate sequences of this length in seconds as one sample</td>
-</tr>
-<tr class="odd">
-<td>sample_stride_sec</td>
-<td></td>
-<td></td>
-<td>if no sample_df, seconds of overlap for samples from the same array, if seq_len_seconds == overlap_seconds, there is no overlap</td>
-</tr>
-<tr class="even">
-<td>start_offset_sec</td>
-<td>int</td>
-<td>0</td>
-<td>number of seconds to exclude from beginning of sleep studies</td>
-</tr>
-<tr class="odd">
-<td>trim_wake_epochs</td>
-<td>bool</td>
-<td>True</td>
-<td>indicator to trim wake epochs from hypnograms, if it is the largest class</td>
-</tr>
-<tr class="even">
-<td>include_partial_samples</td>
-<td>bool</td>
-<td>True</td>
-<td>indicator to include data from partial samples when return_full_length is false</td>
-</tr>
-<tr class="odd">
-<td>sample_df</td>
-<td>NoneType</td>
-<td>None</td>
-<td>dataframe indicating which indices within each zarr file includes a sample</td>
-</tr>
-<tr class="even">
-<td>frequency</td>
-<td>int</td>
-<td>125</td>
-<td>frequency of underlying data</td>
-</tr>
-<tr class="odd">
-<td>return_hypnogram_every_sec</td>
-<td>int</td>
-<td>30</td>
-<td>integer value indicating the step in indexing in seconds</td>
-</tr>
-<tr class="even">
-<td>hypnogram_padding_mask</td>
-<td>int</td>
-<td>-100</td>
-<td>padded value to add to target and indice to ignore when computing loss</td>
-</tr>
-<tr class="odd">
-<td>hypnogram_frequency</td>
-<td>int</td>
-<td>125</td>
-<td>frequency of underlying y hypnogram data</td>
-</tr>
-<tr class="even">
-<td>butterworth_filters</td>
-<td>NoneType</td>
-<td>None</td>
-<td>dictionary of low pass, high pass, and bandpass dictionary to perform on channels</td>
-</tr>
-<tr class="odd">
-<td>median_filter_kernel_size</td>
-<td>NoneType</td>
-<td>None</td>
-<td>if not none, will apply median filter with kernel size</td>
-</tr>
-<tr class="even">
-<td>voltage_channels</td>
-<td>list</td>
-<td>[‘ECG’, ‘ECG (LL-RA)’, ‘EKG’, ‘ECG (L-R)’, ‘EOG(L)’, ‘EOG-L’, ‘E1’, ‘LOC’, ‘E1-M2’, ‘E1-AVG’, ‘EMG’, ‘cchin_l’, ‘chin’, ‘EMG (L-R)’, ‘EMG (1-2)’, ‘EMG (1-3)’, ‘Chin3’, ‘C4-M1’, ‘C4_M1’, ‘EEG’, ‘EEG1’, ‘EEG2’, ‘EEG3’, ‘C3-M2’, ‘C3_M2’, ‘C4-AVG’]</td>
-<td>if not None, these channels units will be looked at and changed to microvolts from mv uv etc.</td>
-</tr>
-<tr class="odd">
-<td>clip_interpolations</td>
-<td>NoneType</td>
-<td>None</td>
-<td>dictionary of channels:{‘phys_range’:…, ‘percentiles’:…} for filtering and interpolation of filtered values</td>
-</tr>
-<tr class="even">
-<td>scale_channels</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to scale channels to the mean and std of the zarr files.</td>
-</tr>
-<tr class="odd">
-<td>time_channel_scales</td>
-<td>NoneType</td>
-<td>None</td>
-<td>dictionary of channel:mean and channel:std values for scaling. Should use training statistics</td>
-</tr>
-<tr class="even">
-<td>return_sequence_padding_mask</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to return the key padding mask for attention masking</td>
-</tr>
-</tbody>
-</table>
+<p>.. note:: :class:<code>~torch.utils.data.DataLoader</code> by default constructs an index sampler that yields integral indices. To make it work with a map-style dataset with non-integral indices/keys, a custom sampler must be provided.</p>
 </section>
 <section id="sleep-stage-supervised-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="sleep-stage-supervised-dataset">Sleep Stage Supervised Dataset</h3>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L545" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L553" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="hypnogramtimefrequencydataset" class="level3">
 <h3 class="anchored" data-anchor-id="hypnogramtimefrequencydataset">HypnogramTimeFrequencyDataset</h3>
-<blockquote class="blockquote">
-<pre><code> HypnogramTimeFrequencyDataset (zarr_files, channels, max_seq_len_sec,
-                                sample_seq_len_sec, sample_stride_sec,
-                                start_offset_sec=0, trim_wake_epochs=True,
-                                include_partial_samples=True,
-                                sample_df=None, frequency=125,
-                                return_y_every_sec=30,
-                                y_padding_mask=-100, y_frequency=125,
-                                butterworth_filters=None,
-                                median_filter_kernel_size=None,
-                                voltage_channels=['ECG', 'ECG (LL-RA)',
-                                'EKG', 'ECG (L-R)', 'EOG(L)', 'EOG-L',
-                                'E1', 'LOC', 'E1-M2', 'E1-AVG', 'EMG',
-                                'cchin_l', 'chin', 'EMG (L-R)', 'EMG
-                                (1-2)', 'EMG (1-3)', 'Chin3', 'C4-M1',
-                                'C4_M1', 'EEG', 'EEG1', 'EEG2', 'EEG3',
-                                'C3-M2', 'C3_M2', 'C4-AVG'],
-                                clip_interpolations=None,
-                                scale_channels=False,
-                                time_channel_scales=None,
-                                return_sequence_padding_mask=False)</code></pre>
-</blockquote>
-<p>*An abstract class representing a :class:<code>Dataset</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> HypnogramTimeFrequencyDataset(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    zarr_files, <span class="co"># zarr files that include samples</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    channels, <span class="co"># channels to use</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    max_seq_len_sec, <span class="co"># maximum sequence length (in seconds) to use (this is especially relevant when you are returning both stft and raw ts data to keep them in sync)</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    sample_seq_len_sec, <span class="co"># if no sample_df, generate sequences of this length in seconds as one sample</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    sample_stride_sec, <span class="co"># if no sample_df, seconds of overlap for samples from the same array, if seq_len_seconds == overlap_seconds, there is no overlap</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    start_offset_sec:<span class="bu">int</span><span class="op">=</span><span class="dv">0</span>, <span class="co"># number of seconds to exclude from beginning of sleep studies</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    trim_wake_epochs:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># indicator to trim wake epochs from hypnograms, if it is the largest class</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    include_partial_samples:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># indicator to include data from partial samples when return_full_length is false</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    sample_df:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># dataframe indicating which indices within each zarr file includes a sample</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    frequency:<span class="bu">int</span><span class="op">=</span><span class="dv">125</span>, <span class="co"># frequency of underlying data</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    return_y_every_sec:<span class="bu">int</span><span class="op">=</span><span class="dv">30</span>, <span class="co"># integer value indicating the step in indexing in seconds</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    y_padding_mask:<span class="bu">int</span><span class="op">=-</span><span class="dv">100</span>, <span class="co"># padded value to add to target and indice to ignore when computing loss</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    y_frequency:<span class="bu">int</span><span class="op">=</span><span class="dv">125</span>, <span class="co"># frequency of underlying y hypnogram data</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    butterworth_filters:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># dictionary of low pass, high pass, and bandpass dictionary to perform on channels</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    median_filter_kernel_size:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># if not none, will apply median filter with kernel size</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    voltage_channels:<span class="bu">list</span><span class="op">=</span>[<span class="st">'ECG'</span>, <span class="st">'ECG (LL-RA)'</span>, <span class="st">'EKG'</span>, <span class="st">'ECG (L-R)'</span>, <span class="st">'EOG(L)'</span>, <span class="st">'EOG-L'</span>, <span class="st">'E1'</span>, <span class="st">'LOC'</span>, <span class="st">'E1-M2'</span>, <span class="st">'E1-AVG'</span>, <span class="st">'EMG'</span>, <span class="st">'cchin_l'</span>, <span class="st">'chin'</span>, <span class="st">'EMG (L-R)'</span>, <span class="st">'EMG (1-2)'</span>, <span class="st">'EMG (1-3)'</span>, <span class="st">'Chin3'</span>, <span class="st">'C4-M1'</span>, <span class="st">'C4_M1'</span>, <span class="st">'EEG'</span>, <span class="st">'EEG1'</span>, <span class="st">'EEG2'</span>, <span class="st">'EEG3'</span>, <span class="st">'C3-M2'</span>, <span class="st">'C3_M2'</span>, <span class="st">'C4-AVG'</span>], <span class="co"># if not None, these channels units will be looked at and changed to microvolts from mv uv etc.</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    clip_interpolations:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># dictionary of channels:{'phys_range':..., 'percentiles':...} for filtering and interpolation of filtered values</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    scale_channels:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to scale channels to the mean and std of the zarr files.</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    time_channel_scales:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># dictionary of channel:mean and channel:std values for scaling. Should use training statistics</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    return_sequence_padding_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to return the key padding mask for attention masking</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>An abstract class representing a :class:<code>Dataset</code>.</em></p>
 <p>All datasets that represent a map from keys to data samples should subclass it. All subclasses should overwrite :meth:<code>__getitem__</code>, supporting fetching a data sample for a given key. Subclasses could also optionally overwrite :meth:<code>__len__</code>, which is expected to return the size of the dataset by many :class:<code>~torch.utils.data.Sampler</code> implementations and the default options of :class:<code>~torch.utils.data.DataLoader</code>. Subclasses could also optionally implement :meth:<code>__getitems__</code>, for speedup batched samples loading. This method accepts list of indices of samples of batch and returns list of samples.</p>
-<p>.. note:: :class:<code>~torch.utils.data.DataLoader</code> by default constructs an index sampler that yields integral indices. To make it work with a map-style dataset with non-integral indices/keys, a custom sampler must be provided.*</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>zarr_files</td>
-<td></td>
-<td></td>
-<td>zarr files that include samples</td>
-</tr>
-<tr class="even">
-<td>channels</td>
-<td></td>
-<td></td>
-<td>channels to use</td>
-</tr>
-<tr class="odd">
-<td>max_seq_len_sec</td>
-<td></td>
-<td></td>
-<td>maximum sequence length (in seconds) to use (this is especially relevant when you are returning both stft and raw ts data to keep them in sync)</td>
-</tr>
-<tr class="even">
-<td>sample_seq_len_sec</td>
-<td></td>
-<td></td>
-<td>if no sample_df, generate sequences of this length in seconds as one sample</td>
-</tr>
-<tr class="odd">
-<td>sample_stride_sec</td>
-<td></td>
-<td></td>
-<td>if no sample_df, seconds of overlap for samples from the same array, if seq_len_seconds == overlap_seconds, there is no overlap</td>
-</tr>
-<tr class="even">
-<td>start_offset_sec</td>
-<td>int</td>
-<td>0</td>
-<td>number of seconds to exclude from beginning of sleep studies</td>
-</tr>
-<tr class="odd">
-<td>trim_wake_epochs</td>
-<td>bool</td>
-<td>True</td>
-<td>indicator to trim wake epochs from hypnograms, if it is the largest class</td>
-</tr>
-<tr class="even">
-<td>include_partial_samples</td>
-<td>bool</td>
-<td>True</td>
-<td>indicator to include data from partial samples when return_full_length is false</td>
-</tr>
-<tr class="odd">
-<td>sample_df</td>
-<td>NoneType</td>
-<td>None</td>
-<td>dataframe indicating which indices within each zarr file includes a sample</td>
-</tr>
-<tr class="even">
-<td>frequency</td>
-<td>int</td>
-<td>125</td>
-<td>frequency of underlying data</td>
-</tr>
-<tr class="odd">
-<td>return_y_every_sec</td>
-<td>int</td>
-<td>30</td>
-<td>integer value indicating the step in indexing in seconds</td>
-</tr>
-<tr class="even">
-<td>y_padding_mask</td>
-<td>int</td>
-<td>-100</td>
-<td>padded value to add to target and indice to ignore when computing loss</td>
-</tr>
-<tr class="odd">
-<td>y_frequency</td>
-<td>int</td>
-<td>125</td>
-<td>frequency of underlying y hypnogram data</td>
-</tr>
-<tr class="even">
-<td>butterworth_filters</td>
-<td>NoneType</td>
-<td>None</td>
-<td>dictionary of low pass, high pass, and bandpass dictionary to perform on channels</td>
-</tr>
-<tr class="odd">
-<td>median_filter_kernel_size</td>
-<td>NoneType</td>
-<td>None</td>
-<td>if not none, will apply median filter with kernel size</td>
-</tr>
-<tr class="even">
-<td>voltage_channels</td>
-<td>list</td>
-<td>[‘ECG’, ‘ECG (LL-RA)’, ‘EKG’, ‘ECG (L-R)’, ‘EOG(L)’, ‘EOG-L’, ‘E1’, ‘LOC’, ‘E1-M2’, ‘E1-AVG’, ‘EMG’, ‘cchin_l’, ‘chin’, ‘EMG (L-R)’, ‘EMG (1-2)’, ‘EMG (1-3)’, ‘Chin3’, ‘C4-M1’, ‘C4_M1’, ‘EEG’, ‘EEG1’, ‘EEG2’, ‘EEG3’, ‘C3-M2’, ‘C3_M2’, ‘C4-AVG’]</td>
-<td>if not None, these channels units will be looked at and changed to microvolts from mv uv etc.</td>
-</tr>
-<tr class="odd">
-<td>clip_interpolations</td>
-<td>NoneType</td>
-<td>None</td>
-<td>dictionary of channels:{‘phys_range’:…, ‘percentiles’:…} for filtering and interpolation of filtered values</td>
-</tr>
-<tr class="even">
-<td>scale_channels</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to scale channels to the mean and std of the zarr files.</td>
-</tr>
-<tr class="odd">
-<td>time_channel_scales</td>
-<td>NoneType</td>
-<td>None</td>
-<td>dictionary of channel:mean and channel:std values for scaling. Should use training statistics</td>
-</tr>
-<tr class="even">
-<td>return_sequence_padding_mask</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to return the key padding mask for attention masking</td>
-</tr>
-</tbody>
-</table>
+<p>.. note:: :class:<code>~torch.utils.data.DataLoader</code> by default constructs an index sampler that yields integral indices. To make it work with a map-style dataset with non-integral indices/keys, a custom sampler must be provided.</p>
 </section>
 </section>
 <section id="plotting" class="level2">
 <h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L713" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/slumber.py#L721" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="plot_edf_signals" class="level3">
 <h3 class="anchored" data-anchor-id="plot_edf_signals">plot_edf_signals</h3>
-<blockquote class="blockquote">
-<pre><code> plot_edf_signals (signals, signal_names, signal_comparisons=None,
-                   use_resampler=False, normalize=False, title_text='',
-                   colorscale=None)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_edf_signals(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    signals, signal_names, signal_comparisons:NoneType<span class="op">=</span><span class="va">None</span>, use_resampler:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, normalize:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    title_text:<span class="bu">str</span><span class="op">=</span><span class="st">''</span>, colorscale:NoneType<span class="op">=</span><span class="va">None</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

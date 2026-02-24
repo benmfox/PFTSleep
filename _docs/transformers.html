@@ -266,14 +266,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/transformers.py#L17" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="tstencoderlayer" class="level3">
 <h3 class="anchored" data-anchor-id="tstencoderlayer">TSTEncoderLayer</h3>
-<blockquote class="blockquote">
-<pre><code> TSTEncoderLayer (d_model, n_heads, d_ff=256, store_attn=False,
-                  norm='BatchNorm', relative_attn_type='vanilla',
-                  use_flash_attn=False, num_patches=None, attn_dropout=0,
-                  dropout=0.0, bias=True, activation='gelu',
-                  res_attention=False, pre_norm=False)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> TSTEncoderLayer(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    d_model, <span class="co"># dimension of patch embeddings</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    n_heads, <span class="co"># number of attention heads per layer</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    d_ff:<span class="bu">int</span><span class="op">=</span><span class="dv">256</span>, <span class="co"># dimension of feedforward layer in each transformer layer</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    store_attn:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator of whether or not to store attention</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    norm:<span class="bu">str</span><span class="op">=</span><span class="st">'BatchNorm'</span>, relative_attn_type:<span class="bu">str</span><span class="op">=</span><span class="st">'vanilla'</span>, <span class="co"># options include vaniall or eRPE</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    use_flash_attn:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to use flash attention</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    num_patches:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># num patches required for eRPE attn</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    attn_dropout:<span class="bu">int</span><span class="op">=</span><span class="dv">0</span>, dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, bias:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, activation:<span class="bu">str</span><span class="op">=</span><span class="st">'gelu'</span>, res_attention:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    pre_norm:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -290,109 +296,7 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>d_model</td>
-<td></td>
-<td></td>
-<td>dimension of patch embeddings</td>
-</tr>
-<tr class="even">
-<td>n_heads</td>
-<td></td>
-<td></td>
-<td>number of attention heads per layer</td>
-</tr>
-<tr class="odd">
-<td>d_ff</td>
-<td>int</td>
-<td>256</td>
-<td>dimension of feedforward layer in each transformer layer</td>
-</tr>
-<tr class="even">
-<td>store_attn</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator of whether or not to store attention</td>
-</tr>
-<tr class="odd">
-<td>norm</td>
-<td>str</td>
-<td>BatchNorm</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>relative_attn_type</td>
-<td>str</td>
-<td>vanilla</td>
-<td>options include vaniall or eRPE</td>
-</tr>
-<tr class="odd">
-<td>use_flash_attn</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to use flash attention</td>
-</tr>
-<tr class="even">
-<td>num_patches</td>
-<td>NoneType</td>
-<td>None</td>
-<td>num patches required for eRPE attn</td>
-</tr>
-<tr class="odd">
-<td>attn_dropout</td>
-<td>int</td>
-<td>0</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>bias</td>
-<td>bool</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>activation</td>
-<td>str</td>
-<td>gelu</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>res_attention</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>pre_norm</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 </section>
 </section>
 <section id="patch-time-series-and-frequency-transformer" class="level2">
@@ -401,22 +305,38 @@ class Model(nn.Module):
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/transformers.py#L119" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="patchtftsimple" class="level3">
 <h3 class="anchored" data-anchor-id="patchtftsimple">PatchTFTSimple</h3>
-<blockquote class="blockquote">
-<pre><code> PatchTFTSimple (c_in:int, win_length, hop_length, max_seq_len,
-                 time_domain=True, pos_encoding_type='learned',
-                 relative_attn_type='vanilla', use_flash_attn=False,
-                 use_revin=True, dim1reduce=False, affine=True,
-                 mask_ratio=0.1, augmentations=['patch_mask',
-                 'jitter_zero_mask', 'reverse_sequence',
-                 'shuffle_channels'], n_layers:int=2, d_model=512,
-                 n_heads=2, shared_embedding=False, d_ff:int=2048,
-                 norm:str='BatchNorm', attn_dropout:float=0.0,
-                 dropout:float=0.1, act:str='gelu',
-                 res_attention:bool=True, pre_norm:bool=False,
-                 store_attn:bool=False, pretrain_head=True,
-                 pretrain_head_n_layers=1, pretrain_head_dropout=0.0)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> PatchTFTSimple(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    c_in:<span class="bu">int</span>, <span class="co"># the number of input channels</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    win_length, <span class="co"># the length of the patch of time/interval or short time ft windown length (when time_domain=False)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    hop_length, <span class="co"># the length of the distance between each patch/fft</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    max_seq_len, <span class="co"># maximum sequence len</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    time_domain:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, pos_encoding_type:<span class="bu">str</span><span class="op">=</span><span class="st">'learned'</span>, <span class="co"># options include learned or tAPE</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    relative_attn_type:<span class="bu">str</span><span class="op">=</span><span class="st">'vanilla'</span>, <span class="co"># options include vanilla or eRPE</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    use_flash_attn:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to use flash attention</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    use_revin:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># if time_domain is true, whether or not to instance normalize time data</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    dim1reduce:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to normalize by timepoint in revin</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    affine:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># if time_domain is true, whether or not to learn revin normalization parameters</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    mask_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.1</span>, <span class="co"># amount of signal to mask</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    augmentations:<span class="bu">list</span><span class="op">=</span>[<span class="st">'patch_mask'</span>, <span class="st">'jitter_zero_mask'</span>, <span class="st">'reverse_sequence'</span>, <span class="st">'shuffle_channels'</span>], <span class="co"># the type of mask to use, options are patch or jitter_zero</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    n_layers:<span class="bu">int</span><span class="op">=</span><span class="dv">2</span>, <span class="co"># the number of transformer encoder layers to use</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    d_model:<span class="bu">int</span><span class="op">=</span><span class="dv">512</span>, <span class="co"># the dimension of the input to the transofmrer encoder</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    n_heads:<span class="bu">int</span><span class="op">=</span><span class="dv">2</span>, <span class="co"># the number of heads in each layer</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    shared_embedding:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator for whether or not each channel should be projected with its own set of linear weights to the encoder dimension</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    d_ff:<span class="bu">int</span><span class="op">=</span><span class="dv">2048</span>, <span class="co"># the feedforward layer size in the transformer</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    norm:<span class="bu">str</span><span class="op">=</span><span class="st">'BatchNorm'</span>, <span class="co"># BatchNorm or LayerNorm during trianing</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    attn_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, <span class="co"># dropout in attention</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.1</span>, <span class="co"># dropout for linear layers</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    act:<span class="bu">str</span><span class="op">=</span><span class="st">'gelu'</span>, <span class="co"># activation function</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    res_attention:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># whether to use residual attention</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    pre_norm:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to pre batch or layer norm</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    store_attn:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to store attention</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    pretrain_head:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># indicator to include a pretraining head</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    pretrain_head_n_layers:<span class="bu">int</span><span class="op">=</span><span class="dv">1</span>, <span class="co"># how many linear layers on the pretrained head</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    pretrain_head_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, <span class="co"># dropout applied to pretrain head</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -433,194 +353,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td>int</td>
-<td></td>
-<td>the number of input channels</td>
-</tr>
-<tr class="even">
-<td>win_length</td>
-<td></td>
-<td></td>
-<td>the length of the patch of time/interval or short time ft windown length (when time_domain=False)</td>
-</tr>
-<tr class="odd">
-<td>hop_length</td>
-<td></td>
-<td></td>
-<td>the length of the distance between each patch/fft</td>
-</tr>
-<tr class="even">
-<td>max_seq_len</td>
-<td></td>
-<td></td>
-<td>maximum sequence len</td>
-</tr>
-<tr class="odd">
-<td>time_domain</td>
-<td>bool</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>pos_encoding_type</td>
-<td>str</td>
-<td>learned</td>
-<td>options include learned or tAPE</td>
-</tr>
-<tr class="odd">
-<td>relative_attn_type</td>
-<td>str</td>
-<td>vanilla</td>
-<td>options include vanilla or eRPE</td>
-</tr>
-<tr class="even">
-<td>use_flash_attn</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to use flash attention</td>
-</tr>
-<tr class="odd">
-<td>use_revin</td>
-<td>bool</td>
-<td>True</td>
-<td>if time_domain is true, whether or not to instance normalize time data</td>
-</tr>
-<tr class="even">
-<td>dim1reduce</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to normalize by timepoint in revin</td>
-</tr>
-<tr class="odd">
-<td>affine</td>
-<td>bool</td>
-<td>True</td>
-<td>if time_domain is true, whether or not to learn revin normalization parameters</td>
-</tr>
-<tr class="even">
-<td>mask_ratio</td>
-<td>float</td>
-<td>0.1</td>
-<td>amount of signal to mask</td>
-</tr>
-<tr class="odd">
-<td>augmentations</td>
-<td>list</td>
-<td>[‘patch_mask’, ‘jitter_zero_mask’, ‘reverse_sequence’, ‘shuffle_channels’]</td>
-<td>the type of mask to use, options are patch or jitter_zero</td>
-</tr>
-<tr class="even">
-<td>n_layers</td>
-<td>int</td>
-<td>2</td>
-<td>the number of transformer encoder layers to use</td>
-</tr>
-<tr class="odd">
-<td>d_model</td>
-<td>int</td>
-<td>512</td>
-<td>the dimension of the input to the transofmrer encoder</td>
-</tr>
-<tr class="even">
-<td>n_heads</td>
-<td>int</td>
-<td>2</td>
-<td>the number of heads in each layer</td>
-</tr>
-<tr class="odd">
-<td>shared_embedding</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator for whether or not each channel should be projected with its own set of linear weights to the encoder dimension</td>
-</tr>
-<tr class="even">
-<td>d_ff</td>
-<td>int</td>
-<td>2048</td>
-<td>the feedforward layer size in the transformer</td>
-</tr>
-<tr class="odd">
-<td>norm</td>
-<td>str</td>
-<td>BatchNorm</td>
-<td>BatchNorm or LayerNorm during trianing</td>
-</tr>
-<tr class="even">
-<td>attn_dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td>dropout in attention</td>
-</tr>
-<tr class="odd">
-<td>dropout</td>
-<td>float</td>
-<td>0.1</td>
-<td>dropout for linear layers</td>
-</tr>
-<tr class="even">
-<td>act</td>
-<td>str</td>
-<td>gelu</td>
-<td>activation function</td>
-</tr>
-<tr class="odd">
-<td>res_attention</td>
-<td>bool</td>
-<td>True</td>
-<td>whether to use residual attention</td>
-</tr>
-<tr class="even">
-<td>pre_norm</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to pre batch or layer norm</td>
-</tr>
-<tr class="odd">
-<td>store_attn</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to store attention</td>
-</tr>
-<tr class="even">
-<td>pretrain_head</td>
-<td>bool</td>
-<td>True</td>
-<td>indicator to include a pretraining head</td>
-</tr>
-<tr class="odd">
-<td>pretrain_head_n_layers</td>
-<td>int</td>
-<td>1</td>
-<td>how many linear layers on the pretrained head</td>
-</tr>
-<tr class="even">
-<td>pretrain_head_dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td>dropout applied to pretrain head</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-6" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="24e5d433" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">1</span><span class="op">*</span><span class="dv">3600</span><span class="op">*</span><span class="dv">100</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pad <span class="op">=</span> torch.zeros(<span class="dv">4</span>,<span class="dv">1</span><span class="op">*</span><span class="dv">3600</span><span class="op">*</span><span class="dv">100</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pad[:,<span class="dv">0</span>:<span class="dv">100</span>] <span class="op">=</span> <span class="dv">1</span></span>

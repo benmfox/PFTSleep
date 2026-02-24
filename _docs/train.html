@@ -267,152 +267,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/train.py#L17" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="patchtftsimplelightning" class="level3">
 <h3 class="anchored" data-anchor-id="patchtftsimplelightning">PatchTFTSimpleLightning</h3>
-<blockquote class="blockquote">
-<pre><code> PatchTFTSimpleLightning (learning_rate, train_size, batch_size, channels,
-                          metrics, precalculate_onebatch_stft_stats=False,
-                          use_sequence_padding_mask=False,
-                          loss_func='mse', max_lr=0.01, weight_decay=0.0,
-                          epochs=100, one_cycle_scheduler=True,
-                          optimizer_type='Adam',
-                          scheduler_type='OneCycle',
-                          cross_attention=False, use_mask=False,
-                          patch_continuity_loss=0, huber_delta=None,
-                          **patchmeup_kwargs)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> PatchTFTSimpleLightning(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    learning_rate, train_size, batch_size, channels, metrics, precalculate_onebatch_stft_stats:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    use_sequence_padding_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, loss_func:<span class="bu">str</span><span class="op">=</span><span class="st">'mse'</span>, max_lr:<span class="bu">float</span><span class="op">=</span><span class="fl">0.01</span>, weight_decay:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    epochs:<span class="bu">int</span><span class="op">=</span><span class="dv">100</span>, one_cycle_scheduler:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, optimizer_type:<span class="bu">str</span><span class="op">=</span><span class="st">'Adam'</span>, scheduler_type:<span class="bu">str</span><span class="op">=</span><span class="st">'OneCycle'</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    cross_attention:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># not implemented</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    use_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    patch_continuity_loss:<span class="bu">int</span><span class="op">=</span><span class="dv">0</span>, <span class="co"># indicator and ratio of patch continuity loss function, which examines ensures patches dont have large discontinuities</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    huber_delta:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># huber loss delta, not used otherwise</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    patchmeup_kwargs:VAR_KEYWORD</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Hooks to be used in LightningModule.</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>learning_rate</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>train_size</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>batch_size</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>channels</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>metrics</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>precalculate_onebatch_stft_stats</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>use_sequence_padding_mask</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>loss_func</td>
-<td>str</td>
-<td>mse</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>max_lr</td>
-<td>float</td>
-<td>0.01</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>weight_decay</td>
-<td>float</td>
-<td>0.0</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>epochs</td>
-<td>int</td>
-<td>100</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>one_cycle_scheduler</td>
-<td>bool</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>optimizer_type</td>
-<td>str</td>
-<td>Adam</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>scheduler_type</td>
-<td>str</td>
-<td>OneCycle</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>cross_attention</td>
-<td>bool</td>
-<td>False</td>
-<td>not implemented</td>
-</tr>
-<tr class="even">
-<td>use_mask</td>
-<td>bool</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>patch_continuity_loss</td>
-<td>int</td>
-<td>0</td>
-<td>indicator and ratio of patch continuity loss function, which examines ensures patches dont have large discontinuities</td>
-</tr>
-<tr class="even">
-<td>huber_delta</td>
-<td>NoneType</td>
-<td>None</td>
-<td>huber loss delta, not used otherwise</td>
-</tr>
-<tr class="odd">
-<td>patchmeup_kwargs</td>
-<td>VAR_KEYWORD</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div id="cell-4" class="cell">
+<div id="5afbbced" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EncoderTestFreezingWeights(pl.LightningModule):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
@@ -444,180 +312,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="patchtft-masked-autoregression-ss-prediction" class="level3">
 <h3 class="anchored" data-anchor-id="patchtft-masked-autoregression-ss-prediction">PatchTFT Masked Autoregression SS Prediction</h3>
 <hr>
-<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/train.py#L141" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/train.py#L150" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="patchtftsleepstage" class="level3">
 <h3 class="anchored" data-anchor-id="patchtftsleepstage">PatchTFTSleepStage</h3>
-<blockquote class="blockquote">
-<pre><code> PatchTFTSleepStage (learning_rate, train_size, batch_size,
-                     linear_probing_head, metrics=[], fine_tune=False,
-                     loss_fxn='CrossEntropy', class_weights=None,
-                     gamma=2.0, label_smoothing=0,
-                     use_sequence_padding_mask=False, y_padding_mask=-100,
-                     max_lr=0.01, epochs=100, one_cycle_scheduler=True,
-                     weight_decay=0.0, pretrained_encoder_path=None,
-                     optimizer_type='Adam', scheduler_type='OneCycle',
-                     preloaded_model=None, torch_model_name='model',
-                     remove_pretrain_layers=['head', 'mask'],
-                     return_softmax=True)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> PatchTFTSleepStage(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    learning_rate, <span class="co"># desired learning rate, initial learning rate in if one_cycle_scheduler</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    train_size, <span class="co"># the training data size (for one_cycle_scheduler=True)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    batch_size, <span class="co"># the batch size (for one_cycle_scheduler=True)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    linear_probing_head, <span class="co"># model head to train</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    metrics:<span class="bu">list</span><span class="op">=</span>[], <span class="co"># metrics to calculate</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    fine_tune:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to finetune encoder model or perform linear probing and freeze encoder weights</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    loss_fxn:<span class="bu">str</span><span class="op">=</span><span class="st">'CrossEntropy'</span>, <span class="co"># loss function to use, can be CrossEntropy or FocalLoss</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    class_weights:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># weights of classes to use in CE loss fxn</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    gamma:<span class="bu">float</span><span class="op">=</span><span class="fl">2.0</span>, <span class="co"># for focal loss</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    label_smoothing:<span class="bu">int</span><span class="op">=</span><span class="dv">0</span>, <span class="co"># label smoothing for cross entropy loss</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    use_sequence_padding_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># indicator to use the sequence padding mask when training/in the loss fxn</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    y_padding_mask:<span class="bu">int</span><span class="op">=-</span><span class="dv">100</span>, <span class="co"># padded value that was added to target and indice to ignore when computing loss</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    max_lr:<span class="bu">float</span><span class="op">=</span><span class="fl">0.01</span>, <span class="co"># maximum learning rate for one_cycle_scheduler</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    epochs:<span class="bu">int</span><span class="op">=</span><span class="dv">100</span>, <span class="co"># number of epochs for one_cycle_scheduler</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    one_cycle_scheduler:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># indicator to use a one cycle scheduler to vary the learning rate</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    weight_decay:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, <span class="co"># weight decay for Adam optimizer</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    pretrained_encoder_path:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># path of the pretrained model to use for linear probing</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    optimizer_type:<span class="bu">str</span><span class="op">=</span><span class="st">'Adam'</span>, <span class="co"># optimizer to use, 'Adam' or 'AdamW'</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    scheduler_type:<span class="bu">str</span><span class="op">=</span><span class="st">'OneCycle'</span>, <span class="co"># scheduler to use, 'OneCycle' or 'CosineAnnealingWarmRestarts'</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    preloaded_model:NoneType<span class="op">=</span><span class="va">None</span>, <span class="co"># loaded pretrained model to use for linear probing</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    torch_model_name:<span class="bu">str</span><span class="op">=</span><span class="st">'model'</span>, <span class="co"># name of the pytorch model within the lightning model module, this is to remove layers (for example lightning_model.pytorch_model.head = nn.Identity())</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    remove_pretrain_layers:<span class="bu">list</span><span class="op">=</span>[<span class="st">'head'</span>, <span class="st">'mask'</span>], <span class="co"># layers within the lightning model or lightning model.pytorch_model to remove</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    return_softmax:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># indicator to return softmax probabilities in forward and predict_step</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Hooks to be used in LightningModule.</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>learning_rate</td>
-<td></td>
-<td></td>
-<td>desired learning rate, initial learning rate in if one_cycle_scheduler</td>
-</tr>
-<tr class="even">
-<td>train_size</td>
-<td></td>
-<td></td>
-<td>the training data size (for one_cycle_scheduler=True)</td>
-</tr>
-<tr class="odd">
-<td>batch_size</td>
-<td></td>
-<td></td>
-<td>the batch size (for one_cycle_scheduler=True)</td>
-</tr>
-<tr class="even">
-<td>linear_probing_head</td>
-<td></td>
-<td></td>
-<td>model head to train</td>
-</tr>
-<tr class="odd">
-<td>metrics</td>
-<td>list</td>
-<td>[]</td>
-<td>metrics to calculate</td>
-</tr>
-<tr class="even">
-<td>fine_tune</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to finetune encoder model or perform linear probing and freeze encoder weights</td>
-</tr>
-<tr class="odd">
-<td>loss_fxn</td>
-<td>str</td>
-<td>CrossEntropy</td>
-<td>loss function to use, can be CrossEntropy or FocalLoss</td>
-</tr>
-<tr class="even">
-<td>class_weights</td>
-<td>NoneType</td>
-<td>None</td>
-<td>weights of classes to use in CE loss fxn</td>
-</tr>
-<tr class="odd">
-<td>gamma</td>
-<td>float</td>
-<td>2.0</td>
-<td>for focal loss</td>
-</tr>
-<tr class="even">
-<td>label_smoothing</td>
-<td>int</td>
-<td>0</td>
-<td>label smoothing for cross entropy loss</td>
-</tr>
-<tr class="odd">
-<td>use_sequence_padding_mask</td>
-<td>bool</td>
-<td>False</td>
-<td>indicator to use the sequence padding mask when training/in the loss fxn</td>
-</tr>
-<tr class="even">
-<td>y_padding_mask</td>
-<td>int</td>
-<td>-100</td>
-<td>padded value that was added to target and indice to ignore when computing loss</td>
-</tr>
-<tr class="odd">
-<td>max_lr</td>
-<td>float</td>
-<td>0.01</td>
-<td>maximum learning rate for one_cycle_scheduler</td>
-</tr>
-<tr class="even">
-<td>epochs</td>
-<td>int</td>
-<td>100</td>
-<td>number of epochs for one_cycle_scheduler</td>
-</tr>
-<tr class="odd">
-<td>one_cycle_scheduler</td>
-<td>bool</td>
-<td>True</td>
-<td>indicator to use a one cycle scheduler to vary the learning rate</td>
-</tr>
-<tr class="even">
-<td>weight_decay</td>
-<td>float</td>
-<td>0.0</td>
-<td>weight decay for Adam optimizer</td>
-</tr>
-<tr class="odd">
-<td>pretrained_encoder_path</td>
-<td>NoneType</td>
-<td>None</td>
-<td>path of the pretrained model to use for linear probing</td>
-</tr>
-<tr class="even">
-<td>optimizer_type</td>
-<td>str</td>
-<td>Adam</td>
-<td>optimizer to use, ‘Adam’ or ‘AdamW’</td>
-</tr>
-<tr class="odd">
-<td>scheduler_type</td>
-<td>str</td>
-<td>OneCycle</td>
-<td>scheduler to use, ‘OneCycle’ or ‘CosineAnnealingWarmRestarts’</td>
-</tr>
-<tr class="even">
-<td>preloaded_model</td>
-<td>NoneType</td>
-<td>None</td>
-<td>loaded pretrained model to use for linear probing</td>
-</tr>
-<tr class="odd">
-<td>torch_model_name</td>
-<td>str</td>
-<td>model</td>
-<td>name of the pytorch model within the lightning model module, this is to remove layers (for example lightning_model.pytorch_model.head = nn.Identity())</td>
-</tr>
-<tr class="even">
-<td>remove_pretrain_layers</td>
-<td>list</td>
-<td>[‘head’, ‘mask’]</td>
-<td>layers within the lightning model or lightning model.pytorch_model to remove</td>
-</tr>
-<tr class="odd">
-<td>return_softmax</td>
-<td>bool</td>
-<td>True</td>
-<td>indicator to return softmax probabilities in forward and predict_step</td>
-</tr>
-</tbody>
-</table>
 
 
 </section>

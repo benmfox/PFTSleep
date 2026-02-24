@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -228,63 +262,67 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/data_preprocessing.py#L14" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="calculate_class_weights" class="level3">
 <h3 class="anchored" data-anchor-id="calculate_class_weights">calculate_class_weights</h3>
-<blockquote class="blockquote">
-<pre><code> calculate_class_weights (dataloader, ignore_index=-100,
-                          returns_padded_mask=True, return_ratio=True)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_class_weights(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    dataloader, ignore_index:<span class="bu">int</span><span class="op">=-</span><span class="dv">100</span>, returns_padded_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, return_ratio:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/data_preprocessing.py#L36" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="interpolate_nan_clip" class="level3">
 <h3 class="anchored" data-anchor-id="interpolate_nan_clip">interpolate_nan_clip</h3>
-<blockquote class="blockquote">
-<pre><code> interpolate_nan_clip (x_in, physiological_range_clip=None,
-                       percentile_clip=None, return_mask_only=False)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> interpolate_nan_clip(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    x_in, physiological_range_clip:NoneType<span class="op">=</span><span class="va">None</span>, percentile_clip:NoneType<span class="op">=</span><span class="va">None</span>, return_mask_only:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Function to clip outliers based on percentiles or physiological range and then interpolate nearby values</em></p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/data_preprocessing.py#L104" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="calculate_stats_all" class="level3">
 <h3 class="anchored" data-anchor-id="calculate_stats_all">calculate_stats_all</h3>
-<blockquote class="blockquote">
-<pre><code> calculate_stats_all (zarr_files, channels, sample_wise=True,
-                      clip_interpolations=None,
-                      channel_magnitude_multiple=None)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_stats_all(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    zarr_files, channels, sample_wise:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, clip_interpolations:NoneType<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    channel_magnitude_multiple:NoneType<span class="op">=</span><span class="va">None</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/data_preprocessing.py#L69" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="calculate_stats" class="level3">
 <h3 class="anchored" data-anchor-id="calculate_stats">calculate_stats</h3>
-<blockquote class="blockquote">
-<pre><code> calculate_stats (idx, zarr_file, channels, clip_interpolations=None,
-                  channel_magnitude_multiple=None)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_stats(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    idx, zarr_file, channels, clip_interpolations:NoneType<span class="op">=</span><span class="va">None</span>, channel_magnitude_multiple:NoneType<span class="op">=</span><span class="va">None</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Function to caluclate stats on an individual zarr array, including a clip interpolate range</em></p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/data_preprocessing.py#L180" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="calculate_samples_mp" class="level3">
 <h3 class="anchored" data-anchor-id="calculate_samples_mp">calculate_samples_mp</h3>
-<blockquote class="blockquote">
-<pre><code> calculate_samples_mp (zarr_files, channels, frequency,
-                       sample_seq_len_sec, stride_sec,
-                       start_offset_sec=None, max_seq_len_sec=None,
-                       include_partial_samples=True, nan_tolerance=0.0)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_samples_mp(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    zarr_files, channels, frequency, sample_seq_len_sec, stride_sec, start_offset_sec:NoneType<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    max_seq_len_sec:NoneType<span class="op">=</span><span class="va">None</span>, include_partial_samples:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, nan_tolerance:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Multiprocessing function to generate samples</em></p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/data_preprocessing.py#L128" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="calculate_samples" class="level3">
 <h3 class="anchored" data-anchor-id="calculate_samples">calculate_samples</h3>
-<blockquote class="blockquote">
-<pre><code> calculate_samples (idx, zarr_file, channels, frequency,
-                    sample_seq_len_sec, stride_sec, start_offset_sec=None,
-                    max_seq_len_sec=None, include_partial_samples=True,
-                    nan_tolerance=0.0)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_samples(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    idx, zarr_file, channels, frequency, sample_seq_len_sec, stride_sec, start_offset_sec:NoneType<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    max_seq_len_sec:NoneType<span class="op">=</span><span class="va">None</span>, include_partial_samples:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, nan_tolerance:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Function to create a dataframe of samples and their sequence indices</em></p>
 
 

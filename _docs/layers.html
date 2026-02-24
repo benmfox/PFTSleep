@@ -301,10 +301,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L23" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="patchencoder" class="level3">
 <h3 class="anchored" data-anchor-id="patchencoder">PatchEncoder</h3>
-<blockquote class="blockquote">
-<pre><code> PatchEncoder (c_in, patch_len, d_model, shared_embedding)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> PatchEncoder(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    c_in, <span class="co"># the number of input channels</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    patch_len, <span class="co"># the length of the patches (either stft or interval length)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    d_model, <span class="co"># the dimension of the initial linear layers for inputting patches into transformer</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    shared_embedding, <span class="co"># indicator of whether to project each channel individually or together</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -321,37 +326,7 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<colgroup>
-<col style="width: 15%">
-<col style="width: 84%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td>the number of input channels</td>
-</tr>
-<tr class="even">
-<td>patch_len</td>
-<td>the length of the patches (either stft or interval length)</td>
-</tr>
-<tr class="odd">
-<td>d_model</td>
-<td>the dimension of the initial linear layers for inputting patches into transformer</td>
-</tr>
-<tr class="even">
-<td>shared_embedding</td>
-<td>indicator of whether to project each channel individually or together</td>
-</tr>
-</tbody>
-</table>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 </section>
 </section>
 <section id="positional-encoding-layers" class="level2">
@@ -360,10 +335,13 @@ class Model(nn.Module):
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L60" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="positionalencoding" class="level3">
 <h3 class="anchored" data-anchor-id="positionalencoding">PositionalEncoding</h3>
-<blockquote class="blockquote">
-<pre><code> PositionalEncoding (num_patch, d_model)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> PositionalEncoding(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    num_patch, <span class="co"># number of patches of time series or stft in input</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    d_model, <span class="co"># dimension of patch embeddings</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -380,70 +358,20 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>num_patch</td>
-<td>number of patches of time series or stft in input</td>
-</tr>
-<tr class="even">
-<td>d_model</td>
-<td>dimension of patch embeddings</td>
-</tr>
-</tbody>
-</table>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L85" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="tape" class="level3">
 <h3 class="anchored" data-anchor-id="tape">tAPE</h3>
-<blockquote class="blockquote">
-<pre><code> tAPE (d_model:int, seq_len:int, scale_factor=1.0)</code></pre>
-</blockquote>
-<p><em>time Absolute Position Encoding Adapted from tsai</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>d_model</td>
-<td>int</td>
-<td></td>
-<td>the embedding dimension</td>
-</tr>
-<tr class="even">
-<td>seq_len</td>
-<td>int</td>
-<td></td>
-<td>the max. length of the incoming sequence or num patches</td>
-</tr>
-<tr class="odd">
-<td>scale_factor</td>
-<td>float</td>
-<td>1.0</td>
-<td>dropout:float=0., # dropout value</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tAPE(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    d_model:<span class="bu">int</span>, <span class="co"># the embedding dimension</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    seq_len:<span class="bu">int</span>, <span class="co"># the max. length of the incoming sequence or num patches</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    scale_factor:<span class="bu">float</span><span class="op">=</span><span class="fl">1.0</span>, <span class="co"># dropout:float=0., # dropout value</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>time Absolute Position Encoding</em> Adapted from tsai</p>
 </section>
 </section>
 <section id="mask-and-augmentation-layers" class="level2">
@@ -452,10 +380,12 @@ class Model(nn.Module):
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L115" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="mask" class="level3">
 <h3 class="anchored" data-anchor-id="mask">Mask</h3>
-<blockquote class="blockquote">
-<pre><code> Mask (mask_type, mask_ratio, return_mask=True)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Mask(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    mask_type, mask_ratio, return_mask:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -472,8 +402,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
-<div id="cell-9" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="ec274624" class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">125</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Mask(mask_type<span class="op">=</span><span class="st">'jitter_zero'</span>, mask_ratio<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn((<span class="dv">9</span>))</span>
@@ -488,7 +418,7 @@ class Model(nn.Module):
   tensor(4)))</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell">
+<div id="cdfbbe12" class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn((<span class="dv">4</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x_aug <span class="op">=</span> x.clone()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> torch.tensor([<span class="va">True</span>,<span class="va">True</span>,<span class="va">False</span>,<span class="va">False</span>])</span>
@@ -505,12 +435,13 @@ class Model(nn.Module):
 </section>
 <section id="patchaugmentations" class="level3">
 <h3 class="anchored" data-anchor-id="patchaugmentations">PatchAugmentations</h3>
-<blockquote class="blockquote">
-<pre><code> PatchAugmentations (augmentations=['patch_mask', 'jitter_zero_mask',
-                     'reverse_sequence', 'shuffle_channels'],
-                     patch_mask_ratio=0.0, jitter_zero_mask_ratio=0.0)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> PatchAugmentations(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    augmentations:<span class="bu">list</span><span class="op">=</span>[<span class="st">'patch_mask'</span>, <span class="st">'jitter_zero_mask'</span>, <span class="st">'reverse_sequence'</span>, <span class="st">'shuffle_channels'</span>],</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    patch_mask_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, jitter_zero_mask_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -527,8 +458,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
-<div id="cell-12" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="ed872db8" class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">3600</span>,<span class="dv">7</span>,<span class="dv">750</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span>PatchAugmentations(patch_mask_ratio<span class="op">=</span><span class="fl">0.1</span>, jitter_zero_mask_ratio<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -542,13 +473,13 @@ class Model(nn.Module):
 </section>
 <section id="embeddingaugmentations" class="level3">
 <h3 class="anchored" data-anchor-id="embeddingaugmentations">EmbeddingAugmentations</h3>
-<blockquote class="blockquote">
-<pre><code> EmbeddingAugmentations (augmentations=['shuffle_dims',
-                         'jitter_zero_mask', 'patch_mask'],
-                         dims_to_shuffle=[1, 2, 3], patch_mask_ratio=0.0,
-                         jitter_zero_mask_ratio=0.0)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> EmbeddingAugmentations(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    augmentations:<span class="bu">list</span><span class="op">=</span>[<span class="st">'shuffle_dims'</span>, <span class="st">'jitter_zero_mask'</span>, <span class="st">'patch_mask'</span>], dims_to_shuffle:<span class="bu">list</span><span class="op">=</span>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    patch_mask_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, jitter_zero_mask_ratio:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -565,8 +496,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
-<div id="cell-14" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="49dfd797" class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">512</span>,<span class="dv">3600</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> EmbeddingAugmentations(augmentations<span class="op">=</span>[<span class="st">'jitter_zero_mask'</span>], dims_to_shuffle<span class="op">=</span>[<span class="dv">1</span>], patch_mask_ratio<span class="op">=</span><span class="fl">0.1</span>, jitter_zero_mask_ratio<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -583,10 +514,12 @@ class Model(nn.Module):
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L212" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="patch" class="level3">
 <h3 class="anchored" data-anchor-id="patch">Patch</h3>
-<blockquote class="blockquote">
-<pre><code> Patch (patch_len, stride, max_seq_len=None)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Patch(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    patch_len, stride, max_seq_len:NoneType<span class="op">=</span><span class="va">None</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -603,19 +536,20 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L224" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="stft" class="level3">
 <h3 class="anchored" data-anchor-id="stft">STFT</h3>
-<blockquote class="blockquote">
-<pre><code> STFT (n_fft, win_length, hop_length, stft_norm, decibel_scale,
-       channel_stft_means=None, channel_stft_stds=None,
-       pad_win_length_to_nfft=True, pad_mode='reflect', center=False,
-       return_complex=True)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> STFT(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    n_fft, win_length, hop_length, stft_norm, decibel_scale, channel_stft_means:NoneType<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    channel_stft_stds:NoneType<span class="op">=</span><span class="va">None</span>, pad_win_length_to_nfft:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, pad_mode:<span class="bu">str</span><span class="op">=</span><span class="st">'reflect'</span>, center:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    return_complex:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -632,16 +566,19 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L273" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="fft" class="level3">
 <h3 class="anchored" data-anchor-id="fft">FFT</h3>
-<blockquote class="blockquote">
-<pre><code> FFT (dim=-1, norm='backward')</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> FFT(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    dim:<span class="bu">int</span><span class="op">=-</span><span class="dv">1</span>, <span class="co"># dimension to calculate fft over</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    norm:<span class="bu">str</span><span class="op">=</span><span class="st">'backward'</span>, <span class="co"># "forward" - normalize by 1/n, "backward" - no normalization, "ortho" - normalize by 1/sqrt(n) (making the FFT orthonormal)</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -658,37 +595,7 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dim</td>
-<td>int</td>
-<td>-1</td>
-<td>dimension to calculate fft over</td>
-</tr>
-<tr class="even">
-<td>norm</td>
-<td>str</td>
-<td>backward</td>
-<td>“forward” - normalize by 1/n, “backward” - no normalization, “ortho” - normalize by 1/sqrt(n) (making the FFT orthonormal)</td>
-</tr>
-</tbody>
-</table>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 </section>
 </section>
 <section id="reversible-instance-normalization" class="level2">
@@ -697,10 +604,15 @@ class Model(nn.Module):
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L294" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="revin" class="level3">
 <h3 class="anchored" data-anchor-id="revin">RevIN</h3>
-<blockquote class="blockquote">
-<pre><code> RevIN (num_features:int, eps=1e-05, dim_to_reduce=-1, affine=True)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> RevIN(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    num_features:<span class="bu">int</span>, <span class="co"># the number of channels or features in the input</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    eps:<span class="bu">float</span><span class="op">=</span><span class="fl">1e-05</span>, <span class="co"># added to avoid division by zero errors</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    dim_to_reduce:<span class="bu">int</span><span class="op">=-</span><span class="dv">1</span>, <span class="co"># the dimension to reduce,</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    affine:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># learning affine parameters bias and weight per channel</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -717,50 +629,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>num_features</td>
-<td>int</td>
-<td></td>
-<td>the number of channels or features in the input</td>
-</tr>
-<tr class="even">
-<td>eps</td>
-<td>float</td>
-<td>1e-05</td>
-<td>added to avoid division by zero errors</td>
-</tr>
-<tr class="odd">
-<td>dim_to_reduce</td>
-<td>int</td>
-<td>-1</td>
-<td>the dimension to reduce,</td>
-</tr>
-<tr class="even">
-<td>affine</td>
-<td>bool</td>
-<td>True</td>
-<td>learning affine parameters bias and weight per channel</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-21" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="fde23600" class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">1000</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>revin <span class="op">=</span> RevIN(x.shape[<span class="dv">1</span>], dim_to_reduce<span class="op">=-</span><span class="dv">1</span>, affine<span class="op">=</span><span class="va">True</span>)</span>
@@ -784,12 +654,13 @@ class Model(nn.Module):
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L344" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="multiheadflashattention" class="level3">
 <h3 class="anchored" data-anchor-id="multiheadflashattention">MultiheadFlashAttention</h3>
-<blockquote class="blockquote">
-<pre><code> MultiheadFlashAttention (d_model:int, n_heads:int, qkv_bias:bool=True,
-                          is_causal:bool=False, attn_dropout:float=0.0,
-                          proj_dropout:float=0.0)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> MultiheadFlashAttention(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    d_model:<span class="bu">int</span>, n_heads:<span class="bu">int</span>, qkv_bias:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, is_causal:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, attn_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    proj_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -806,8 +677,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
-<div id="cell-24" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="ac44d6ba" class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>mha <span class="op">=</span> MultiheadFlashAttention(d_model<span class="op">=</span><span class="dv">512</span>, n_heads<span class="op">=</span><span class="dv">8</span>, attn_dropout<span class="op">=</span><span class="fl">0.</span>, proj_dropout<span class="op">=</span><span class="fl">0.</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">2</span><span class="op">*</span><span class="dv">7</span>,<span class="dv">100</span>,<span class="dv">512</span>) <span class="co"># [bs * n_vars x n_patches x d_model]</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>key_padding_mask <span class="op">=</span> torch.zeros(<span class="dv">2</span><span class="op">*</span><span class="dv">7</span>, <span class="dv">100</span>, dtype<span class="op">=</span>torch.<span class="bu">bool</span>)</span>
@@ -823,22 +694,24 @@ class Model(nn.Module):
 </section>
 <section id="scaleddotproductattention" class="level3">
 <h3 class="anchored" data-anchor-id="scaleddotproductattention">ScaledDotProductAttention</h3>
-<blockquote class="blockquote">
-<pre><code> ScaledDotProductAttention (d_model, n_heads, attn_dropout=0.0,
-                            res_attention=False, lsa=False)</code></pre>
-</blockquote>
-<p><em>Scaled Dot-Product Attention module (Attention is all you need by Vaswani et al., 2017) with optional residual attention from previous layer (Realformer: Transformer likes residual attention by He et al, 2020) and locality self sttention (Vision Transformer for Small-Size Datasets by Lee et al, 2021)</em></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ScaledDotProductAttention(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    d_model, n_heads, attn_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, res_attention:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, lsa:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Scaled Dot-Product Attention module (Attention is all you need by Vaswani et al., 2017) with optional residual attention from previous layer</em> (Realformer: Transformer likes residual attention by He et al, 2020) and locality self sttention (Vision Transformer for Small-Size Datasets by Lee et al, 2021)</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L494" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="multiheadattentioncustom" class="level3">
 <h3 class="anchored" data-anchor-id="multiheadattentioncustom">MultiheadAttentionCustom</h3>
-<blockquote class="blockquote">
-<pre><code> MultiheadAttentionCustom (d_model, n_heads, d_k=None, d_v=None,
-                           res_attention=False, attn_dropout=0.0,
-                           proj_dropout=0.0, qkv_bias=True, lsa=False)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> MultiheadAttentionCustom(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    d_model, n_heads, d_k:NoneType<span class="op">=</span><span class="va">None</span>, d_v:NoneType<span class="op">=</span><span class="va">None</span>, res_attention:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, attn_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    proj_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, qkv_bias:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, lsa:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -855,8 +728,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
-<div id="cell-27" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="250ab350" class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>mha_attn <span class="op">=</span> MultiheadAttentionCustom(d_model<span class="op">=</span><span class="dv">512</span>, n_heads<span class="op">=</span><span class="dv">8</span>, attn_dropout<span class="op">=</span><span class="fl">0.</span>, proj_dropout<span class="op">=</span><span class="fl">0.</span>, res_attention<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>mha_attn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -874,7 +747,7 @@ class Model(nn.Module):
 )</code></pre>
 </div>
 </div>
-<div id="cell-28" class="cell">
+<div id="04825e02" class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_attention_equivalence():</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set random seed for reproducibility</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    torch.manual_seed(<span class="dv">42</span>)</span>
@@ -950,7 +823,7 @@ Flash output shape: torch.Size([2, 10, 64])
 Outputs match: True</code></pre>
 </div>
 </div>
-<div id="cell-29" class="cell">
+<div id="45dcbf9d" class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>d_model<span class="op">=</span><span class="dv">512</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>n_heads<span class="op">=</span><span class="dv">8</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>d_k <span class="op">=</span> d_v <span class="op">=</span> d_model <span class="op">//</span> n_heads</span>
@@ -1012,13 +885,21 @@ Attn output shape torch.Size([1, 50, 512]), attn weight shape: torch.Size([1, 8,
 </section>
 <section id="attention_rel_scl" class="level3">
 <h3 class="anchored" data-anchor-id="attention_rel_scl">Attention_Rel_Scl</h3>
-<blockquote class="blockquote">
-<pre><code> Attention_Rel_Scl (d_model:int, n_heads:int, seq_len:int, d_k:int=None,
-                    d_v:int=None, res_attention:bool=False,
-                    attn_dropout:float=0.0, lsa:bool=False,
-                    proj_dropout:float=0.0, qkv_bias:bool=True)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Attention_Rel_Scl(</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    d_model:<span class="bu">int</span>, <span class="co"># Embedding dimension</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    n_heads:<span class="bu">int</span>, <span class="co"># number of attention heads</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    seq_len:<span class="bu">int</span>, <span class="co"># sequence length or num patches</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    d_k:<span class="bu">int</span><span class="op">=</span><span class="va">None</span>, <span class="co"># key dimension</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    d_v:<span class="bu">int</span><span class="op">=</span><span class="va">None</span>, <span class="co"># value dimension</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    res_attention:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># whether to use residual attention</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    attn_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, <span class="co"># dropout for attention</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    lsa:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span>, <span class="co"># whether to use LSA, trainable paramater for scaling</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>    proj_dropout:<span class="bu">float</span><span class="op">=</span><span class="fl">0.0</span>, <span class="co"># dropout for projection</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>    qkv_bias:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># bias for q, k, v</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -1035,86 +916,8 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>d_model</td>
-<td>int</td>
-<td></td>
-<td>Embedding dimension</td>
-</tr>
-<tr class="even">
-<td>n_heads</td>
-<td>int</td>
-<td></td>
-<td>number of attention heads</td>
-</tr>
-<tr class="odd">
-<td>seq_len</td>
-<td>int</td>
-<td></td>
-<td>sequence length or num patches</td>
-</tr>
-<tr class="even">
-<td>d_k</td>
-<td>int</td>
-<td>None</td>
-<td>key dimension</td>
-</tr>
-<tr class="odd">
-<td>d_v</td>
-<td>int</td>
-<td>None</td>
-<td>value dimension</td>
-</tr>
-<tr class="even">
-<td>res_attention</td>
-<td>bool</td>
-<td>False</td>
-<td>whether to use residual attention</td>
-</tr>
-<tr class="odd">
-<td>attn_dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td>dropout for attention</td>
-</tr>
-<tr class="even">
-<td>lsa</td>
-<td>bool</td>
-<td>False</td>
-<td>whether to use LSA, trainable paramater for scaling</td>
-</tr>
-<tr class="odd">
-<td>proj_dropout</td>
-<td>float</td>
-<td>0.0</td>
-<td>dropout for projection</td>
-</tr>
-<tr class="even">
-<td>qkv_bias</td>
-<td>bool</td>
-<td>True</td>
-<td>bias for q, k, v</td>
-</tr>
-</tbody>
-</table>
-<div id="cell-31" class="cell">
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
+<div id="da730f36" class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>d_model<span class="op">=</span><span class="dv">16</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>c_in <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>seq_len <span class="op">=</span> <span class="dv">1</span><span class="op">*</span><span class="dv">360</span><span class="op">*</span><span class="dv">10</span></span>
@@ -1133,7 +936,7 @@ class Model(nn.Module):
 <span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>out, attn_weights <span class="op">=</span> model(x_emb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-32" class="cell">
+<div id="31d4c5c6" class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">## test w patches [bs *c_in x num_patches x d_model]</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>d_model<span class="op">=</span><span class="dv">512</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>c_in <span class="op">=</span> <span class="dv">2</span></span>
@@ -1157,10 +960,12 @@ class Model(nn.Module):
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L672" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="maskedautogressionfeedforward2" class="level3">
 <h3 class="anchored" data-anchor-id="maskedautogressionfeedforward2">MaskedAutogressionFeedForward2</h3>
-<blockquote class="blockquote">
-<pre><code> MaskedAutogressionFeedForward2 (d_model, patch_len, n_layers, dropout)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> MaskedAutogressionFeedForward2(</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    d_model, patch_len, n_layers, dropout</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -1177,17 +982,21 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L635" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="maskedautogressionfeedforward" class="level3">
 <h3 class="anchored" data-anchor-id="maskedautogressionfeedforward">MaskedAutogressionFeedForward</h3>
-<blockquote class="blockquote">
-<pre><code> MaskedAutogressionFeedForward (c_in, patch_len, d_model,
-                                shared_recreation=True)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> MaskedAutogressionFeedForward(</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    c_in, <span class="co"># the number of input channels</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    patch_len, <span class="co"># the length of the patches (either stft or interval length)</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    d_model, <span class="co"># the dimension of the initial linear layers for inputting patches into transformer</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    shared_recreation:<span class="bu">bool</span><span class="op">=</span><span class="va">True</span>, <span class="co"># indicator of whether to project each channel individually or together</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -1204,49 +1013,7 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<table class="caption-top table">
-<caption>ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</caption>
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>c_in</td>
-<td></td>
-<td></td>
-<td>the number of input channels</td>
-</tr>
-<tr class="even">
-<td>patch_len</td>
-<td></td>
-<td></td>
-<td>the length of the patches (either stft or interval length)</td>
-</tr>
-<tr class="odd">
-<td>d_model</td>
-<td></td>
-<td></td>
-<td>the dimension of the initial linear layers for inputting patches into transformer</td>
-</tr>
-<tr class="even">
-<td>shared_recreation</td>
-<td>bool</td>
-<td>True</td>
-<td>indicator of whether to project each channel individually or together</td>
-</tr>
-</tbody>
-</table>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 </section>
 </section>
 <section id="miscellaneous" class="level2">
@@ -1255,10 +1022,12 @@ class Model(nn.Module):
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L696" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="identity" class="level3">
 <h3 class="anchored" data-anchor-id="identity">Identity</h3>
-<blockquote class="blockquote">
-<pre><code> Identity ()</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Identity(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -1275,24 +1044,28 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L712" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="get_activation_fn" class="level3">
 <h3 class="anchored" data-anchor-id="get_activation_fn">get_activation_fn</h3>
-<blockquote class="blockquote">
-<pre><code> get_activation_fn (activation)</code></pre>
-</blockquote>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_activation_fn(</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    activation</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><a href="https://github.com/benmfox/PFTSleep/blob/main/pftsleep/layers.py#L703" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="transpose" class="level3">
 <h3 class="anchored" data-anchor-id="transpose">Transpose</h3>
-<blockquote class="blockquote">
-<pre><code> Transpose (*dims, contiguous=False)</code></pre>
-</blockquote>
-<p>*Base class for all neural network modules.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Transpose(</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    dims:VAR_POSITIONAL, contiguous:<span class="bu">bool</span><span class="op">=</span><span class="va">False</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Base class for all neural network modules.</em></p>
 <p>Your models should also subclass this class.</p>
 <p>Modules can also contain other Modules, allowing to nest them in a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
@@ -1309,7 +1082,7 @@ class Model(nn.Module):
         return F.relu(self.conv2(x))</code></pre>
 <p>Submodules assigned in this way will be registered, and will have their parameters converted too when you call :meth:<code>to</code>, etc.</p>
 <p>.. note:: As per the example above, an <code>__init__()</code> call to the parent class must be made before assignment on the child.</p>
-<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool*</p>
+<p>:ivar training: Boolean represents whether this module is in training or evaluation mode. :vartype training: bool</p>
 
 
 </section>
