@@ -4,9 +4,10 @@
 
 # %% auto 0
 __all__ = ['ALL_FREQUENCY_FILTERS', 'VOLTAGE_CHANNELS', 'CLIP_INTERPOLATE_RANGES', 'WSC_CHANNELS', 'APPLES_CHANNELS',
-           'MESA_CHANNELS', 'SHHS_CHANNELS', 'MROS_CHANNELS', 'read_edf', 'read_edf_mne', 'read_edf_edfio',
-           'read_hypnogram', 'edf_signals_to_zarr', 'trim_wake_epochs_from_hypnogram', 'trim_wake_epochs_from_signals',
-           'SelfSupervisedTimeFrequencyDataset', 'HypnogramTimeFrequencyDataset', 'plot_edf_signals']
+           'MESA_CHANNELS', 'SHHS_CHANNELS', 'MROS_CHANNELS', 'ALL_CHANNELS', 'read_edf', 'read_edf_mne',
+           'read_edf_edfio', 'read_hypnogram', 'edf_signals_to_zarr', 'trim_wake_epochs_from_hypnogram',
+           'trim_wake_epochs_from_signals', 'SelfSupervisedTimeFrequencyDataset', 'HypnogramTimeFrequencyDataset',
+           'plot_edf_signals']
 
 # %% ../nbs/02_slumber.ipynb 3
 import pyedflib, edfio, torch, zarr, warnings, datetime as dt, torch.nn.functional as F, dask.array as da, numpy as np, pandas as pd, plotly.graph_objects as go, plotly.express as px
@@ -90,6 +91,13 @@ SHHS_CHANNELS = [["ECG"], ["EOG(L)"], ["EMG"], ["EEG", "EEG(sec)"], ["SaO2"], ["
 # most of these weere derived in the zarr job file
 MROS_CHANNELS = [['ECG (L-R)'], ['E1-M2'], ['EMG (L-R)'], ["C4-M1", "C3-M2"], ['SaO2', 'SpO2'], ['Thoracic', 'Chest'], ['Abdominal', 'ABD']]
 
+ALL_CHANNELS = [['ECG', 'ECG (L-R)', 'EKG'],
+            ['EOG(L)', 'E1', 'E1-M2', 'EOG-L'],
+            ['EMG', 'cchin_l', 'chin', 'EMG (L-R)'],
+            ['EEG', 'C3_M2', "C4-M1", "C3-M2", 'EEG3'],
+            ['SaO2', 'spo2', 'SpO2'],
+            ['THOR RES', 'thorax', 'Thoracic', 'Chest', 'Thor'],
+            ['ABDO RES', 'abdomen', 'Abdominal', 'ABD', 'Abdo']]
 
 # %% ../nbs/02_slumber.ipynb 8
 def read_edf(file_path, # file path of edf

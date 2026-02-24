@@ -69,6 +69,15 @@ class PatchTFTSimpleLightning(pl.LightningModule):
             z, x_hat, y, training_mask, key_padding_mask = self.model(x, sequence_padding_mask=sequence_padding_mask)
             return z, x_hat, y, training_mask, key_padding_mask
 
+    def predict_step(self, batch, batch_idx):
+        if self.use_sequence_padding_mask:
+            x, _, sequence_padding_mask = batch
+        else:
+            x, _ = batch
+            sequence_padding_mask = None
+        z, *_ = self.model(x, sequence_padding_mask=sequence_padding_mask)
+        return z
+
     def training_step(self, batch, batch_idx):
         # training_step defines the train loop.
         if self.use_sequence_padding_mask:
