@@ -14,7 +14,7 @@ authors:
     orcid: 'https://orcid.org/0000-0002-5751-4884'
 identifiers:
   - type: doi
-    value: 10.64898/2026.03.20.26348834
-    description: The medrXiv deposit of the encompassing paper.
+    value: 10.1093/sleep/zsaf061
+    description: Published work in SLEEP
 repository-code: 'https://github.com/benmfox/PFTSleep'
 license: Apache-2.0
